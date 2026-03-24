@@ -22,7 +22,19 @@
                 <a-ring color="#00FF00" radius-inner="0.65" radius-outer="0.68" opacity="0.5" rotation="90 0 0" scale="0.8 1.1 1"
                         animation="property: scale; from: 0.8 1.1 1; to: 0.81 1.11 1.01; dir: alternate; loop: true; dur: 800">
                 </a-ring>
-                
+                <a-entity position="0 0 0.1">
+
+                    <a-circle src="./assets/textures/matrix_grid.png" radius="0.4" color="#003300" opacity="0.8" transparent="true"
+                    animation="property: rotation; from: 0 0 0; to: 0 0 360; loop: true; dur: 10000; easing: linear">
+                    </a-circle>
+
+                    <a-gltf-model src="./logokti.glb" scale="0.15 0.15 0.15" position="0 0 0.05"
+                    animation="property: scale; from: 0.15 0.15 0.15; to: 0.16 0.16 0.16; dir: alternate; loop: true; dur: 1500">
+                    </a-gltf-model>
+
+
+                </a-entity>
+
             </a-entity>
 
         </a-scene>
