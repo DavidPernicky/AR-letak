@@ -42,48 +42,63 @@
             </a-entity>
 
             <!-- TARGET 1: HARDVÉROVÁ STRANA -->
+<!-- DRUHÁ STRANA LETÁKU - HARDWARE -->
 <a-entity mindar-image-target="targetIndex: 1">
+    <!-- Tmavé pozadie pre kontrast -->
     <a-plane width="1.1" height="1.6" color="#050505" opacity="0.8" position="0 0 -0.05"></a-plane>
-    
-    <!-- MENU PRE VÝBER HRADLA -->
-    <a-entity position="-0.35 0.75 0.1">
-        <a-text value="VYBER HRADLO:" position="0 0.08 0" align="center" width="1" color="#FFF"></a-text>
-        <a-circle id="btnSelectAND" class="clickable" radius="0.04" color="#00CCFF" position="-0.1 0 0">
-            <a-text value="AND" align="center" width="1.5" position="0 0 0.01"></a-text>
-        </a-circle>
-        <a-circle id="btnSelectOR" class="clickable" radius="0.04" color="#333" position="0 0 0">
-            <a-text value="OR" align="center" width="1.5" position="0 0 0.01"></a-text>
-        </a-circle>
-        <a-circle id="btnSelectNOT" class="clickable" radius="0.04" color="#333" position="0.1 0 0">
-            <a-text value="NOT" align="center" width="1.5" position="0 0 0.01"></a-text>
-        </a-circle>
-    </a-entity>
 
-    <!-- INTERAKTÍVNA LOGIKA -->
-    <a-entity position="-0.35 0.5 0.1">
-        <a-image id="gateDisplay" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/AND_ANSI.svg/200px-AND_ANSI.svg.png" width="0.2" height="0.12" position="0 0 0"></a-image>
+    <!-- NADPIS - Posunutý úplne hore -->
+    <a-text value="INTERAKTÍVNA LOGIKA AOS" color="#00CCFF" align="center" width="2.2" position="0 0.7 0.1" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
+
+    <!-- 1. VÝBER HRADLA (Široké rozostupy) -->
+    <a-entity position="0 0.5 0.1">
+        <a-text value="ZVOL TYP HRADLA:" position="0 0.15 0" align="center" width="1.2" color="#BBB"></a-text>
         
-        <!-- Vstupy -->
-        <a-sphere id="btnA" class="clickable" radius="0.03" color="#FF0000" position="-0.12 0.04 0">
-            <a-text value="A" position="0 0.06 0" align="center" width="2"></a-text>
+        <!-- AND (vľavo) -->
+        <a-circle id="btnSelectAND" class="clickable" radius="0.06" color="#00CCFF" position="-0.3 0 0">
+            <a-text value="AND" align="center" width="1.4" position="0 0 0.01"></a-text>
+        </a-circle>
+        
+        <!-- OR (stred) -->
+        <a-circle id="btnSelectOR" class="clickable" radius="0.06" color="#333" position="0 0 0">
+            <a-text value="OR" align="center" width="1.4" position="0 0 0.01"></a-text>
+        </a-circle>
+        
+        <!-- NOT (vpravo) -->
+        <a-circle id="btnSelectNOT" class="clickable" radius="0.06" color="#333" position="0.3 0 0">
+            <a-text value="NOT" align="center" width="1.4" position="0 0 0.01"></a-text>
+        </a-circle>
+    </a-entity>
+
+    <!-- 2. VIZUALIZÁCIA HRADLA (Uprostred) -->
+    <a-entity position="0 0.15 0.1">
+        <!-- Obrázok hradla (zväčšený) -->
+        <a-image id="gateDisplay" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/AND_ANSI.svg/200px-AND_ANSI.svg.png" width="0.3" height="0.18" position="0 0 0"></a-image>
+        
+        <!-- Vstupy A a B (posunuté viac do strán od hradla) -->
+        <a-sphere id="btnA" class="clickable" radius="0.04" color="#FF0000" position="-0.25 0.05 0">
+            <a-text value="A" position="0 0.08 0" align="center" width="2.5"></a-text>
         </a-sphere>
-        <a-sphere id="btnB" class="clickable" radius="0.03" color="#FF0000" position="-0.12 -0.04 0">
-            <a-text value="B" position="0 -0.06 0" align="center" width="2"></a-text>
+        
+        <a-sphere id="btnB" class="clickable" radius="0.04" color="#FF0000" position="-0.25 -0.05 0">
+            <a-text value="B" position="0 -0.08 0" align="center" width="2.5"></a-text>
         </a-sphere>
 
-        <!-- Výstup -->
-        <a-sphere id="outQ" radius="0.04" color="#222222" position="0.15 0 0">
-            <a-text id="txtQ" value="0" position="0 -0.08 0" align="center" width="2"></a-text>
+        <!-- Výstup Q (posunutý viac doprava) -->
+        <a-sphere id="outQ" radius="0.05" color="#222" position="0.25 0 0">
+            <a-text id="txtQ" value="0" position="0 -0.1 0" align="center" width="2.5"></a-text>
         </a-sphere>
     </a-entity>
 
-    <!-- OSTATNÉ PRVKY (CPU a DRON) ostanú ako predtým -->
-    <a-entity position="0 0 0.2">
-        <a-gltf-model src="./cpu-model.glb" scale="0.0015 0.0015 0.0015" animation="property: rotation; to: 0 360 360; loop: true; dur: 8000; easing: easeInOutSine"></a-gltf-model>
+    <!-- 3. CPU A DRON (Dole, aby nezavadzali hradlám) -->
+    <a-entity position="-0.25 -0.4 0.1">
+        <a-gltf-model src="./cpu-model.glb" scale="0.001 0.001 0.001" animation="property: rotation; to: 0 360 0; loop: true; dur: 8000"></a-gltf-model>
+        <a-text value="CPU ARCHITEKTÚRA" position="0 -0.15 0" align="center" width="1" color="#00CCFF"></a-text>
     </a-entity>
 
-    <a-entity position="0.35 -0.5 0.1">
-        <a-gltf-model src="./drone.glb" scale="0.3 0.3 0.3" animation="property: position; from: 0 0 0; to: 0 0.08 0; dir: alternate; dur: 2000; easing: easeInOutSine; loop: true"></a-gltf-model>
+    <a-entity position="0.25 -0.4 0.1">
+        <a-gltf-model src="./drone.glb" scale="0.2 0.2 0.2" animation="property: position; from: 0 0 0; to: 0 0.05 0; dir: alternate; loop: true; dur: 2000"></a-gltf-model>
+        <a-text value="IoBT SYSTÉMY" position="0 -0.15 0" align="center" width="1" color="#00FF00"></a-text>
     </a-entity>
 </a-entity>
 
