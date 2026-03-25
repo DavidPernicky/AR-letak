@@ -48,10 +48,9 @@
                 
                 <!-- 1. CENTRÁLNE CPU -->
                 <a-entity position="0 0 0.2">
-                    <a-gltf-model src="./cpu-model.glb" scale="0.0015 0.0015 0.0015"
+                    <a-gltf-model src="./cpu-model.glb" scale="0.0012 0.0012 0.0012"
                       animation="property: rotation; from: 0 0 0; to: 0 360 360; loop: true; dur: 8000; easing: easeInOutSine">
                     </a-gltf-model>
-                    <a-text value="CPU CORE" position="0 -0.15 0" align="center" width="1.2" color="#00CCFF"></a-text>
                 </a-entity>
 
                 <!-- 2. TEČÚCE SVETLO (DÁTA) -->
@@ -70,10 +69,10 @@
                     
                     <!-- Vstupy (Sféry, na ktoré sa dá klikať) -->
                     <a-sphere id="btnA" class="clickable" radius="0.03" color="#FF0000" position="-0.12 0.04 0">
-                        <a-text value="A" position="0 0.06 0" align="center" width="2"></a-text>
+                        <a-text value="A" position="0 0.07 0" align="center" width="1.5"></a-text>
                     </a-sphere>
                     <a-sphere id="btnB" class="clickable" radius="0.03" color="#FF0000" position="-0.12 -0.04 0">
-                        <a-text value="B" position="0 -0.06 0" align="center" width="2"></a-text>
+                        <a-text value="B" position="0 -0.07 0" align="center" width="1.5"></a-text>
                     </a-sphere>
 
                     <!-- Výstup -->
