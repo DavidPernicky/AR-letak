@@ -43,9 +43,27 @@
                 <a-plane width="1.1" height="1.6" color="#050505" opacity="0.8" position="0 0 -0.05"></a-plane>
                 <a-text value="AKTIVNY HARDVEROVY STACK AOS" color="#00CCFF" align="center" width="2" position="0 0.8 0.1" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
                 <a-entity position="0 0 0.2">
-                    <a-gltf-model src="./cpu-model.glb" scale="0.03 0.03 0.03"
+                    <a-gltf-model src="./cpu-model.glb" scale="0.01 0.01 0.01"
                       animation="property: rotation; from: 0 0 0; to: 0 360 0; dir: alternate; loop: true; dur: 8000; easing: easeInOutSine">
                     </a-gltf-model>
+                </a-entity>
+
+                <a-entity position="0.38 0.5 0.1">
+                    <a-box scale="0.1 0.1 0.01" color="#333" material="wireframe: true">
+                        <a-text value="PC ARCH" align="center" width="1"></a-text>
+                    </a-box>
+                </a-entity>
+
+                <a-entity position="-0.38 0.5 0.1">
+                    <a-plane width="0.2" height="0.1" color="#FF0000" opacity="0.2" material="wireframe: true">
+                        <a-text value="LOGIC" align="center" width="1"></a-text>
+                    </a-plane>
+                </a-entity>
+
+                <a-entity position="-0.38 -0.5 0.1">
+                    <a-sphere radius="0.05" color="#00CCFF" material="wireframe: true">
+                        <a-text value="SYSTEMS" align="center" width="1"></a-text>
+                    </a-sphere>
                 </a-entity>
 
             </a-entity>
