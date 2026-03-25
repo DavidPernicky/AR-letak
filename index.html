@@ -42,85 +42,100 @@
             </a-entity>
 
             <!-- TARGET 1: HARDVÉROVÁ STRANA -->
-            <a-entity mindar-image-target="targetIndex: 1">
-                <a-plane width="1.1" height="1.6" color="#050505" opacity="0.8" position="0 0 -0.05"></a-plane>
-                <a-text value="AKTIVNY HARDVEROVY STACK AOS" color="#00CCFF" align="center" width="2" position="0 0.8 0.1" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
-                
-                <!-- 1. CENTRÁLNE CPU -->
-                <a-entity position="0 0 0.2">
-                    <a-gltf-model src="./cpu-model.glb" scale="0.0012 0.0012 0.0012"
-                      animation="property: rotation; from: 0 0 0; to: 0 360 360; loop: true; dur: 8000; easing: easeInOutSine">
-                    </a-gltf-model>
-                </a-entity>
+<a-entity mindar-image-target="targetIndex: 1">
+    <a-plane width="1.1" height="1.6" color="#050505" opacity="0.8" position="0 0 -0.05"></a-plane>
+    
+    <!-- MENU PRE VÝBER HRADLA -->
+    <a-entity position="-0.35 0.75 0.1">
+        <a-text value="VYBER HRADLO:" position="0 0.08 0" align="center" width="1" color="#FFF"></a-text>
+        <a-circle id="btnSelectAND" class="clickable" radius="0.04" color="#00CCFF" position="-0.1 0 0">
+            <a-text value="AND" align="center" width="1.5" position="0 0 0.01"></a-text>
+        </a-circle>
+        <a-circle id="btnSelectOR" class="clickable" radius="0.04" color="#333" position="0 0 0">
+            <a-text value="OR" align="center" width="1.5" position="0 0 0.01"></a-text>
+        </a-circle>
+        <a-circle id="btnSelectNOT" class="clickable" radius="0.04" color="#333" position="0.1 0 0">
+            <a-text value="NOT" align="center" width="1.5" position="0 0 0.01"></a-text>
+        </a-circle>
+    </a-entity>
 
-                <!-- 2. TEČÚCE SVETLO (DÁTA) -->
-                <!-- Smerom k hradlu -->
-                <a-sphere radius="0.01" color="#FFF" position="0 0 0.1"
-                    animation="property: position; from: 0 0 0.1; to: -0.35 0.5 0.1; loop: true; dur: 2000; easing: linear">
-                </a-sphere>
-                <!-- Smerom k dronu -->
-                <a-sphere radius="0.01" color="#00FF00" position="0 0 0.1"
-                    animation="property: position; from: 0 0 0.1; to: 0.35 -0.5 0.1; loop: true; dur: 2500; easing: linear; delay: 500">
-                </a-sphere>
+    <!-- INTERAKTÍVNA LOGIKA -->
+    <a-entity position="-0.35 0.5 0.1">
+        <a-image id="gateDisplay" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/AND_ANSI.svg/200px-AND_ANSI.svg.png" width="0.2" height="0.12" position="0 0 0"></a-image>
+        
+        <!-- Vstupy -->
+        <a-sphere id="btnA" class="clickable" radius="0.03" color="#FF0000" position="-0.12 0.04 0">
+            <a-text value="A" position="0 0.06 0" align="center" width="2"></a-text>
+        </a-sphere>
+        <a-sphere id="btnB" class="clickable" radius="0.03" color="#FF0000" position="-0.12 -0.04 0">
+            <a-text value="B" position="0 -0.06 0" align="center" width="2"></a-text>
+        </a-sphere>
 
-                <!-- 3. INTERAKTÍVNE LOGICKÉ HRADLO (AND) -->
-                <a-entity position="-0.25 0.4 0.1">
-                    <a-image src="#gate-img" width="0.2" height="0.12" position="0 0 0"></a-image>
-                    
-                    <!-- Vstupy (Sféry, na ktoré sa dá klikať) -->
-                    <a-sphere id="btnA" class="clickable" radius="0.03" color="#FF0000" position="-0.12 0.04 0">
-                        <a-text value="A" position="0 0.07 0" align="center" width="1.5"></a-text>
-                    </a-sphere>
-                    <a-sphere id="btnB" class="clickable" radius="0.03" color="#FF0000" position="-0.12 -0.04 0">
-                        <a-text value="B" position="0 -0.07 0" align="center" width="1.5"></a-text>
-                    </a-sphere>
+        <!-- Výstup -->
+        <a-sphere id="outQ" radius="0.04" color="#222222" position="0.15 0 0">
+            <a-text id="txtQ" value="0" position="0 -0.08 0" align="center" width="2"></a-text>
+        </a-sphere>
+    </a-entity>
 
-                    <!-- Výstup -->
-                    <a-sphere id="outQ" radius="0.04" color="#222222" position="0.15 0 0">
-                        <a-text id="txtQ" value="0" position="0 -0.08 0" align="center" width="2"></a-text>
-                    </a-sphere>
+    <!-- OSTATNÉ PRVKY (CPU a DRON) ostanú ako predtým -->
+    <a-entity position="0 0 0.2">
+        <a-gltf-model src="./cpu-model.glb" scale="0.0015 0.0015 0.0015" animation="property: rotation; to: 0 360 360; loop: true; dur: 8000; easing: easeInOutSine"></a-gltf-model>
+    </a-entity>
 
-                    <a-text value="LOGIKA AND" position="0 0.18 0" align="center" width="1.2" color="#FFFFFF"></a-text>
-                </a-entity>
+    <a-entity position="0.35 -0.5 0.1">
+        <a-gltf-model src="./drone.glb" scale="0.3 0.3 0.3" animation="property: position; from: 0 0 0; to: 0 0.08 0; dir: alternate; dur: 2000; easing: easeInOutSine; loop: true"></a-gltf-model>
+    </a-entity>
+</a-entity>
 
-                <!-- 4. IoBT NODE (DRON) -->
-                <a-entity position="0.35 -0.5 0.1">
-                    <a-gltf-model src="./drone.glb" scale="0.3 0.3 0.3"
-                        animation="property: position; from: 0 0 0; to: 0 0.05 0; dir: alternate; loop: true; dur: 2000; easing: easeInOutSine">
-                    </a-gltf-model>
-                </a-entity>
+<!-- JAVASCRIPT PRE DYNAMICKÚ LOGIKU -->
+<script>
+    let a = false;
+    let b = false;
+    let activeGate = 'AND'; // Predvolené hradlo
 
-            </a-entity>
-        </a-scene>
+    const gateImages = {
+        AND: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/AND_ANSI.svg/200px-AND_ANSI.svg.png',
+        OR: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/OR_ANSI.svg/200px-OR_ANSI.svg.png',
+        NOT: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/NOT_ANSI.svg/200px-NOT_ANSI.svg.png'
+    };
 
-        <!-- JAVASCRIPT PRE LOGIKU HRADLA -->
-        <script>
-            let a = false;
-            let b = false;
+    function updateLogic() {
+        let result = false;
+        const btnB = document.querySelector('#btnB');
 
-            const btnA = document.querySelector('#btnA');
-            const btnB = document.querySelector('#btnB');
-            const outQ = document.querySelector('#outQ');
-            const txtQ = document.querySelector('#txtQ');
+        if (activeGate === 'AND') {
+            result = a && b;
+            btnB.setAttribute('visible', 'true');
+        } else if (activeGate === 'OR') {
+            result = a || b;
+            btnB.setAttribute('visible', 'true');
+        } else if (activeGate === 'NOT') {
+            result = !a; // NOT berie len vstup A
+            btnB.setAttribute('visible', 'false'); // Skryjeme nepotrebný vstup B
+        }
 
-            function updateLogic() {
-                // Logika AND: Výstup je 1 len ak sú oba vstupy 1
-                const result = a && b;
+        document.querySelector('#btnA').setAttribute('color', a ? '#00FF00' : '#FF0000');
+        document.querySelector('#btnB').setAttribute('color', b ? '#00FF00' : '#FF0000');
+        document.querySelector('#outQ').setAttribute('color', result ? '#00FF00' : '#222222');
+        document.querySelector('#txtQ').setAttribute('value', result ? '1' : '0');
+    }
 
-                btnA.setAttribute('color', a ? '#00FF00' : '#FF0000');
-                btnB.setAttribute('color', b ? '#00FF00' : '#FF0000');
+    // Prepínanie typu hradla
+    ['AND', 'OR', 'NOT'].forEach(gate => {
+        document.querySelector('#btnSelect' + gate).addEventListener('click', () => {
+            activeGate = gate;
+            document.querySelector('#gateDisplay').setAttribute('src', gateImages[gate]);
+            
+            // Reset farieb tlačidiel menu
+            ['AND', 'OR', 'NOT'].forEach(g => document.querySelector('#btnSelect' + g).setAttribute('color', '#333'));
+            document.querySelector('#btnSelect' + gate).setAttribute('color', '#00CCFF');
+            
+            updateLogic();
+        });
+    });
 
-                if (result) {
-                    outQ.setAttribute('color', '#00FF00');
-                    txtQ.setAttribute('value', '1');
-                } else {
-                    outQ.setAttribute('color', '#222222');
-                    txtQ.setAttribute('value', '0');
-                }
-            }
-
-            btnA.addEventListener('click', () => { a = !a; updateLogic(); });
-            btnB.addEventListener('click', () => { b = !b; updateLogic(); });
-        </script>
+    document.querySelector('#btnA').addEventListener('click', () => { a = !a; updateLogic(); });
+    document.querySelector('#btnB').addEventListener('click', () => { b = !b; updateLogic(); });
+</script>
     </body>
 </html>
