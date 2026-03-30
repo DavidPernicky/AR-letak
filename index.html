@@ -142,15 +142,13 @@
             </a-entity>
 
             <!-- TARGET 2: KYBERNETICKÁ OBRANA -->
-            
-            <!-- TARGET 2: KYBERNETICKÁ OBRANA -->
-            <!-- TARGET 2: ADVANCED CYBER DEFENSE -->
+        
             <a-entity mindar-image-target="targetIndex: 2">
                 
                 <a-plane width="1.1" height="1.6" color="#050505" opacity="0.95" position="0 0 -0.05"></a-plane>
 
                 <!-- GLOBÁLNA SIEŤ (Uzly okolo Zeme) -->
-                <a-entity id="network-nodes" position="0 0.1 0.1">
+                <a-entity id="network-nodes" position="0 0.4 0.1">
                     <!-- Zemeguľa ostáva v strede -->
                     <a-sphere radius="0.3" src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_2048.jpg"
                             animation="property: rotation; to: 0 360 0; loop: true; dur: 25000; easing: linear">
@@ -159,7 +157,7 @@
                     <!-- Uzol 1 -->
                     <a-sphere class="node" radius="0.02" color="#FF0000" position="0.4 0.2 0" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 500"></a-sphere>
                     <!-- Uzol 2 -->
-                    <a-sphere class="node" radius="0.02" color="#FF0000" position="-0.3 0.4 0.2" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 700"></a-sphere>
+                    <a-sphere class="node" radius="0.02" color="#FF0000" position="-0.3 0.35 0.2" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 700"></a-sphere>
                     <!-- Uzol 3 -->
                     <a-sphere class="node" radius="0.02" color="#FF0000" position="0.2 -0.4 -0.1" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 600"></a-sphere>
                     <!-- Uzol 4 (Nový) -->
@@ -169,7 +167,7 @@
                     <!-- Uzol 6 (Nový) -->
                     <a-sphere class="node" radius="0.02" color="#FF0000" position="-0.1 -0.5 0" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 550"></a-sphere>
                     <!-- Uzol 7 (Nový) -->
-                    <a-sphere class="node" radius="0.02" color="#FF0000" position="0.5 -0.1 0.2" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 650"></a-sphere>
+                    <a-sphere class="node" radius="0.02" color="#FF0000" position="0.45 -0.1 0.2" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 650"></a-sphere>
                 </a-entity>
 
                 <!-- MODRÝ ŠTÍT -->
@@ -178,7 +176,7 @@
                 </a-sphere>
 
                 <!-- TERMINÁLNY LOG (Vľavo hore) -->
-                <a-entity position="-0.4 0.6 0.1">
+                <a-entity position="-0.4 0.55 0.1">
                     <a-text id="log-1" value="> DETECTING ATTACKS..." color="#FF0000" width="1.5" position="0 0.1 0"></a-text>
                     <a-text id="log-2" value="> IP: 192.168.1.104" color="#FF0000" width="1.2" position="0 0.02 0"></a-text>
                     <a-text id="log-3" value="> TYPE: DDOS_SPOOF" color="#FF3333" width="1.2" position="0 -0.06 0"></a-text>
