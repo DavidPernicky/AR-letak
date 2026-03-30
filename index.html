@@ -94,7 +94,7 @@
         
         <!-- Hlavná doska - jediná má triedu 'clickable' na začiatku -->
         <a-entity id="main-board" class="clickable" gltf-model="./motherboard.glb" 
-                  scale="1 1 1" rotation="0 0 0" position="0 0 0">
+                  scale="1 1 1" rotation="-90 0 0" position="0 0 0">
         </a-entity>
 
         <a-text id="click-hint" value="KLIKNI NA DOSKU" align="center" position="0 0.3 0" width="1.2" color="#92d404"></a-text>
@@ -103,22 +103,23 @@
         <a-entity id="architecture-panel" visible="false">
             
             <!-- Čierne pozadie panelu, aby komponenty nesplývali s letákom -->
-            <a-plane width="0.6" height="1.2" color="#111" position="0 0 0.05" opacity="0.9"></a-plane>
+            <a-plane width="0.6" height="1.2" color="#111" position="0 0 0.05" opacity="1"></a-plane>
+             <a-text id="textP" value="Hlavne komponenty dosky:" align="center" position="0 0.5 0.1" width="1.2" color="#92d404"></a-text>
 
             <!-- CPU -->
-            <a-entity id="p-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.04 0.04 0.04" position="0 0.2 0.1" rotation="-90 0 0"></a-entity>
-            <a-text value="PROCESOR" position="0 0.1 0.1" width="1" align="right"></a-text>
+            <a-entity id="p-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.06 0.06 0.06" position="0 0.2 0.1" rotation="-90 0 0"></a-entity>
+            <a-text value="PROCESOR" position="0.1 0.1 0.1" width="1" align="center"></a-text>
 
             <!-- RAM -->
             <a-entity id="p-ram" gltf-model="./old_computer_ram.glb" scale="0.05 0.05 0.05" position="0 0 0.1" rotation="-90 0 0"></a-entity>
-            <a-text value="PAMAT RAM" position="0.2 -0.1 0.12" width="1" align="left"></a-text>
+            <a-text value="PAMAT RAM" position="0 -0.1 0.12" width="1" align="center"></a-text>
 
             <!-- GPU -->
             <a-entity id="p-gpu" gltf-model="./gpu.glb" scale="0.04 0.04 0.04" position="0 -0.2 0.1" rotation="-90 0 0"></a-entity>
-            <a-text value="GRAFIKA" position="0 -0.3 0.1" width="1" align="right"></a-text>
+            <a-text value="GRAFIKA" position="0 -0.3 0.1" width="1" align="center"></a-text>
 
             <!-- Tlačidlo na zavretie -->
-            <a-rect id="btn-close" class="clickable" radius="0.05" color="red" position="0 -0.4 0.12">
+            <a-rect id="btn-close" class="clickable" radius="0.05" color="blue" position="0 -0.4 0.12">
                 <a-text value="ZAVRIET" align="center" width="1.5"></a-text>
             </a-rect>
 
