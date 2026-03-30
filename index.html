@@ -97,7 +97,7 @@
                   scale="1 1 1" rotation="90 90 0" position="0 0 0">
         </a-entity>
 
-        <a-text id="click-hint" value="KLIKNI NA DOSKU" align="center" position="0 0 0" width="1.2" color="#075cab"></a-text>
+        <a-text id="click-hint" value="KLIKNI NA DOSKU" align="center" position="0 0.1 0" width="1.2" color="#075cab"></a-text>
 
         <!-- PANEL S KOMPONENTMI (Štartuje ako visible: false) -->
         <a-entity id="architecture-panel" visible="false">
@@ -115,7 +115,7 @@
             <a-text value="PAMAT RAM" position="0 -0.1 0.12" width="1" align="center"></a-text>
 
             <!-- GPU -->
-            <a-entity id="p-gpu" gltf-model="./gpu.glb" scale="0.04 0.04 0.04" position="0.1 -0.3 0.1" rotation="90 0 0"></a-entity>
+            <a-entity id="p-gpu" gltf-model="./gpu.glb" scale="0.04 0.04 0.04" position="0.05 -0.3 0.1" rotation="90 0 0"></a-entity>
             <a-text value="GRAFIKA" position="0 -0.4 0.1" width="1" align="center"></a-text>
 
             <!-- Tlačidlo na zavretie -->
@@ -128,10 +128,10 @@
                 <a-plane width="0.25" height="0.12" color="#FF3333" position="0 0 0"></a-plane>
                 
                 <!-- Biely rámček -->
-                <a-rect width="0.25" height="0.12" fill="none" stroke="white" stroke-width="2" position="0 0 0.01"></a-rect>
+                <a-rect width="0.25" height="0.12" fill="none" color="#FFFFFF" stroke-width="2" position="0 0 0.01"></a-rect>
                 
                 <!-- Text -->
-                <a-text value="ZAVRIET" align="center" width="2.5" color="#075cab" position="0 0 0.02"></a-text>
+                <a-text value="Zatvoriť" align="center" width="1.3" color="#075cab" position="0 0 0.02"></a-text>
 
             </a-entity>
         </a-entity>
