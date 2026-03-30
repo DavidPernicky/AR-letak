@@ -90,41 +90,42 @@
 
     <!-- 3. ARCHITEKTÚRY PC SYSTÉMOV (Vpravo hore) -->
     <a-entity position="0.35 0.5 0.1">
-        
-        <!-- Nadpis sekcie -->
-        <a-text value="PC ARCHITEKTURA" align="center" position="0 0.25 0" width="1.5" color="#92d404" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
+    
+    <!-- Nadpis sekcie -->
+    <a-text value="PC ARCHITEKTURA" align="center" position="0 0.3 0.1" width="1.5" color="#92d404" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
 
-        <!-- 1. ZÁKLADNÁ DOSKA (Základňa, ktorá levituje tesne nad papierom) -->
-        <a-entity gltf-model="./low-poly_motherboard.glb" 
-                scale="0.08 0.08 0.08" 
-                rotation="90 0 0" 
-                position="0 0 0">
-        </a-entity>
-
-        <!-- 2. PROCESOR (Vysunutý o 0.08 von z papiera) -->
-        <a-entity position="0 0 0.08"
-                animation="property: position; from: 0 0 0.02; to: 0 0 0.08; dir: alternate; loop: true; dur: 2000">
-            <a-entity gltf-model="./pc_cpu_processor.glb" scale="0.04 0.04 0.04"></a-entity>
-            <a-text value="CPU: Mozog" align="center" position="0 -0.08 0" width="1" color="#FFF"></a-text>
-        </a-entity>
-
-        <!-- 3. RAM (Vysunutá o 0.12 von z papiera) -->
-        <a-entity position="0.08 0 0.12"
-                animation="property: position; from: 0.08 0 0.03; to: 0.08 0 0.12; dir: alternate; loop: true; dur: 2000; delay: 500">
-            <a-entity gltf-model="./old_computer_ram.glb" scale="0.06 0.06 0.06"></a-entity>
-            <a-text value="RAM: Pamat" align="center" position="0 -0.08 0" width="1" color="#FFF"></a-text>
-        </a-entity>
-
-        <!-- ŠÍPKY / ZBERNICE (Pulzujúce čiary medzi CPU a RAM) -->
-        <a-entity line="start: 0 0 0.08; end: 0.08 0 0.12; color: #92d404" 
-                animation="property: line.opacity; from: 0.3; to: 1; dir: alternate; loop: true; dur: 500">
-        </a-entity>
-
-        <!-- Krátky popis, ktorý sa objaví pri komponente -->
-        <a-plane width="0.4" height="0.15" color="#000" opacity="0.7" position="0 -0.2 0.05">
-            <a-text value="Nauc sa ako spolupracuje\nprocesor, pamat a zbernice." align="center" width="0.9" color="#00CCFF"></a-text>
-        </a-plane>
+    <!-- 1. ZÁKLADNÁ DOSKA (Zostáva ako základňa úplne vzadu) -->
+    <a-entity gltf-model="./low-poly_motherboard.glb" 
+              scale="0.07 0.07 0.07" 
+              rotation="90 0 0" 
+              position="0 0 0">
     </a-entity>
+
+    <!-- 2. PROCESOR (Posunutý mierne DOĽAVA a VIAC DOPREDU) -->
+    <a-entity position="-0.1 0.05 0.15"
+              animation="property: position; from: -0.1 0.05 0.05; to: -0.1 0.05 0.15; dir: alternate; loop: true; dur: 2000">
+        <a-entity gltf-model="./pc_cpu_processor.glb" scale="0.04 0.04 0.04" rotation="0 45 0"></a-entity>
+        <a-text value="CPU" align="center" position="0 -0.1 0" width="1.2" color="#FFF"></a-text>
+    </a-entity>
+
+    <!-- 3. RAM (Posunutá mierne DOPRAVA a NAJVYŠŠIE/NAJBLIŽŠIE) -->
+    <a-entity position="0.1 -0.05 0.25"
+              animation="property: position; from: 0.1 -0.05 0.1; to: 0.1 -0.05 0.25; dir: alternate; loop: true; dur: 2000; delay: 500">
+        <a-entity gltf-model="./old_computer_ram.glb" scale="0.06 0.06 0.06" rotation="0 -20 0"></a-entity>
+        <a-text value="RAM" align="center" position="0 -0.1 0" width="1.2" color="#FFF"></a-text>
+    </a-entity>
+
+    <!-- ŠÍPKY / ZBERNICE (Teraz spájajú nové pozície) -->
+    <!-- Čiara od CPU k doske -->
+    <a-entity line="start: -0.1 0.05 0.15; end: 0 0 0; color: #92d404" opacity="0.5"></a-entity>
+    <!-- Čiara od RAM k doske -->
+    <a-entity line="start: 0.1 -0.05 0.25; end: 0 0 0; color: #00CCFF" opacity="0.5"></a-entity>
+
+    <!-- Krátky popis - posunutý nižšie, aby nezavadzal -->
+    <a-plane width="0.45" height="0.18" color="#000" opacity="0.8" position="0 -0.3 0.1">
+        <a-text value="Nauc sa ako spolupracuje\nprocesor, pamat a zbernice." align="center" width="1" color="#00CCFF"></a-text>
+    </a-plane>
+</a-entity>
 
 
 </a-entity>
