@@ -90,136 +90,161 @@
 
     
    <!-- 3. ARCHITEKTÚRY PC SYSTÉMOV (Vpravo hore) -->
+    <!-- TARGET 1: HARDVÉROVÁ STRANA -->
     <a-entity mindar-image-target="targetIndex: 1">
-    
-        <a-entity position="0.35 0.5 0">
+        <!-- POZADIE - Musí byť VŽDY v mínuse (za modelmi) -->
+        <a-plane width="1.1" height="1.6" color="#000" opacity="0.8" position="0 0 -0.05"></a-plane>
+
+        <!-- ARCHITEKTÚRA KOMPONENTOV -->
+        <a-entity position="0.35 0.5 0.1">
             
+            <!-- Hlavná doska - jediná má triedu 'clickable' na začiatku -->
             <a-entity id="main-board" class="clickable" gltf-model="./motherboard.glb" 
                     scale="0.05 0.05 0.05" rotation="-90 0 0" position="0 0 0">
             </a-entity>
 
-            <a-text id="click-hint" value="KLIKNI PRE DETAILY ARCHITEKTÚRY" align="center" position="0 0.3 0.1" width="1.2" color="#92d404" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
+            <a-text id="click-hint" value="KLIKNI NA DOSKU" align="center" position="0 0.3 0" width="1.2" color="#92d404"></a-text>
 
-            <a-entity id="architecture-panel" visible="false" position="0 0 0.1">
+            <!-- PANEL S KOMPONENTMI (Štartuje ako visible: false) -->
+            <a-entity id="architecture-panel" visible="false">
                 
-                <a-plane width="1.2" height="1.8" color="#050505" opacity="0.95" material="transparent: true" position="0 -0.5 0.1"></a-plane>
-                <a-text value="DETAILY ARCHITEKTÚRY AOS" color="#00CCFF" align="center" width="2" position="0 0.3 0.15" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
-                
-                <a-circle id="btn-close-panel" class="clickable" radius="0.06" color="#FF3333" position="0.5 0.3 0.15">
-                    <a-text value="X" align="center" width="2" color="white"></a-text>
+                <!-- Čierne pozadie panelu, aby komponenty nesplývali s letákom -->
+                <a-plane width="0.6" height="1.2" color="#111" position="0 0 0.05" opacity="0.9"></a-plane>
+
+                <!-- CPU -->
+                <a-entity id="p-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.04 0.04 0.04" position="0 0.2 0.1" rotation="-90 0 0"></a-entity>
+                <a-text value="PROCESOR" position="-0.2 0.2 0.12" width="1" align="right"></a-text>
+
+                <!-- RAM -->
+                <a-entity id="p-ram" gltf-model="./old_computer_ram.glb" scale="0.05 0.05 0.05" position="0 0 0.1" rotation="-90 0 0"></a-entity>
+                <a-text value="PAMAT RAM" position="0.2 0 0.12" width="1" align="left"></a-text>
+
+                <!-- GPU -->
+                <a-entity id="p-gpu" gltf-model="./gpu.glb" scale="0.04 0.04 0.04" position="0 -0.2 0.1" rotation="-90 0 0"></a-entity>
+                <a-text value="GRAFIKA" position="-0.2 -0.2 0.12" width="1" align="right"></a-text>
+
+                <!-- Tlačidlo na zavretie -->
+                <a-circle id="btn-close" class="clickable" radius="0.05" color="red" position="0 -0.4 0.12">
+                    <a-text value="ZAVRET" align="center" width="1.5"></a-text>
                 </a-circle>
 
-                <a-entity id="panel-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.04 0.04 0.04" position="0 0 0.15" rotation="-90 0 0">
-                    <a-text value="CPU" align="right" position="-0.15 0 0" width="1.5"></a-text>
-                </a-entity>
-
-                <a-entity id="panel-ram" gltf-model="./old_computer_ram.glb" scale="0.05 0.05 0.05" position="0 0 0.25" rotation="-90 0 0">
-                    <a-text value="RAM" align="left" position="0.15 0 0" width="1.5"></a-text>
-                </a-entity>
-
-                <a-entity id="panel-ssd" gltf-model="./ssd.glb" scale="0.05 0.05 0.05" position="0 0 0.35" rotation="-90 0 0">
-                    <a-text value="SSD" align="right" position="-0.15 0 0" width="1.5"></a-text>
-                </a-entity>
-
-                <a-entity id="panel-gpu" gltf-model="./gpu.glb" scale="0.06 0.06 0.06" position="0 0 0.45" rotation="-90 0 0">
-                    <a-text value="GPU" align="left" position="0.15 0 0" width="1.5"></a-text>
-                </a-entity>
-                <a-plane width="0.8" height="0.15" color="#00CCFF" opacity="0.8" position="0 -1 0.15">
-                    <a-text value="ZLOŽIŤ KONFIGURÁCIU" align="center" width="1.5"></a-text>
-                </a-plane>
-                <a-plane width="0.8" height="0.15" color="#00CCFF" opacity="0.8" position="0 -1.2 0.15">
-                    <a-text value="ZÍSKAŤ INFORMÁCIE" align="center" width="1.5"></a-text>
-                </a-plane>
-
             </a-entity>
-
         </a-entity>
-
     </a-entity>
+
+<!-- TENTO SKRIPT DÁVAJ AŽ ÚPLNE NA KONIEC BODY, PRED </body> -->
+<script>
+    // Počkáme, kým sa celá scéna načíta
+    window.addEventListener('load', () => {
+        const board = document.querySelector('#main-board');
+        const panel = document.querySelector('#architecture-panel');
+        const closeBtn = document.querySelector('#btn-close');
+        const hint = document.querySelector('#click-hint');
+
+        if(board && panel && closeBtn) {
+            // OTVORENIE
+            board.addEventListener('click', () => {
+                console.log("Doska kliknutá");
+                panel.setAttribute('visible', 'true');
+                hint.setAttribute('visible', 'false');
+                board.setAttribute('class', 'not-clickable'); // Aby sme neklikali cez panel
+            });
+
+            // ZAVRETIE
+            closeBtn.addEventListener('click', () => {
+                console.log("Zavrieť kliknuté");
+                panel.setAttribute('visible', 'false');
+                hint.setAttribute('visible', 'true');
+                board.setAttribute('class', 'clickable');
+            });
+        } else {
+            console.error("Nepodarilo sa nájsť prvky v DOM!");
+        }
+    });
+</script>
 
 
 </a-entity>
 
 <!-- JAVASCRIPT PRE DYNAMICKÚ LOGIKU -->
-<script>
-    const board = document.querySelector('#main-board');
-    const panel = document.querySelector('#architecture-panel');
-    const hintText = document.querySelector('#click-hint');
-    const closeBtn = document.querySelector('#btn-close-panel');
+    <script>
+    // Počkáme, kým sa celá scéna načíta
+    window.addEventListener('load', () => {
+        const board = document.querySelector('#main-board');
+        const panel = document.querySelector('#architecture-panel');
+        const closeBtn = document.querySelector('#btn-close');
+        const hint = document.querySelector('#click-hint');
 
-    // 1. OTVORIŤ PANEL (Po kliknutí na dosku)
-    board.addEventListener('click', () => {
-        // Skryjeme nápis 'Klikni pre detaily'
-        hintText.setAttribute('visible', 'false');
-        
-        // Zviditeľníme a vysunieme celý panel
-        panel.setAttribute('visible', 'true');
-        panel.setAttribute('animation', 'property: position; from: 0 0 -0.1; to: 0 0 0.1; dur: 500; easing: easeOutExpo');
-    });
+        if(board && panel && closeBtn) {
+            // OTVORENIE
+            board.addEventListener('click', () => {
+                console.log("Doska kliknutá");
+                panel.setAttribute('visible', 'true');
+                hint.setAttribute('visible', 'false');
+                board.setAttribute('class', 'not-clickable'); // Aby sme neklikali cez panel
+            });
 
-    // 2. ZAVRIEŤ PANEL (Po kliknutí na X)
-    closeBtn.addEventListener('click', () => {
-        // Znova ukážeme nápis 'Klikni pre detaily'
-        hintText.setAttribute('visible', 'true');
-        
-        // Skryjeme panel a zasunieme ho späť
-        panel.setAttribute('animation', 'property: position; from: 0 0 0.1; to: 0 0 -0.1; dur: 500; easing: easeOutExpo');
-        
-        // Na konci animácie ho úplne skryjeme (aby neblokoval kurzor)
-        setTimeout(() => {
-            panel.setAttribute('visible', 'false');
-        }, 500);
+            // ZAVRETIE
+            closeBtn.addEventListener('click', () => {
+                console.log("Zavrieť kliknuté");
+                panel.setAttribute('visible', 'false');
+                hint.setAttribute('visible', 'true');
+                board.setAttribute('class', 'clickable');
+            });
+        } else {
+            console.error("Nepodarilo sa nájsť prvky v DOM!");
+        }
     });
 </script>
 
-<script>
-    let a = false;
-    let b = false;
-    let activeGate = 'AND'; // Predvolené hradlo
+    <script>
+        let a = false;
+        let b = false;
+        let activeGate = 'AND'; // Predvolené hradlo
 
-    const gateImages = {
-        AND: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/AND_ANSI.svg/200px-AND_ANSI.svg.png',
-        OR: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/OR_ANSI.svg/200px-OR_ANSI.svg.png',
-        NOT: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/NOT_ANSI.svg/200px-NOT_ANSI.svg.png'
-    };
+        const gateImages = {
+            AND: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/AND_ANSI.svg/200px-AND_ANSI.svg.png',
+            OR: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/OR_ANSI.svg/200px-OR_ANSI.svg.png',
+            NOT: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/NOT_ANSI.svg/200px-NOT_ANSI.svg.png'
+        };
 
-    function updateLogic() {
-        let result = false;
-        const btnB = document.querySelector('#btnB');
+        function updateLogic() {
+            let result = false;
+            const btnB = document.querySelector('#btnB');
 
-        if (activeGate === 'AND') {
-            result = a && b;
-            btnB.setAttribute('visible', 'true');
-        } else if (activeGate === 'OR') {
-            result = a || b;
-            btnB.setAttribute('visible', 'true');
-        } else if (activeGate === 'NOT') {
-            result = !a; // NOT berie len vstup A
-            btnB.setAttribute('visible', 'false'); // Skryjeme nepotrebný vstup B
+            if (activeGate === 'AND') {
+                result = a && b;
+                btnB.setAttribute('visible', 'true');
+            } else if (activeGate === 'OR') {
+                result = a || b;
+                btnB.setAttribute('visible', 'true');
+            } else if (activeGate === 'NOT') {
+                result = !a; // NOT berie len vstup A
+                btnB.setAttribute('visible', 'false'); // Skryjeme nepotrebný vstup B
+            }
+
+            document.querySelector('#btnA').setAttribute('color', a ? '#00FF00' : '#FF0000');
+            document.querySelector('#btnB').setAttribute('color', b ? '#00FF00' : '#FF0000');
+            document.querySelector('#outQ').setAttribute('color', result ? '#00FF00' : '#222222');
+            document.querySelector('#txtQ').setAttribute('value', result ? '1' : '0');
         }
 
-        document.querySelector('#btnA').setAttribute('color', a ? '#00FF00' : '#FF0000');
-        document.querySelector('#btnB').setAttribute('color', b ? '#00FF00' : '#FF0000');
-        document.querySelector('#outQ').setAttribute('color', result ? '#00FF00' : '#222222');
-        document.querySelector('#txtQ').setAttribute('value', result ? '1' : '0');
-    }
-
-    // Prepínanie typu hradla
-    ['AND', 'OR', 'NOT'].forEach(gate => {
-        document.querySelector('#btnSelect' + gate).addEventListener('click', () => {
-            activeGate = gate;
-            document.querySelector('#gateDisplay').setAttribute('src', gateImages[gate]);
-            
-            // Reset farieb tlačidiel menu
-            ['AND', 'OR', 'NOT'].forEach(g => document.querySelector('#btnSelect' + g).setAttribute('color', '#333'));
-            document.querySelector('#btnSelect' + gate).setAttribute('color', '#00CCFF');
-            
-            updateLogic();
+        // Prepínanie typu hradla
+        ['AND', 'OR', 'NOT'].forEach(gate => {
+            document.querySelector('#btnSelect' + gate).addEventListener('click', () => {
+                activeGate = gate;
+                document.querySelector('#gateDisplay').setAttribute('src', gateImages[gate]);
+                
+                // Reset farieb tlačidiel menu
+                ['AND', 'OR', 'NOT'].forEach(g => document.querySelector('#btnSelect' + g).setAttribute('color', '#333'));
+                document.querySelector('#btnSelect' + gate).setAttribute('color', '#00CCFF');
+                
+                updateLogic();
+            });
         });
-    });
 
-    document.querySelector('#btnA').addEventListener('click', () => { a = !a; updateLogic(); });
-    document.querySelector('#btnB').addEventListener('click', () => { b = !b; updateLogic(); });
-</script>
+        document.querySelector('#btnA').addEventListener('click', () => { a = !a; updateLogic(); });
+        document.querySelector('#btnB').addEventListener('click', () => { b = !b; updateLogic(); });
+    </script>
     </body>
 </html>
