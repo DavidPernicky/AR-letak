@@ -15,6 +15,7 @@
                  renderer="colorManagement: true, physicallyCorrectLights" 
                  vr-mode-ui="enabled: false" 
                  device-orientation-permission-ui="enabled: false">
+        
             
             <a-assets>
                 <!-- Obrázok hradla (ak ho nemáš, text postačí, ale s obrázkom je to profi) -->
@@ -42,300 +43,321 @@
             </a-entity>
 
             <!-- TARGET 1: HARDVÉROVÁ STRANA -->
-<a-entity mindar-image-target="targetIndex: 1">
-    <a-plane width="1.1" height="1.6" color="#050505" opacity="0.8" position="0 0 -0.05"></a-plane>
-    
+            <a-entity mindar-image-target="targetIndex: 1">
+                <a-plane width="1.1" height="1.6" color="#050505" opacity="0.8" position="0 0 -0.05"></a-plane>
+                
 
-    
-    <!-- MENU PRE VÝBER HRADLA -->
-    <a-entity position="-0.33 0.90 0.1">
-        <a-text value="VYBER HRADLO:" position="0 -0.2 0" align="center" width="1" color="#0cdff2"></a-text> 
-        <a-circle id="btnSelectAND" class="clickable" radius="0.04" color="#00CCFF" position="-0.1 -0.3 0">
-            <a-text value="AND" align="center" width="0.8" position="0 0 0.01"></a-text>
-        </a-circle>
-        <a-circle id="btnSelectOR" class="clickable" radius="0.04" color="#333" position="0 -0.3 0">
-            <a-text value="OR" align="center" width="0.8" position="0 0 0.01"></a-text>
-        </a-circle>
-        <a-circle id="btnSelectNOT" class="clickable" radius="0.04" color="#333" position="0.1 -0.3 0">
-            <a-text value="NOT" align="center" width="0.8" position="0 0 0.01"></a-text>
-        </a-circle>
-    </a-entity>
+                
+                <!-- MENU PRE VÝBER HRADLA -->
+                <a-entity position="-0.33 0.90 0.1">
+                    <a-text value="VYBER HRADLO:" position="0 -0.2 0" align="center" width="1" color="#0cdff2"></a-text> 
+                    <a-circle id="btnSelectAND" class="clickable" radius="0.04" color="#00CCFF" position="-0.1 -0.3 0">
+                        <a-text value="AND" align="center" width="0.8" position="0 0 0.01"></a-text>
+                    </a-circle>
+                    <a-circle id="btnSelectOR" class="clickable" radius="0.04" color="#333" position="0 -0.3 0">
+                        <a-text value="OR" align="center" width="0.8" position="0 0 0.01"></a-text>
+                    </a-circle>
+                    <a-circle id="btnSelectNOT" class="clickable" radius="0.04" color="#333" position="0.1 -0.3 0">
+                        <a-text value="NOT" align="center" width="0.8" position="0 0 0.01"></a-text>
+                    </a-circle>
+                </a-entity>
 
-    <!-- INTERAKTÍVNA LOGIKA -->
-    <a-entity position="-0.3 0.4 0.1">
-        <a-image id="gateDisplay" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/AND_ANSI.svg/200px-AND_ANSI.svg.png" width="0.2" height="0.12" position="0 0 0"></a-image>
-        
-        <!-- Vstupy -->
-        <a-sphere id="btnA" class="clickable" radius="0.03" color="#FF0000" position="-0.12 0.04 0">
-            <a-text value="A" position="0 0.06 0" align="center" width="2"></a-text>
-        </a-sphere>
-        <a-sphere id="btnB" class="clickable" radius="0.03" color="#FF0000" position="-0.12 -0.04 0">
-            <a-text value="B" position="0 -0.06 0" align="center" width="2"></a-text>
-        </a-sphere>
+                <!-- INTERAKTÍVNA LOGIKA -->
+                <a-entity position="-0.3 0.4 0.1">
+                    <a-image id="gateDisplay" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/AND_ANSI.svg/200px-AND_ANSI.svg.png" width="0.2" height="0.12" position="0 0 0"></a-image>
+                    
+                    <!-- Vstupy -->
+                    <a-sphere id="btnA" class="clickable" radius="0.03" color="#FF0000" position="-0.12 0.04 0">
+                        <a-text value="A" position="0 0.06 0" align="center" width="2"></a-text>
+                    </a-sphere>
+                    <a-sphere id="btnB" class="clickable" radius="0.03" color="#FF0000" position="-0.12 -0.04 0">
+                        <a-text value="B" position="0 -0.06 0" align="center" width="2"></a-text>
+                    </a-sphere>
 
-        <!-- Výstup -->
-        <a-sphere id="outQ" radius="0.04" color="#222222" position="0.15 0 0">
-            <a-text id="txtQ" value="0" position="0 -0.08 0" align="center" width="2"></a-text>
-        </a-sphere>
-    </a-entity>
+                    <!-- Výstup -->
+                    <a-sphere id="outQ" radius="0.04" color="#222222" position="0.15 0 0">
+                        <a-text id="txtQ" value="0" position="0 -0.08 0" align="center" width="2"></a-text>
+                    </a-sphere>
+                </a-entity>
 
-    <!-- OSTATNÉ PRVKY (CPU a DRON) ostanú ako predtým -->
-    <a-entity position="0 0 0.2">
-        <a-gltf-model id="cpu" src="./cpu-model.glb" scale="0.0015 0.0015 0.0015" animation="property: rotation; to: 0 360 360; loop: true; dur: 8000; easing: easeInOutSine"></a-gltf-model>
-    </a-entity>
+                <!-- OSTATNÉ PRVKY (CPU a DRON) ostanú ako predtým -->
+                <a-entity position="0 0 0.2">
+                    <a-gltf-model id="cpu" src="./cpu-model.glb" scale="0.0015 0.0015 0.0015" animation="property: rotation; to: 0 360 360; loop: true; dur: 8000; easing: easeInOutSine"></a-gltf-model>
+                </a-entity>
 
-    <a-entity position="0.35 -0.5 0.1">
-        <a-gltf-model src="./drone.glb" scale="0.3 0.3 0.3" animation="property: position; from: 0 0 0; to: 0 0.08 0; dir: alternate; dur: 2000; easing: easeInOutSine; loop: true"></a-gltf-model>
-    </a-entity>
+                <a-entity position="0.35 -0.5 0.1">
+                    <a-gltf-model src="./drone.glb" scale="0.3 0.3 0.3" animation="property: position; from: 0 0 0; to: 0 0.08 0; dir: alternate; dur: 2000; easing: easeInOutSine; loop: true"></a-gltf-model>
+                </a-entity>
 
-    
-   <!-- 3. ARCHITEKTÚRY PC SYSTÉMOV (Vpravo hore) -->
-    <a-entity position="0.35 0.5 0.1">
+                
+            <!-- 3. ARCHITEKTÚRY PC SYSTÉMOV (Vpravo hore) -->
+                <a-entity position="0.35 0.5 0.1">
 
-        <a-text id="click-hint" value="KLIKNI NA DOSKU" align="center" position="-0.05 0.18 0" width="1" color="#0cdff2"></a-text>
+                    <a-text id="click-hint" value="KLIKNI NA DOSKU" align="center" position="-0.05 0.18 0" width="1" color="#0cdff2"></a-text>
 
-        <!-- Hlavná doska - jediná má triedu 'clickable' na začiatku -->
-        <a-entity id="main-board" class="clickable" gltf-model="./motherboard.glb" 
-                  scale="1 1 1" rotation="90 90 0" position="0 0.05 0">
-        </a-entity>
+                    <!-- Hlavná doska - jediná má triedu 'clickable' na začiatku -->
+                    <a-entity id="main-board" class="clickable" gltf-model="./motherboard.glb" 
+                            scale="1 1 1" rotation="90 90 0" position="0 0.05 0">
+                    </a-entity>
 
-        
+                    
 
-        <!-- PANEL S KOMPONENTMI (Štartuje ako visible: false) -->
-        <a-entity id="architecture-panel" visible="false">
+                    <!-- PANEL S KOMPONENTMI (Štartuje ako visible: false) -->
+                    <a-entity id="architecture-panel" visible="false">
+                        
+                        <!-- Čierne pozadie panelu, aby komponenty nesplývali s letákom -->
+                        <a-plane width="0.6" height="1.2" color="#111" position="0 0 0.05" opacity="1"></a-plane>
+                        <a-text id="textP" value="HLAVNE KOMPONENTY \nDOSKY:" align="center" position="0 0.5 0.1" width="1" color="#0cdff2"></a-text>
+
+                        <!-- CPU -->
+                        <a-entity id="p-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.06 0.06 0.06" position="0 0.3 0.1" rotation="-90 0 0"></a-entity>
+                        <a-text value="PROCESOR" position="0 0.15 0.1" width="1" align="center"></a-text>
+
+                        <!-- RAM -->
+                        <a-entity id="p-ram" gltf-model="./old_computer_ram.glb" scale="0.07 0.07 0.07" position="0 0 0.1" rotation="-150 0 0"></a-entity>
+                        <a-text value="PAMAT RAM" position="0 -0.1 0.12" width="1" align="center"></a-text>
+
+                        <!-- GPU -->
+                        <a-entity id="p-gpu" gltf-model="./gpu.glb" scale="0.04 0.04 0.04" position="0.05 -0.3 0.1" rotation="90 0 0"></a-entity>
+                        <a-text value="GRAFIKA" position="0 -0.4 0.1" width="1" align="center"></a-text>
+
+                        <!-- Tlačidlo na zavretie -->
+                        <a-entity id="btn-close" class="clickable" 
+                            geometry="primitive: plane; width: 0.25; height: 0.12" 
+                            material="transparent: true; opacity: 0" 
+                            position="0 -0.5 0.12">
+                            
+                            <!-- Viditeľné pozadie tlačidla -->
+                            <a-plane width="0.25" height="0.12" color="#FFFFFF" position="0 0 0"></a-plane>
+                            
+                            <!-- Biely rámček -->
+                            <a-rect width="0.25" height="0.9" fill="none" stroke-width="1.8" position="0 0 0.01"></a-rect>
+                            
+                            <!-- Text -->
+                            <a-text value="Zatvoriť" align="center" width="1.3" color="#0cdff2" position="0 0 0.02" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
+
+                        </a-entity>
+                    </a-entity>
+                </a-entity>
+            </a-entity>
+
+            <!-- TARGET 2: KYBERNETICKÁ OBRANA -->
             
-            <!-- Čierne pozadie panelu, aby komponenty nesplývali s letákom -->
-            <a-plane width="0.6" height="1.2" color="#111" position="0 0 0.05" opacity="1"></a-plane>
-             <a-text id="textP" value="HLAVNE KOMPONENTY \nDOSKY:" align="center" position="0 0.5 0.1" width="1" color="#0cdff2"></a-text>
-
-            <!-- CPU -->
-            <a-entity id="p-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.06 0.06 0.06" position="0 0.3 0.1" rotation="-90 0 0"></a-entity>
-            <a-text value="PROCESOR" position="0 0.15 0.1" width="1" align="center"></a-text>
-
-            <!-- RAM -->
-            <a-entity id="p-ram" gltf-model="./old_computer_ram.glb" scale="0.07 0.07 0.07" position="0 0 0.1" rotation="-150 0 0"></a-entity>
-            <a-text value="PAMAT RAM" position="0 -0.1 0.12" width="1" align="center"></a-text>
-
-            <!-- GPU -->
-            <a-entity id="p-gpu" gltf-model="./gpu.glb" scale="0.04 0.04 0.04" position="0.05 -0.3 0.1" rotation="90 0 0"></a-entity>
-            <a-text value="GRAFIKA" position="0 -0.4 0.1" width="1" align="center"></a-text>
-
-            <!-- Tlačidlo na zavretie -->
-            <a-entity id="btn-close" class="clickable" 
-                geometry="primitive: plane; width: 0.25; height: 0.12" 
-                material="transparent: true; opacity: 0" 
-                position="0 -0.5 0.12">
+            <a-entity mindar-image-target="targetIndex: 2">
                 
-                <!-- Viditeľné pozadie tlačidla -->
-                <a-plane width="0.25" height="0.12" color="#FFFFFF" position="0 0 0"></a-plane>
+                <!-- Tmavé polopriehľadné pozadie -->
+                <a-plane width="1.1" height="1.6" color="#050505" opacity="0.9" position="0 0 -0.05"></a-plane>
+
+                <!-- 1. ÚVODNÉ LOGO (Fáza 1: Pokojný stav) -->
+                <a-image id="defense-logo" src="./shieldLogo.png" 
+                        width="0.4" height="0.4" position="0 0.1 0.1" visible="true">
+                </a-image>
+
+                <!-- 2. HROZBA - ČERVENÁ DRÔTENÁ ZEMEGULA (Fáza 2: Útok) -->
+                <a-sphere id="threat-globe" radius="0.35" color="#FF3333" visible="false"
+                        material="wireframe: true; wireframeLineWidth: 3"
+                        animation="property: rotation; to: 0 360 0; loop: true; dur: 15000; easing: linear">
+                </a-sphere>
                 
-                <!-- Biely rámček -->
-                <a-rect width="0.25" height="0.9" fill="none" stroke-width="1.8" position="0 0 0.01"></a-rect>
-                
-                <!-- Text -->
-                <a-text value="Zatvoriť" align="center" width="1.3" color="#0cdff2" position="0 0 0.02" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
+                <!-- ČERVENÉ ÚTOČIACE ČIARY -->
+                <a-entity id="attack-lines" visible="false">
+                    <a-entity line="start: 0.8 0.5 0.5; end: 0 0 0; color: #FF0000" 
+                            animation="property: opacity; from: 1; to: 0.2; dir: alternate; loop: true; dur: 500"></a-entity>
+                    <a-entity line="start: -0.7 -0.4 0.6; end: 0 0 0; color: #FF0000"
+                            animation="property: opacity; from: 1; to: 0.2; dir: alternate; loop: true; dur: 700"></a-entity>
+                    <a-entity line="start: 0.2 -0.8 0.4; end: 0 0 0; color: #FF0000"
+                            animation="property: opacity; from: 1; to: 0.2; dir: alternate; loop: true; dur: 450"></a-entity>
+                </a-entity>
+
+                <!-- 3. OBRANA - MODRÁ DRÔTENÁ ZEMEGULA (Fáza 3: Aktívny Firewall) -->
+                <a-sphere id="firewall-globe" radius="0.38" color="#00CCFF" visible="false"
+                        material="wireframe: true; wireframeLineWidth: 4"
+                        animation="property: rotation; to: 0 -360 0; loop: true; dur: 10000; easing: linear">
+                </a-sphere>
+
+                <!-- TEXTOVÉ OZNAMY -->
+                <a-text id="defense-text" value="AOS KYBER-PROSTOR" color="#FFF" align="center" width="2.2" position="0 0.55 0.15"></a-text>
+
+                <!-- TLAČIDLO AKTIVOVAŤ FIREWALL -->
+                <a-entity id="btn-firewall" class="clickable" visible="false" position="0 -0.5 0.15">
+                    <a-plane width="0.6" height="0.15" color="#FF3333" id="btn-firewall-bg"></a-plane>
+                    <a-rect width="0.6" height="0.15" fill="none" stroke="white" stroke-width="3"></a-rect>
+                    <a-text id="btn-firewall-text" value="AKTIVOVAT FIREWALL" align="center" width="2" color="white"></a-text>
+                </a-entity>
 
             </a-entity>
-        </a-entity>
-    </a-entity>
-</a-entity>
 
-<!-- TARGET 2: KYBERNETICKÁ OBRANA -->
-<a-entity mindar-image-target="targetIndex: 2">
-    
-    <!-- Pozadie -->
-    <a-plane width="1.1" height="1.6" color="#000" opacity="0.85" position="0 0 -0.05"></a-plane>
-
-    <!-- 1. DIGITÁLNA ZEMEGULA -->
-    <a-entity id="globe-container" position="0 0.1 0.1">
-        <!-- Hlavná sféra (Zem) -->
-        <a-sphere id="earth" radius="0.3" 
-                  src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_2048.jpg"
-                  animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing: linear">
-        </a-sphere>
-
-        <!-- MODRÝ ŠTÍT (Na začiatku neviditeľný) -->
-        <a-sphere id="firewall-shield" radius="0.35" color="#00CCFF" opacity="0.3" visible="false"
-                  material="wireframe: true; wireframeLineWidth: 2"
-                  animation="property: rotation; to: 0 -360 0; loop: true; dur: 10000; easing: linear">
-        </a-sphere>
-
-        <!-- ČERVENÉ ÚTOKY (Čiary mieria na stred) -->
-        <a-entity id="cyber-attacks">
-            <a-entity line="start: 0.8 0.5 0.5; end: 0 0 0; color: #FF0000" 
-                      animation="property: opacity; from: 1; to: 0.2; dir: alternate; loop: true; dur: 500"></a-entity>
-            <a-entity line="start: -0.7 -0.4 0.6; end: 0 0 0; color: #FF0000"
-                      animation="property: opacity; from: 1; to: 0.2; dir: alternate; loop: true; dur: 700"></a-entity>
-            <a-entity line="start: 0.2 -0.8 0.4; end: 0 0 0; color: #FF0000"
-                      animation="property: opacity; from: 1; to: 0.2; dir: alternate; loop: true; dur: 400"></a-entity>
-        </a-entity>
-    </a-entity>
-
-    <!-- 2. UI A TLAČIDLO -->
-    <a-entity position="0 -0.5 0.1">
-        <a-text id="status-text" value="HROZBA DETEKOVANÁ!" align="center" color="#FF0000" width="2.5" position="0 0.2 0"
-                animation="property: opacity; from: 1; to: 0.3; dir: alternate; loop: true; dur: 500"></a-text>
-
-        <a-entity id="btn-firewall" class="clickable" geometry="primitive: plane; width: 0.5; height: 0.15" 
-                  material="color: #222; shader: flat" position="0 0 0">
-            <a-rect width="0.5" height="0.15" fill="none" stroke="#00CCFF" stroke-width="3"></a-rect>
-            <a-text id="btn-text" value="NASADIT FIREWALL" align="center" width="2" color="#00CCFF"></a-text>
-        </a-entity>
-    </a-entity>
-
-</a-entity>
-
-<!-- TENTO SKRIPT DÁVAJ AŽ ÚPLNE NA KONIEC BODY, PRED </body> -->
-<script>
-    // Počkáme, kým sa celá scéna načíta
-    window.addEventListener('load', () => {
-        const board = document.querySelector('#main-board');
-        const panel = document.querySelector('#architecture-panel');
-        const closeBtn = document.querySelector('#btn-close');
-        const hintText = document.querySelector('#click-hint');
-        const HlavneCpu = document.querySelector('#cpu');
-        const btnFirewall = document.querySelector('#btn-firewall');
-        const shield = document.querySelector('#firewall-shield');
-        const attacks = document.querySelector('#cyber-attacks');
-        const statusTxt = document.querySelector('#status-text');
-        const btnTxt = document.querySelector('#btn-text');
-
-        if(btnFirewall){
-            btnFirewall.addEventListener('click', () => {
-            // 1. Zapni modrý štít
-            shield.setAttribute('visible', 'true');
-            
-            // 2. Vypni červené útoky
-            attacks.setAttribute('visible', 'false');
-            
-            // 3. Zmeň status na bezpečný
-            statusTxt.setAttribute('value', 'SYSTEM CHRANENY');
-            statusTxt.setAttribute('color', '#00CCFF');
-            // Zastav blikanie nápisu
-            statusTxt.removeAttribute('animation');
-            statusTxt.setAttribute('opacity', '1');
-
-            // 4. Zmeň text tlačidla
-            btnTxt.setAttribute('value', 'OBRANA AKTIVNA');
-            btnFirewall.setAttribute('material', 'color', '#004466');
-            });
-        }
-
-        if(board && panel && closeBtn) {
-            // OTVORENIE
-            board.addEventListener('click', () => {
-                hintText.setAttribute('visible', 'false'); // Skryť nápis "Klikni pre info"
-                panel.setAttribute('visible', 'true');    // Ukázať panel
-    
-                // NOVINKA: Skryjeme maticnú dosku, aby nezavadzala
-                board.setAttribute('visible', 'false'); 
-                HlavneCpu.setAttribute('visible', 'false');
-
-                panel.setAttribute('animation', 'property: position; from: 0 0 -0.1; to: 0 0 0.1; dur: 500; easing: easeOutExpo'); 
-            });
-
-            // ZAVRETIE
-            closeBtn.addEventListener('click', () => {
-                hintText.setAttribute('visible', 'true'); // Znova ukázať nápis
-    
-                // NOVINKA: Znova ukážeme maticnú dosku
-                board.setAttribute('visible', 'true');
-                HlavneCpu.setAttribute('visible', 'true');
-
-                panel.setAttribute('animation', 'property: position; from: 0 0 0.1; to: 0 0 -0.1; dur: 500; easing: easeOutExpo');
                 
-                setTimeout(() => {
-                    panel.setAttribute('visible', 'false');
-                }, 500);
+            <script>
+                // Počkáme, kým sa celá scéna načíta
+                window.addEventListener('load', () => {
+                    const board = document.querySelector('#main-board');
+                    const panel = document.querySelector('#architecture-panel');
+                    const closeBtn = document.querySelector('#btn-close');
+                    const hintText = document.querySelector('#click-hint');
+                    const HlavneCpu = document.querySelector('#cpu');
+                    const defLogo = document.querySelector('#defense-logo');
+                    const globeThreat = document.querySelector('#threat-globe');
+                    const globeFirewall = document.querySelector('#firewall-globe');
+                    const attackLines = document.querySelector('#attack-lines');
+                    const defenseText = document.querySelector('#defense-text');
+                    const btnFirewall = document.querySelector('#btn-firewall');
+                    const btnFirewallBg = document.querySelector('#btn-firewall-bg');
+                    const btnFirewallText = document.querySelector('#btn-firewall-text');
+
+                    setTimeout(() => {
+                        if(defLogo) {
+                            defLogo.setAttribute('visible', 'false'); // Logo zmizne
+                            
+                            // Objaví sa hrozba
+                            globeThreat.setAttribute('visible', 'true');
+                            attackLines.setAttribute('visible', 'true');
+                            btnFirewall.setAttribute('visible', 'true');
+                            
+                            defenseText.setAttribute('value', 'UPOZORNENIE! UTOK DETEKOVANY');
+                            defenseText.setAttribute('color', '#FF3333');
+                            // Pridáme blikanie textu
+                            defenseText.setAttribute('animation', 'property: opacity; from: 1; to: 0.3; dir: alternate; loop: true; dur: 500');
+                        }
+                    }, 3000);
+
+                    // 2. KLIKNUTIE NA TLAČIDLO (Aktivácia obrany)
+                    if(btnFirewall) {
+                        btnFirewall.addEventListener('click', () => {
+                            // Zastavíme útok a červenú guľu
+                            globeThreat.setAttribute('visible', 'false');
+                            attackLines.setAttribute('visible', 'false');
+                            
+                            // Aktivujeme modrý štít
+                            globeFirewall.setAttribute('visible', 'true');
+                            
+                            // Upravíme texty na bezpečný stav
+                            defenseText.removeAttribute('animation'); // Zastaviť blikanie
+                            defenseText.setAttribute('opacity', '1');
+                            defenseText.setAttribute('value', 'SYSTEM CHRANENY - AOS DEFENSE');
+                            defenseText.setAttribute('color', '#00CCFF');
+                            
+                            // Upravíme tlačidlo
+                            btnFirewallText.setAttribute('value', 'FIREWALL AKTIVNY');
+                            btnFirewallBg.setAttribute('color', '#004466'); // Zmena na tmavomodrú
+                            btnFirewall.classList.remove('clickable'); // Už sa nedá znova kliknúť
                         });
-                    } else {
-                        console.error("Nepodarilo sa nájsť prvky v DOM!");
                     }
+
+                    if(board && panel && closeBtn) {
+                        // OTVORENIE
+                        board.addEventListener('click', () => {
+                            hintText.setAttribute('visible', 'false'); // Skryť nápis "Klikni pre info"
+                            panel.setAttribute('visible', 'true');    // Ukázať panel
+                
+                            // NOVINKA: Skryjeme maticnú dosku, aby nezavadzala
+                            board.setAttribute('visible', 'false'); 
+                            HlavneCpu.setAttribute('visible', 'false');
+
+                            panel.setAttribute('animation', 'property: position; from: 0 0 -0.1; to: 0 0 0.1; dur: 500; easing: easeOutExpo'); 
+                        });
+
+                        // ZAVRETIE
+                        closeBtn.addEventListener('click', () => {
+                            hintText.setAttribute('visible', 'true'); // Znova ukázať nápis
+                
+                            // NOVINKA: Znova ukážeme maticnú dosku
+                            board.setAttribute('visible', 'true');
+                            HlavneCpu.setAttribute('visible', 'true');
+
+                            panel.setAttribute('animation', 'property: position; from: 0 0 0.1; to: 0 0 -0.1; dur: 500; easing: easeOutExpo');
+                            
+                            setTimeout(() => {
+                                panel.setAttribute('visible', 'false');
+                            }, 500);
+                                    });
+                                } else {
+                                    console.error("Nepodarilo sa nájsť prvky v DOM!");
+                                }
+                            });
+            </script>   
+
+
+
+            <!-- JAVASCRIPT PRE DYNAMICKÚ LOGIKU -->
+            <script>
+            // Počkáme, kým sa celá scéna načíta
+            window.addEventListener('load', () => {
+                const board = document.querySelector('#main-board');
+                const panel = document.querySelector('#architecture-panel');
+                const closeBtn = document.querySelector('#btn-close');
+                const hint = document.querySelector('#click-hint');
+
+                if(board && panel && closeBtn) {
+                    // OTVORENIE
+                    board.addEventListener('click', () => {
+                        console.log("Doska kliknutá");
+                        panel.setAttribute('visible', 'true');
+                        hint.setAttribute('visible', 'false');
+                        board.setAttribute('class', 'not-clickable'); // Aby sme neklikali cez panel
+                    });
+
+                    // ZAVRETIE
+                    closeBtn.addEventListener('click', () => {
+                        console.log("Zavrieť kliknuté");
+                        panel.setAttribute('visible', 'false');
+                        hint.setAttribute('visible', 'true');
+                        board.setAttribute('class', 'clickable');
+                    });
+                } else {
+                    console.error("Nepodarilo sa nájsť prvky v DOM!");
+                }
+            });
+            </script>
+
+            <script>
+                let a = false;
+                let b = false;
+                let activeGate = 'AND'; // Predvolené hradlo
+
+                const gateImages = {
+                    AND: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/AND_ANSI.svg/200px-AND_ANSI.svg.png',
+                    OR: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/OR_ANSI.svg/200px-OR_ANSI.svg.png',
+                    NOT: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/NOT_ANSI.svg/200px-NOT_ANSI.svg.png'
+                };
+
+                function updateLogic() {
+                    let result = false;
+                    const btnB = document.querySelector('#btnB');
+
+                    if (activeGate === 'AND') {
+                        result = a && b;
+                        btnB.setAttribute('visible', 'true');
+                    } else if (activeGate === 'OR') {
+                        result = a || b;
+                        btnB.setAttribute('visible', 'true');
+                    } else if (activeGate === 'NOT') {
+                        result = !a; // NOT berie len vstup A
+                        btnB.setAttribute('visible', 'false'); // Skryjeme nepotrebný vstup B
+                    }
+
+                    document.querySelector('#btnA').setAttribute('color', a ? '#00FF00' : '#FF0000');
+                    document.querySelector('#btnB').setAttribute('color', b ? '#00FF00' : '#FF0000');
+                    document.querySelector('#outQ').setAttribute('color', result ? '#00FF00' : '#222222');
+                    document.querySelector('#txtQ').setAttribute('value', result ? '1' : '0');
+                }
+
+                // Prepínanie typu hradla
+                ['AND', 'OR', 'NOT'].forEach(gate => {
+                    document.querySelector('#btnSelect' + gate).addEventListener('click', () => {
+                        activeGate = gate;
+                        document.querySelector('#gateDisplay').setAttribute('src', gateImages[gate]);
+                        
+                        // Reset farieb tlačidiel menu
+                        ['AND', 'OR', 'NOT'].forEach(g => document.querySelector('#btnSelect' + g).setAttribute('color', '#333'));
+                        document.querySelector('#btnSelect' + gate).setAttribute('color', '#00CCFF');
+                        
+                        updateLogic();
+                    });
                 });
-</script>
 
-
-</a-entity>
-
-<!-- JAVASCRIPT PRE DYNAMICKÚ LOGIKU -->
-    <script>
-    // Počkáme, kým sa celá scéna načíta
-    window.addEventListener('load', () => {
-        const board = document.querySelector('#main-board');
-        const panel = document.querySelector('#architecture-panel');
-        const closeBtn = document.querySelector('#btn-close');
-        const hint = document.querySelector('#click-hint');
-
-        if(board && panel && closeBtn) {
-            // OTVORENIE
-            board.addEventListener('click', () => {
-                console.log("Doska kliknutá");
-                panel.setAttribute('visible', 'true');
-                hint.setAttribute('visible', 'false');
-                board.setAttribute('class', 'not-clickable'); // Aby sme neklikali cez panel
-            });
-
-            // ZAVRETIE
-            closeBtn.addEventListener('click', () => {
-                console.log("Zavrieť kliknuté");
-                panel.setAttribute('visible', 'false');
-                hint.setAttribute('visible', 'true');
-                board.setAttribute('class', 'clickable');
-            });
-        } else {
-            console.error("Nepodarilo sa nájsť prvky v DOM!");
-        }
-    });
-</script>
-
-    <script>
-        let a = false;
-        let b = false;
-        let activeGate = 'AND'; // Predvolené hradlo
-
-        const gateImages = {
-            AND: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/AND_ANSI.svg/200px-AND_ANSI.svg.png',
-            OR: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/OR_ANSI.svg/200px-OR_ANSI.svg.png',
-            NOT: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/NOT_ANSI.svg/200px-NOT_ANSI.svg.png'
-        };
-
-        function updateLogic() {
-            let result = false;
-            const btnB = document.querySelector('#btnB');
-
-            if (activeGate === 'AND') {
-                result = a && b;
-                btnB.setAttribute('visible', 'true');
-            } else if (activeGate === 'OR') {
-                result = a || b;
-                btnB.setAttribute('visible', 'true');
-            } else if (activeGate === 'NOT') {
-                result = !a; // NOT berie len vstup A
-                btnB.setAttribute('visible', 'false'); // Skryjeme nepotrebný vstup B
-            }
-
-            document.querySelector('#btnA').setAttribute('color', a ? '#00FF00' : '#FF0000');
-            document.querySelector('#btnB').setAttribute('color', b ? '#00FF00' : '#FF0000');
-            document.querySelector('#outQ').setAttribute('color', result ? '#00FF00' : '#222222');
-            document.querySelector('#txtQ').setAttribute('value', result ? '1' : '0');
-        }
-
-        // Prepínanie typu hradla
-        ['AND', 'OR', 'NOT'].forEach(gate => {
-            document.querySelector('#btnSelect' + gate).addEventListener('click', () => {
-                activeGate = gate;
-                document.querySelector('#gateDisplay').setAttribute('src', gateImages[gate]);
-                
-                // Reset farieb tlačidiel menu
-                ['AND', 'OR', 'NOT'].forEach(g => document.querySelector('#btnSelect' + g).setAttribute('color', '#333'));
-                document.querySelector('#btnSelect' + gate).setAttribute('color', '#00CCFF');
-                
-                updateLogic();
-            });
-        });
-
-        document.querySelector('#btnA').addEventListener('click', () => { a = !a; updateLogic(); });
-        document.querySelector('#btnB').addEventListener('click', () => { b = !b; updateLogic(); });
-    </script>
+                document.querySelector('#btnA').addEventListener('click', () => { a = !a; updateLogic(); });
+                document.querySelector('#btnB').addEventListener('click', () => { b = !b; updateLogic(); });
+            </script>
     </body>
 </html>
