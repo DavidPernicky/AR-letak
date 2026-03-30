@@ -89,48 +89,76 @@
     </a-entity>
 
     <!-- 3. ARCHITEKTÚRY PC SYSTÉMOV (Vpravo hore) -->
-   <a-entity position="0.35 0.5 0.05">
-        <a-text value="ARCHITEKTURA PC SYSTEMU" align="center" position="0 0.52 0" width="1.6" color="#92d404" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
+   <a-entity position="0.35 0.5 0.1">
+    
+    <!-- Inštrukcia pre používateľa -->
+        <a-text id="click-hint" value="KLIKNI NA DOSKU PRE ROZKLAD" align="center" position="0 0.3 0" width="1.2" color="#92d404"></a-text>
 
-        <!-- motherboard -->
-        <a-entity gltf-model="./low-poly_motherboard.glb" scale="0.06 0.06 0.06" rotation="90 0 0" position="0 0 0">
-            <a-text value="ZAKLADNA DOSKA" align="center" position="0 -0.8 0" width="8" color="#BBB"></a-text>
+        <!-- 1. ZÁKLADNÁ DOSKA (Hlavný prepínač - Clickable) -->
+        <a-entity id="main-board" class="clickable" gltf-model="./motherboard.glb" 
+                scale="0.06 0.06 0.06" rotation="90 0 0" position="0 0 0">
         </a-entity>
 
-        <!-- cpu -->
-        <a-entity position="0 0.06 0.08" animation="property: position; from: 0 0.05 0.08; to: 0 0.07 0.08; dir: alternate; loop: true; dur: 1500">
-            <a-entity gltf-model="./pc_cpu_processor.glb" scale="0.04 0.04 0.04"></a-entity>
-            <a-text value="CPU - spracovanie instrukcii" align="center" position="0 -0.09 0" width="1.2" color="#FFF"></a-text>
+        <!-- 2. CPU -->
+        <a-entity id="comp-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.04 0.04 0.04" position="0 0 0.01"
+                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.1"
+                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.01">
+            <a-text id="label-cpu" value="CPU" visible="false" align="right" position="-0.1 0 0" width="1"></a-text>
         </a-entity>
 
-        <!-- ram -->
-        <a-entity position="0.18 0.12 0.16" animation="property: position; from: 0.18 0.11 0.16; to: 0.18 0.13 0.16; dir: alternate; loop: true; dur: 1500; delay: 300">
-            <a-entity gltf-model="./old_computer_ram.glb" scale="0.05 0.05 0.05"></a-entity>
-            <a-text value="RAM - operacna pamat" align="center" position="0 -0.08 0" width="1.1" color="#FFF"></a-text>
+        <!-- 3. RAM -->
+        <a-entity id="comp-ram" gltf-model="./old_computer_ram.glb" scale="0.05 0.05 0.05" position="0 0 0.015"
+                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.2"
+                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.015">
+            <a-text id="label-ram" value="RAM" visible="false" align="left" position="0.1 0 0" width="1"></a-text>
         </a-entity>
 
-        <!-- ssd -->
-        <a-entity position="-0.18 -0.04 0.22" animation="property: position; from: -0.18 -0.05 0.22; to: -0.18 -0.03 0.22; dir: alternate; loop: true; dur: 1500; delay: 600">
-            <a-entity gltf-model="./ssd.glb" scale="0.01 0.01 0.01"></a-entity>
-            <a-text value="SSD - datove ulozisko" align="center" position="0 -0.08 0" width="1.1" color="#FFF"></a-text>
+        <!-- 4. SSD -->
+        <a-entity id="comp-ssd" gltf-model="./ssd.glb" scale="0.05 0.05 0.05" position="0 0 0.02"
+                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.3"
+                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.02">
+            <a-text id="label-ssd" value="SSD" visible="false" align="right" position="-0.1 0 0" width="1"></a-text>
         </a-entity>
 
-        <!-- gpu -->
-        <a-entity position="0.22 -0.1 0.28" animation="property: position; from: 0.22 -0.11 0.28; to: 0.22 -0.09 0.28; dir: alternate; loop: true; dur: 1500; delay: 900">
-            <a-entity gltf-model="./gpu.glb" scale="0.01 0.01 0.01"></a-entity>
-            <a-text value="GPU - graficke vypocty" align="center" position="0 -0.08 0" width="1.1" color="#FFF"></a-text>
+        <!-- 5. GPU -->
+        <a-entity id="comp-gpu" gltf-model="./gpu.glb" scale="0.06 0.06 0.06" position="0 0 0.025"
+                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.4"
+                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.025">
+            <a-text id="label-gpu" value="GPU" visible="false" align="left" position="0.1 0 0" width="1"></a-text>
         </a-entity>
 
-        <!-- lines -->
-        <a-entity line="start: 0 0.06 0.08; end: 0.18 0.12 0.16; color: #92d404"></a-entity>
-        <a-entity line="start: 0 0.06 0.08; end: -0.18 -0.04 0.22; color: #92d404"></a-entity>
-        <a-entity line="start: 0 0.06 0.08; end: 0.22 -0.1 0.28; color: #92d404"></a-entity>
     </a-entity>
 
 
 </a-entity>
 
 <!-- JAVASCRIPT PRE DYNAMICKÚ LOGIKU -->
+ <script>
+    let isExploded = false;
+    const components = ['cpu', 'ram', 'ssd', 'gpu'];
+    const board = document.querySelector('#main-board');
+    const hint = document.querySelector('#click-hint');
+
+    board.addEventListener('click', () => {
+        isExploded = !isExploded;
+        
+        components.forEach(comp => {
+            const el = document.querySelector('#comp-' + comp);
+            const label = document.querySelector('#label-' + comp);
+            
+            if (isExploded) {
+                el.emit('explode');
+                label.setAttribute('visible', 'true');
+                hint.setAttribute('value', 'KLIKNI PRE ZLOZENIE');
+            } else {
+                el.emit('assemble');
+                label.setAttribute('visible', 'false');
+                hint.setAttribute('value', 'KLIKNI PRE ROZKLAD');
+            }
+        });
+    });
+</script>
+
 <script>
     let a = false;
     let b = false;
