@@ -141,163 +141,168 @@
                 </a-entity>
             </a-entity>
 
-            <!-- TARGET 2: KYBERNETICKÁ OBRANA -->
-        
             <a-entity mindar-image-target="targetIndex: 2">
-                
-                <a-plane width="1.1" height="1.6" color="#050505" opacity="0.95" position="0 0 -0.05"></a-plane>
+    <a-plane width="1.1" height="1.6" color="#050505" opacity="0.95" position="0 0 -0.05"></a-plane>
 
-                <!-- GLOBÁLNA SIEŤ (Uzly okolo Zeme) -->
-                <a-entity id="network-nodes" position="0 0 0.1">
-                    <!-- Zemeguľa ostáva v strede -->
-                    <a-sphere radius="0.25" src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_2048.jpg"
-                            animation="property: rotation; to: 0 360 0; loop: true; dur: 25000; easing: linear">
-                    </a-sphere>
+    <a-entity id="globe-container" position="0 0 0.1">
+        <a-sphere id="earth" radius="0.3" src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_2048.jpg"
+                  animation="property: rotation; to: 0 360 0; loop: true; dur: 25000; easing: linear">
+        </a-sphere>
 
-                    <!-- Uzol 1 -->
-                    <a-sphere class="node" radius="0.02" color="#FF0000" position="0.4 0.2 0" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 500"></a-sphere>
-                    <!-- Uzol 2 -->
-                    <a-sphere class="node" radius="0.02" color="#FF0000" position="-0.3 0.35 0.2" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 700"></a-sphere>
-                    <!-- Uzol 3 -->
-                    <a-sphere class="node" radius="0.02" color="#FF0000" position="0.2 -0.4 -0.1" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 600"></a-sphere>
-                    <!-- Uzol 4 (Nový) -->
-                    <a-sphere class="node" radius="0.02" color="#FF0000" position="-0.4 -0.2 0.1" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 800"></a-sphere>
-                    <!-- Uzol 5 (Nový) -->
-                    <a-sphere class="node" radius="0.02" color="#FF0000" position="0.3 0.3 -0.3" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 450"></a-sphere>
-                    <!-- Uzol 6 (Nový) -->
-                    <a-sphere class="node" radius="0.02" color="#FF0000" position="-0.1 -0.5 0" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 550"></a-sphere>
-                    <!-- Uzol 7 (Nový) -->
-                    <a-sphere class="node" radius="0.02" color="#FF0000" position="0.45 -0.1 0.2" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 650"></a-sphere>
-                </a-entity>
+        <a-sphere id="red-shield" radius="0.38" color="#FF0000" opacity="0.3" visible="false"
+                  material="wireframe: true; wireframeLineWidth: 2"
+                  animation="property: rotation; to: 0 360 0; loop: true; dur: 15000; easing: linear">
+        </a-sphere>
 
-                <!-- ČERVENY ŠTÍT -->
-                <a-sphere id="red-shield" radius="0.37" color="#FF0000" opacity="0.4" visible="true"
-                        material="wireframe: true; wireframeLineWidth: 2" position="0 0 0.1">
-                </a-sphere>
+        <a-sphere id="blue-shield" radius="0.42" color="#00CCFF" opacity="0" visible="false"
+                  material="wireframe: true; wireframeLineWidth: 2">
+        </a-sphere>
 
-                <!-- MODRÝ ŠTÍT -->
-                <a-sphere id="blue-shield" radius="0.37" color="#00CCFF" opacity="0" visible="false"
-                        material="wireframe: true; wireframeLineWidth: 2" position="0 0 0.1">
-                </a-sphere>
+        <a-entity id="network-nodes" visible="false">
+            <a-sphere class="node" radius="0.02" color="#FF0000" position="0.4 0.2 0" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 500"></a-sphere>
+            <a-sphere class="node" radius="0.02" color="#FF0000" position="-0.3 0.35 0.2" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 700"></a-sphere>
+            <a-sphere class="node" radius="0.02" color="#FF0000" position="0.2 -0.4 -0.1" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 600"></a-sphere>
+            <a-sphere class="node" radius="0.02" color="#FF0000" position="-0.4 -0.2 0.1" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 800"></a-sphere>
+            <a-sphere class="node" radius="0.02" color="#FF0000" position="0.3 0.3 -0.3" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 450"></a-sphere>
+            <a-sphere class="node" radius="0.02" color="#FF0000" position="-0.1 -0.5 0" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 550"></a-sphere>
+            <a-sphere class="node" radius="0.02" color="#FF0000" position="0.45 -0.1 0.2" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 650"></a-sphere>
+        </a-entity>
+    </a-entity>
 
-                <!-- TERMINÁLNY LOG (Vľavo hore) -->
-                <a-entity position="-0.4 0.55 0.1">
-                    <a-text id="log-1" value="> DETECTING ATTACKS..." color="#FF0000" width="1.5" position="0 0.1 0"></a-text>
-                    <a-text id="log-2" value="> IP: 192.168.1.104" color="#FF0000" width="1.2" position="0 0.02 0"></a-text>
-                    <a-text id="log-3" value="> TYPE: DDOS_SPOOF" color="#FF3333" width="1.2" position="0 -0.06 0"></a-text>
-                </a-entity>
+    <a-text id="alert-text" value="VAROVANIE: SYSTEM POD UTOKOM!" color="#FF0000" align="center" width="3.5" position="0 0.5 0.2" visible="false"
+            animation="property: opacity; from: 1; to: 0; dir: alternate; loop: true; dur: 400"></a-text>
 
-                <!-- TLAČIDLO -->
-                <a-entity id="btn-firewall" class="clickable" 
-                    position="0 -0.55 0.2" 
-                    geometry="primitive: plane; width: 0.7; height: 0.2" 
-                    material="transparent: true; opacity: 0">
-                
-                    <!-- To, čo používateľ reálne vidí -->
-                    <a-plane width="0.7" height="0.15" color="#FF3333" id="btn-bg"></a-plane>
-                    <a-text id="btn-label" value="NASADIT FIREWALL" align="center" width="1.5" color="white"></a-text>
-                
-                </a-entity>
+    <a-entity id="terminal-logs" position="-0.4 0.65 0.1" visible="false">
+        <a-text id="log-1" value="> DETECTING ATTACKS..." color="#FF0000" width="1.5" position="0 0.1 0"></a-text>
+        <a-text id="log-2" value="> IP: 192.168.1.104" color="#FF0000" width="1.2" position="0 0.02 0"></a-text>
+        <a-text id="log-3" value="> TYPE: DDOS_SPOOF" color="#FF3333" width="1.2" position="0 -0.06 0"></a-text>
+    </a-entity>
 
-            </a-entity>
+    <a-entity id="btn-firewall" class="clickable" position="0 -0.6 0.2" visible="false"
+              geometry="primitive: plane; width: 0.7; height: 0.2" material="transparent: true; opacity: 0">
+        <a-plane width="0.7" height="0.15" color="#FF3333" id="btn-bg"></a-plane>
+        <a-text id="btn-label" value="NASADIT FIREWALL" align="center" width="2.5" color="white"></a-text>
+    </a-entity>
+</a-entity>
 
                 
             <script>
-                // Počkáme, kým sa celá scéna načíta
-                window.addEventListener('load', () => {
-                    const board = document.querySelector('#main-board');
-                    const panel = document.querySelector('#architecture-panel');
-                    const closeBtn = document.querySelector('#btn-close');
-                    const hintText = document.querySelector('#click-hint');
-                    const HlavneCpu = document.querySelector('#cpu');
-                    const btnFirewall = document.querySelector('#btn-firewall');
-                    const btnBg = document.querySelector('#btn-bg'); // Chýbalo
-                    const btnLabel = document.querySelector('#btn-label'); // Chýbalo
-                    const blueShield = document.querySelector('#blue-shield'); // Opravený názov
-                    const redShield = document.querySelector('#red-shield');
-                    const nodes = document.querySelectorAll('.node');
-                    const log1 = document.querySelector('#log-1');
-                    const log2 = document.querySelector('#log-2');
-                    const log3 = document.querySelector('#log-3');
+    window.addEventListener('load', () => {
+        // --- 1. SELEKTORY (Všetky premenné na jednom mieste) ---
+        
+        // Prvky pre Target 1 (Maticná doska)
+        const board = document.querySelector('#main-board');
+        const panel = document.querySelector('#architecture-panel');
+        const closeBtn = document.querySelector('#btn-close');
+        const hintText = document.querySelector('#click-hint');
+        const HlavneCpu = document.querySelector('#cpu');
 
-                   let isFirewallActive = false;
+        // Prvky pre Target 2 (Kyberbezpečnosť)
+        const redShield = document.querySelector('#red-shield');
+        const blueShield = document.querySelector('#blue-shield');
+        const nodes = document.querySelector('#network-nodes');
+        const alertText = document.querySelector('#alert-text');
+        const logs = document.querySelector('#terminal-logs');
+        const btnFirewall = document.querySelector('#btn-firewall');
+        const btnBg = document.querySelector('#btn-bg');
+        const btnLabel = document.querySelector('#btn-label');
+        const logItems = [
+            document.querySelector('#log-1'), 
+            document.querySelector('#log-2'), 
+            document.querySelector('#log-3')
+        ];
 
-                    if (btnFirewall) {
-                        btnFirewall.addEventListener('click', (e) => {
-                            e.stopPropagation();
+        let isFirewallActive = false;
 
-                            if (!isFirewallActive) {
-                                // === AKTIVÁCIA FIREWALLU (Prechod do MODREJ) ===
-                                redShield.setAttribute('visible', 'false');
-                                blueShield.setAttribute('visible', 'true');
-                                blueShield.setAttribute('animation', 'property: material.opacity; from: 0; to: 0.4; dur: 1000');
+        // --- 2. LOGIKA PRE TARGET 2 (Kyberbezpečnosť - 5s útok) ---
 
-                                nodes.forEach(node => node.setAttribute('visible', 'false'));
+        // Spustenie útoku po 5 sekundách
+        setTimeout(() => {
+            if (!isFirewallActive && redShield) {
+                redShield.setAttribute('visible', 'true');
+                if (nodes) nodes.setAttribute('visible', 'true');
+                if (alertText) alertText.setAttribute('visible', 'true');
+                if (logs) logs.setAttribute('visible', 'true');
+                if (btnFirewall) btnFirewall.setAttribute('visible', 'true');
+                console.log("Útok začal!");
+            }
+        }, 5000);
 
-                                if (log1) { log1.setAttribute('value', '> SYSTEM SECURE'); log1.setAttribute('color', '#00CCFF'); }
-                                if (log2) { log2.setAttribute('value', '> FIREWALL: ACTIVE'); log2.setAttribute('color', '#00CCFF'); }
-                                if (log3) { log3.setAttribute('value', '> NO THREATS FOUND'); log3.setAttribute('color', '#00CCFF'); }
+        // Tlačidlo Firewall (Toggle logic)
+        if (btnFirewall) {
+            btnFirewall.addEventListener('click', (e) => {
+                e.stopPropagation();
 
-                                btnBg.setAttribute('color', '#004466'); // Tmavomodrá
-                                btnLabel.setAttribute('value', 'VYPNÚŤ FIREWALL');
-                                
-                                isFirewallActive = true;
-                                console.log("Firewall aktivovaný.");
+                if (!isFirewallActive) {
+                    // AKTIVÁCIA OBRANY
+                    redShield.setAttribute('visible', 'false');
+                    alertText.setAttribute('visible', 'false');
+                    blueShield.setAttribute('visible', 'true');
+                    blueShield.setAttribute('animation', 'property: material.opacity; from: 0; to: 0.4; dur: 1000');
+                    
+                    const nodeSpheres = document.querySelectorAll('.node');
+                    nodeSpheres.forEach(n => n.setAttribute('visible', 'false'));
 
-                            } else {
-                                // === DEAKTIVÁCIA FIREWALLU (Návrat do ČERVENEJ - Reset) ===
-                                blueShield.setAttribute('visible', 'false');
-                                redShield.setAttribute('visible', 'true');
-                                
-                                nodes.forEach(node => node.setAttribute('visible', 'true'));
+                    logItems[0].setAttribute('value', '> SYSTEM SECURE');
+                    logItems[1].setAttribute('value', '> FIREWALL: ACTIVE');
+                    logItems[2].setAttribute('value', '> NO THREATS FOUND');
+                    logItems.forEach(l => { if(l) l.setAttribute('color', '#00CCFF') });
 
-                                if (log1) { log1.setAttribute('value', '> DETECTING ATTACKS...'); log1.setAttribute('color', '#FF0000'); }
-                                if (log2) { log2.setAttribute('value', '> IP: 192.168.1.104'); log2.setAttribute('color', '#FF0000'); }
-                                if (log3) { log3.setAttribute('value', '> TYPE: DDOS_SPOOF'); log3.setAttribute('color', '#FF3333'); }
+                    btnBg.setAttribute('color', '#004466');
+                    btnLabel.setAttribute('value', 'VYPNUT FIREWALL');
+                    isFirewallActive = true;
+                } else {
+                    // DEAKTIVÁCIA (Návrat hrozby)
+                    blueShield.setAttribute('visible', 'false');
+                    redShield.setAttribute('visible', 'true');
+                    alertText.setAttribute('visible', 'true');
+                    
+                    const nodeSpheres = document.querySelectorAll('.node');
+                    nodeSpheres.forEach(n => n.setAttribute('visible', 'true'));
 
-                                btnBg.setAttribute('color', '#FF3333'); // Červená
-                                btnLabel.setAttribute('value', 'NASADIŤ FIREWALL');
+                    logItems[0].setAttribute('value', '> DETECTING ATTACKS...');
+                    logItems[1].setAttribute('value', '> IP: 192.168.1.104');
+                    logItems[2].setAttribute('value', '> TYPE: DDOS_SPOOF');
+                    logItems.forEach(l => { if(l) l.setAttribute('color', '#FF0000') });
 
-                                isFirewallActive = false;
-                                console.log("Firewall vypnutý - simulácia reštartovaná.");
-                            }
-                        });
-                    }
+                    btnBg.setAttribute('color', '#FF3333');
+                    btnLabel.setAttribute('value', 'NASADIT FIREWALL');
+                    isFirewallActive = false;
+                }
+            });
+        }
 
-               
+        // --- 3. LOGIKA PRE TARGET 1 (Maticná doska) ---
 
-                    if(board && panel && closeBtn) {
-                        // OTVORENIE
-                        board.addEventListener('click', () => {
-                            hintText.setAttribute('visible', 'false'); // Skryť nápis "Klikni pre info"
-                            panel.setAttribute('visible', 'true');    // Ukázať panel
+        if (board && panel && closeBtn) {
+            // OTVORENIE PANELA
+            board.addEventListener('click', () => {
+                if (hintText) hintText.setAttribute('visible', 'false');
+                panel.setAttribute('visible', 'true');
+                board.setAttribute('visible', 'false'); 
+                if (HlavneCpu) HlavneCpu.setAttribute('visible', 'false');
+
+                panel.setAttribute('animation', 'property: position; from: 0 0 -0.1; to: 0 0 0.1; dur: 500; easing: easeOutExpo'); 
+            });
+
+            // ZAVRETIE PANELA
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Aby sme kliknutím na X znova neotvorili dosku
+                if (hintText) hintText.setAttribute('visible', 'true');
+                board.setAttribute('visible', 'true');
+                if (HlavneCpu) HlavneCpu.setAttribute('visible', 'true');
+
+                panel.setAttribute('animation', 'property: position; from: 0 0 0.1; to: 0 0 -0.1; dur: 500; easing: easeOutExpo');
                 
-                            // NOVINKA: Skryjeme maticnú dosku, aby nezavadzala
-                            board.setAttribute('visible', 'false'); 
-                            HlavneCpu.setAttribute('visible', 'false');
-
-                            panel.setAttribute('animation', 'property: position; from: 0 0 -0.1; to: 0 0 0.1; dur: 500; easing: easeOutExpo'); 
-                        });
-
-                        // ZAVRETIE
-                        closeBtn.addEventListener('click', () => {
-                            hintText.setAttribute('visible', 'true'); // Znova ukázať nápis
-                
-                            // NOVINKA: Znova ukážeme maticnú dosku
-                            board.setAttribute('visible', 'true');
-                            HlavneCpu.setAttribute('visible', 'true');
-
-                            panel.setAttribute('animation', 'property: position; from: 0 0 0.1; to: 0 0 -0.1; dur: 500; easing: easeOutExpo');
-                            
-                            setTimeout(() => {
-                                panel.setAttribute('visible', 'false');
-                            }, 500);
-                                    });
-                                } else {
-                                    console.error("Nepodarilo sa nájsť prvky v DOM!");
-                                }
-                            });
-            </script>   
+                setTimeout(() => {
+                    panel.setAttribute('visible', 'false');
+                }, 500);
+            });
+        } else {
+            console.error("Nepodarilo sa nájsť prvky pre Target 1 v DOM!");
+        }
+    }); // Koniec load eventu
+</script>  
 
 
 
