@@ -187,6 +187,7 @@
 
                 
             <script>
+<<<<<<< HEAD
     window.addEventListener('load', () => {
         // --- 1. SELEKTORY (Všetky premenné na jednom mieste) ---
         
@@ -271,6 +272,82 @@
                 }
             });
         }
+=======
+               window.addEventListener('load', () => {
+    
+                    const redShield = document.querySelector('#red-shield');
+                    const blueShield = document.querySelector('#blue-shield');
+                    const nodes = document.querySelector('#network-nodes');
+                    const alertText = document.querySelector('#alert-text');
+                    const logs = document.querySelector('#terminal-logs');
+                    const btnFirewall = document.querySelector('#btn-firewall');
+                    const btnBg = document.querySelector('#btn-bg');
+                    const btnLabel = document.querySelector('#btn-label');
+                    const logItems = [document.querySelector('#log-1'), document.querySelector('#log-2'), document.querySelector('#log-3')];
+
+                    let isFirewallActive = false;
+
+                    // --- FUNKCIA PRE SPUSTENIE ÚTOKU (po 5 sekundách) ---
+                    setTimeout(() => {
+                        if (!isFirewallActive) {
+                            redShield.setAttribute('visible', 'true');
+                            nodes.setAttribute('visible', 'true');
+                            alertText.setAttribute('visible', 'true');
+                            logs.setAttribute('visible', 'true');
+                            btnFirewall.setAttribute('visible', 'true');
+                            console.log("Útok začal!");
+                        }
+                    }, 5000); // 5000 milisekúnd = 5 sekúnd
+
+                    // --- LOGIKA TLAČIDLA (ZAPNÚŤ/VYPNÚŤ) ---
+                    if (btnFirewall) {
+                        btnFirewall.addEventListener('click', (e) => {
+                            e.stopPropagation();
+
+                            if (!isFirewallActive) {
+                                // AKTIVÁCIA OBRANY
+                                redShield.setAttribute('visible', 'false');
+                                alertText.setAttribute('visible', 'false');
+                                blueShield.setAttribute('visible', 'true');
+                                blueShield.setAttribute('animation', 'property: material.opacity; from: 0; to: 0.4; dur: 1000');
+                                
+                                // Skryjeme guličky
+                                const nodeSpheres = document.querySelectorAll('.node');
+                                nodeSpheres.forEach(n => n.setAttribute('visible', 'false'));
+
+                                // Update texty do modra
+                                logItems[0].setAttribute('value', '> SYSTEM SECURE');
+                                logItems[1].setAttribute('value', '> FIREWALL: ACTIVE');
+                                logItems[2].setAttribute('value', '> NO THREATS FOUND');
+                                logItems.forEach(l => l.setAttribute('color', '#00CCFF'));
+
+                                btnBg.setAttribute('color', '#004466');
+                                btnLabel.setAttribute('value', 'VYPNUT FIREWALL');
+                                isFirewallActive = true;
+                            } else {
+                                // DEAKTIVÁCIA (NÁVRAT K ÚTOKU)
+                                blueShield.setAttribute('visible', 'false');
+                                redShield.setAttribute('visible', 'true');
+                                alertText.setAttribute('visible', 'true');
+                                
+                                // Ukážeme guličky
+                                const nodeSpheres = document.querySelectorAll('.node');
+                                nodeSpheres.forEach(n => n.setAttribute('visible', 'true'));
+
+                                // Reset logy do červena
+                                logItems[0].setAttribute('value', '> DETECTING ATTACKS...');
+                                logItems[1].setAttribute('value', '> IP: 192.168.1.104');
+                                logItems[2].setAttribute('value', '> TYPE: DDOS_SPOOF');
+                                logItems.forEach(l => l.setAttribute('color', '#FF0000'));
+
+                                btnBg.setAttribute('color', '#FF3333');
+                                btnLabel.setAttribute('value', 'NASADIT FIREWALL');
+                                isFirewallActive = false;
+                            }
+                        });
+                    }
+                });
+>>>>>>> 8144b5c06856a9c1f05b707bc3728a6e7b5cfa5a
 
         // --- 3. LOGIKA PRE TARGET 1 (Maticná doska) ---
 
