@@ -148,7 +148,7 @@
                 <a-plane width="1.1" height="1.6" color="#050505" opacity="0.95" position="0 0 -0.05"></a-plane>
 
                 <!-- GLOBÁLNA SIEŤ (Uzly okolo Zeme) -->
-                <a-entity id="network-nodes" position="0 0.1 0.1">
+                <a-entity id="network-nodes" position="0 0 0.1">
                     <!-- Zemeguľa ostáva v strede -->
                     <a-sphere radius="0.25" src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_2048.jpg"
                             animation="property: rotation; to: 0 360 0; loop: true; dur: 25000; easing: linear">
@@ -171,13 +171,13 @@
                 </a-entity>
 
                 <!-- ČERVENY ŠTÍT -->
-                <a-sphere id="red-shield" radius="0.42" color="#FF0000" opacity="0.4" visible="true"
-                        material="wireframe: true; wireframeLineWidth: 2" position="0 0.1 0.1">
+                <a-sphere id="red-shield" radius="0.37" color="#FF0000" opacity="0.4" visible="true"
+                        material="wireframe: true; wireframeLineWidth: 2" position="0 0 0.1">
                 </a-sphere>
 
                 <!-- MODRÝ ŠTÍT -->
-                <a-sphere id="blue-shield" radius="0.42" color="#00CCFF" opacity="0" visible="false"
-                        material="wireframe: true; wireframeLineWidth: 2" position="0 0.1 0.1">
+                <a-sphere id="blue-shield" radius="0.37" color="#00CCFF" opacity="0" visible="false"
+                        material="wireframe: true; wireframeLineWidth: 2" position="0 0 0.1">
                 </a-sphere>
 
                 <!-- TERMINÁLNY LOG (Vľavo hore) -->
