@@ -89,46 +89,42 @@
     </a-entity>
 
     <!-- 3. ARCHITEKTÚRY PC SYSTÉMOV (Vpravo hore) -->
-    <a-entity position="0.35 0.5 0.05">
-    
-        <!-- NADPIS -->
-        <a-text value="KOMPLETNA ARCHITEKTURA" align="center" position="0 0.5 0" width="1.5" color="#92d404" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
+   <a-entity position="0.35 0.5 0.05">
+        <a-text value="ARCHITEKTURA PC SYSTEMU" align="center" position="0 0.52 0" width="1.6" color="#92d404" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
 
-        <!-- 1. ZÁKLADNÁ DOSKA (Z=0) -->
+        <!-- motherboard -->
         <a-entity gltf-model="./low-poly_motherboard.glb" scale="0.06 0.06 0.06" rotation="90 0 0" position="0 0 0">
             <a-text value="ZAKLADNA DOSKA" align="center" position="0 -0.8 0" width="8" color="#BBB"></a-text>
         </a-entity>
 
-        <!-- 2. PROCESOR (Z=0.08) -->
-        <a-entity position="0 0 0.08" animation="property: position; from: 0 0 0.07; to: 0 0 0.09; dir: alternate; loop: true; dur: 1500">
+        <!-- cpu -->
+        <a-entity position="0 0.06 0.08" animation="property: position; from: 0 0.05 0.08; to: 0 0.07 0.08; dir: alternate; loop: true; dur: 1500">
             <a-entity gltf-model="./pc_cpu_processor.glb" scale="0.04 0.04 0.04"></a-entity>
-            <a-text value="CPU: Mozog" align="right" position="-0.12 0 0" width="1" color="#FFF"></a-text>
+            <a-text value="CPU - spracovanie instrukcii" align="center" position="0 -0.09 0" width="1.2" color="#FFF"></a-text>
         </a-entity>
 
-        <!-- 3. RAM (Z=0.16) -->
-        <a-entity position="0 0 0.16" animation="property: position; from: 0 0 0.15; to: 0 0 0.17; dir: alternate; loop: true; dur: 1500; delay: 300">
+        <!-- ram -->
+        <a-entity position="0.18 0.12 0.16" animation="property: position; from: 0.18 0.11 0.16; to: 0.18 0.13 0.16; dir: alternate; loop: true; dur: 1500; delay: 300">
             <a-entity gltf-model="./old_computer_ram.glb" scale="0.05 0.05 0.05"></a-entity>
-            <a-text value="RAM: Pamat" align="left" position="0.12 0 0" width="1" color="#FFF"></a-text>
+            <a-text value="RAM - operacna pamat" align="center" position="0 -0.08 0" width="1.1" color="#FFF"></a-text>
         </a-entity>
 
-        <!-- 4. SSD DISK (Z=0.24) -->
-        <a-entity position="0 0 0.24" animation="property: position; from: 0 0 0.23; to: 0 0 0.25; dir: alternate; loop: true; dur: 1500; delay: 600">
-            <!-- Ak nemáš SSD model, použi zatiaľ tento placeholder (tenký kváder) -->
-            <a-entity gltf-model="./ssd.glb" scale="0.05 0.05 0.05" onerror="this.setAttribute('geometry', 'primitive: box; width: 0.08; height: 0.05; depth: 0.01'); this.setAttribute('material', 'color: #555')"></a-entity>
-            <a-text value="SSD: Ulozisko" align="right" position="-0.12 0 0" width="1" color="#FFF"></a-text>
+        <!-- ssd -->
+        <a-entity position="-0.18 -0.04 0.22" animation="property: position; from: -0.18 -0.05 0.22; to: -0.18 -0.03 0.22; dir: alternate; loop: true; dur: 1500; delay: 600">
+            <a-entity gltf-model="./ssd.glb" scale="0.05 0.05 0.05"></a-entity>
+            <a-text value="SSD - datove ulozisko" align="center" position="0 -0.08 0" width="1.1" color="#FFF"></a-text>
         </a-entity>
 
-        <!-- 5. GRAFICKÁ KARTA - GPU (Z=0.32) -->
-        <a-entity position="0 0 0.32" animation="property: position; from: 0 0 0.31; to: 0 0 0.33; dir: alternate; loop: true; dur: 1500; delay: 900">
-            <a-entity gltf-model="./gpu.glb" scale="0.01 0.01 0.01" onerror="this.setAttribute('geometry', 'primitive: box; width: 0.1; height: 0.06; depth: 0.02'); this.setAttribute('material', 'color: #333')"></a-entity>
-            <a-text value="GPU: Grafika" align="left" position="0.12 0 0" width="1" color="#FFF"></a-text>
+        <!-- gpu -->
+        <a-entity position="0.22 -0.1 0.28" animation="property: position; from: 0.22 -0.11 0.28; to: 0.22 -0.09 0.28; dir: alternate; loop: true; dur: 1500; delay: 900">
+            <a-entity gltf-model="./gpu.glb" scale="0.01 0.01 0.01"></a-entity>
+            <a-text value="GPU - graficke vypocty" align="center" position="0 -0.08 0" width="1.1" color="#FFF"></a-text>
         </a-entity>
 
-        <!-- VERTIKÁLNA ZBERNICA (Hlavná linka prenosu dát) -->
-        <a-entity line="start: 0 0 0; end: 0 0 0.35; color: #92d404" 
-                animation="property: line.opacity; from: 0.2; to: 1; dir: alternate; loop: true; dur: 500">
-        </a-entity>
-
+        <!-- lines -->
+        <a-entity line="start: 0 0.06 0.08; end: 0.18 0.12 0.16; color: #92d404"></a-entity>
+        <a-entity line="start: 0 0.06 0.08; end: -0.18 -0.04 0.22; color: #92d404"></a-entity>
+        <a-entity line="start: 0 0.06 0.08; end: 0.22 -0.1 0.28; color: #92d404"></a-entity>
     </a-entity>
 
 
