@@ -107,21 +107,21 @@
              <a-text id="textP" value="Hlavne komponenty dosky:" align="center" position="0 0.5 0.1" width="1.2" color="#92d404"></a-text>
 
             <!-- CPU -->
-            <a-entity id="p-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.06 0.06 0.06" position="0 0.3 0.1" rotation="-90 0 0"></a-entity>
-            <a-text value="PROCESOR" position="0 0.2 0.1" width="1" align="center"></a-text>
+            <a-entity id="p-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.06 0.06 0.06" position="0 0.2 0.1" rotation="-90 0 0"></a-entity>
+            <a-text value="PROCESOR" position="0 0.1 0.1" width="1" align="center"></a-text>
 
             <!-- RAM -->
-            <a-entity id="p-ram" gltf-model="./old_computer_ram.glb" scale="0.07 0.07 0.07" position="0 0 0.1" rotation="-90 0 0"></a-entity>
-            <a-text value="PAMAT RAM" position="0 -0.2 0.12" width="1" align="center"></a-text>
+            <a-entity id="p-ram" gltf-model="./old_computer_ram.glb" scale="0.05 0.05 0.05" position="0 0 0.1" rotation="-90 0 0"></a-entity>
+            <a-text value="PAMAT RAM" position="0 -0.1 0.12" width="1" align="center"></a-text>
 
             <!-- GPU -->
-            <a-entity id="p-gpu" gltf-model="./gpu.glb" scale="0.04 0.04 0.04" position="0 -0.4 0.1" rotation="-90 0 0"></a-entity>
-            <a-text value="GRAFIKA" position="0 -0.5 0.1" width="1" align="center"></a-text>
+            <a-entity id="p-gpu" gltf-model="./gpu.glb" scale="0.04 0.04 0.04" position="0 -0.2 0.1" rotation="-90 0 0"></a-entity>
+            <a-text value="GRAFIKA" position="0 -0.3 0.1" width="1" align="center"></a-text>
 
             <!-- Tlačidlo na zavretie -->
-            <a-rect width="0.2" height="0.1" fill="none" stroke="white" stroke-width="2" position="0 0 0.01"></a-rect>
-            
-            <a-text value="ZAVRIET" align="center" width="2.2" color="white" position="0 0 0.02" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
+            <a-plane id="btn-close" class="clickable" radius="0.05" color="red" position="0 -0.6 0.12">
+                <a-text value="ZAVRIET" align="center" width="1.5"></a-text>
+            </a-plane>
 
         </a-entity>
     </a-entity>
