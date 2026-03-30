@@ -157,8 +157,13 @@
                             animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing: linear">
                     </a-sphere>
 
-                    <!-- MODRÝ ŠTÍT (Na začiatku neviditeľný) -->
                     <a-sphere id="firewall-shield" radius="0.35" color="#00CCFF" opacity="0.3" visible="false"
+                            material="wireframe: true; wireframeLineWidth: 2"
+                            animation="property: rotation; to: 0 -360 0; loop: true; dur: 10000; easing: linear">
+                    </a-sphere>
+
+                    <!-- MODRÝ ŠTÍT (Na začiatku neviditeľný) -->
+                    <a-sphere id="firewall-shield" radius="0.35" color="#a10812" opacity="0.3" visible="false"
                             material="wireframe: true; wireframeLineWidth: 2"
                             animation="property: rotation; to: 0 -360 0; loop: true; dur: 10000; easing: linear">
                     </a-sphere>
