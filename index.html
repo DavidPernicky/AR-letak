@@ -119,7 +119,7 @@
 
             <!-- Tlačidlo na zavretie -->
             <a-circle id="btn-close" class="clickable" radius="0.05" color="red" position="0 -0.4 0.12">
-                <a-text value="ZAVRET" align="center" width="1.5"></a-text>
+                <a-text value="ZAVRIET" align="center" width="1.5"></a-text>
             </a-circle>
 
         </a-entity>
@@ -138,23 +138,32 @@
         if(board && panel && closeBtn) {
             // OTVORENIE
             board.addEventListener('click', () => {
-                console.log("Doska kliknutá");
-                panel.setAttribute('visible', 'true');
-                hint.setAttribute('visible', 'false');
-                board.setAttribute('class', 'not-clickable'); // Aby sme neklikali cez panel
+                hintText.setAttribute('visible', 'false'); // Skryť nápis "Klikni pre info"
+                panel.setAttribute('visible', 'true');    // Ukázať panel
+    
+                // NOVINKA: Skryjeme maticnú dosku, aby nezavadzala
+                board.setAttribute('visible', 'false'); 
+
+                panel.setAttribute('animation', 'property: position; from: 0 0 -0.1; to: 0 0 0.1; dur: 500; easing: easeOutExpo'); 
             });
 
             // ZAVRETIE
             closeBtn.addEventListener('click', () => {
-                console.log("Zavrieť kliknuté");
-                panel.setAttribute('visible', 'false');
-                hint.setAttribute('visible', 'true');
-                board.setAttribute('class', 'clickable');
-            });
-        } else {
-            console.error("Nepodarilo sa nájsť prvky v DOM!");
-        }
-    });
+                hintText.setAttribute('visible', 'true'); // Znova ukázať nápis
+    
+                // NOVINKA: Znova ukážeme maticnú dosku
+                board.setAttribute('visible', 'true');
+
+                panel.setAttribute('animation', 'property: position; from: 0 0 0.1; to: 0 0 -0.1; dur: 500; easing: easeOutExpo');
+                
+                setTimeout(() => {
+                    panel.setAttribute('visible', 'false');
+                }, 500);
+                        });
+                    } else {
+                        console.error("Nepodarilo sa nájsť prvky v DOM!");
+                    }
+                });
 </script>
 
 
