@@ -94,7 +94,7 @@
         
         <!-- Hlavná doska - jediná má triedu 'clickable' na začiatku -->
         <a-entity id="main-board" class="clickable" gltf-model="./motherboard.glb" 
-                  scale="1 1 1" rotation="-90 0 0" position="0 0 0">
+                  scale="1 1 1" rotation="90 0 0" position="0 0 0">
         </a-entity>
 
         <a-text id="click-hint" value="KLIKNI NA DOSKU" align="center" position="0 0.3 0" width="1.2" color="#92d404"></a-text>
@@ -108,18 +108,18 @@
 
             <!-- CPU -->
             <a-entity id="p-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.06 0.06 0.06" position="0 0.3 0.1" rotation="-90 0 0"></a-entity>
-            <a-text value="PROCESOR" position="0 0.2 0.1" width="1" align="center"></a-text>
+            <a-text value="PROCESOR" position="0 0.15 0.1" width="1" align="center"></a-text>
 
             <!-- RAM -->
-            <a-entity id="p-ram" gltf-model="./old_computer_ram.glb" scale="0.07 0.07 0.07" position="0 0 0.1" rotation="-90 0 0"></a-entity>
+            <a-entity id="p-ram" gltf-model="./old_computer_ram.glb" scale="0.07 0.07 0.07" position="0 0 0.1" rotation="-150 0 0"></a-entity>
             <a-text value="PAMAT RAM" position="0 -0.1 0.12" width="1" align="center"></a-text>
 
             <!-- GPU -->
-            <a-entity id="p-gpu" gltf-model="./gpu.glb" scale="0.04 0.04 0.04" position="0 -0.3 0.1" rotation="-90 0 0"></a-entity>
+            <a-entity id="p-gpu" gltf-model="./gpu.glb" scale="0.04 0.04 0.04" position="0.1 -0.3 0.1" rotation="90 0 0"></a-entity>
             <a-text value="GRAFIKA" position="0 -0.4 0.1" width="1" align="center"></a-text>
 
             <!-- Tlačidlo na zavretie -->
-            <a-entity id="btn-close" class="clickable" position="0.5 0.3 0.15">
+            <a-entity id="btn-close" class="clickable" position="0 -0.7 0.1">
             
             <a-plane width="0.2" height="0.1" color="#FF3333" position="0 0 0" material="transparent: true"></a-plane>
             
