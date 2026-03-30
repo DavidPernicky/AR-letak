@@ -143,44 +143,49 @@
 
             <!-- TARGET 2: KYBERNETICKÁ OBRANA -->
             
+            <!-- TARGET 2: KYBERNETICKÁ OBRANA -->
             <a-entity mindar-image-target="targetIndex: 2">
-    <!-- Tmavé pozadie -->
-                <a-plane width="1.1" height="1.6" color="#050505" opacity="0.9" position="0 0 -0.05"></a-plane>
-
-                <!-- 1. TVOJE LOGO (Stále viditeľné) -->
-                <!-- Uisti sa, že súbor sa volá presne shieldLogo.png -->
-                <a-image id="defense-logo" src="./shieldLogo.png" 
-                        width="0.35" height="0.35" position="0 0.1 0.1" visible="true">
-                </a-image>
-
-                <!-- 2. ČERVENÁ HROZBA (Objaví sa po 3s OKOLO loga) -->
-                <a-sphere id="threat-globe" radius="0.45" color="#FF3333" visible="false"
-                        material="wireframe: true; wireframeLineWidth: 3"
-                        animation="property: rotation; to: 0 360 0; loop: true; dur: 15000; easing: linear">
-                </a-sphere>
                 
-                <a-entity id="attack-lines" visible="false">
-                    <a-entity line="start: 0.8 0.5 0.5; end: 0 0.1 0.1; color: #FF0000" 
-                            animation="property: opacity; from: 1; to: 0.2; dir: alternate; loop: true; dur: 500"></a-entity>
-                    <a-entity line="start: -0.7 -0.4 0.6; end: 0 0.1 0.1; color: #FF0000"
-                            animation="property: opacity; from: 1; to: 0.2; dir: alternate; loop: true; dur: 700"></a-entity>
+                <!-- Pozadie -->
+                <a-plane width="1.1" height="1.6" color="#000" opacity="0.85" position="0 0 -0.05"></a-plane>
+
+                <!-- 1. DIGITÁLNA ZEMEGULA -->
+                <a-entity id="globe-container" position="0 0.1 0.1">
+                    <!-- Hlavná sféra (Zem) -->
+                    <a-sphere id="earth" radius="0.3" 
+                            src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_2048.jpg"
+                            animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing: linear">
+                    </a-sphere>
+
+                    <!-- MODRÝ ŠTÍT (Na začiatku neviditeľný) -->
+                    <a-sphere id="firewall-shield" radius="0.35" color="#00CCFF" opacity="0.3" visible="false"
+                            material="wireframe: true; wireframeLineWidth: 2"
+                            animation="property: rotation; to: 0 -360 0; loop: true; dur: 10000; easing: linear">
+                    </a-sphere>
+
+                    <!-- ČERVENÉ ÚTOKY (Čiary mieria na stred) -->
+                    <a-entity id="cyber-attacks">
+                        <a-entity line="start: 0.8 0.5 0.5; end: 0 0 0; color: #FF0000" 
+                                animation="property: opacity; from: 1; to: 0.2; dir: alternate; loop: true; dur: 500"></a-entity>
+                        <a-entity line="start: -0.7 -0.4 0.6; end: 0 0 0; color: #FF0000"
+                                animation="property: opacity; from: 1; to: 0.2; dir: alternate; loop: true; dur: 700"></a-entity>
+                        <a-entity line="start: 0.2 -0.8 0.4; end: 0 0 0; color: #FF0000"
+                                animation="property: opacity; from: 1; to: 0.2; dir: alternate; loop: true; dur: 400"></a-entity>
+                    </a-entity>
                 </a-entity>
 
-                <!-- 3. MODRÝ FIREWALL (Objaví sa po kliknutí OKOLO loga) -->
-                <a-sphere id="firewall-globe" radius="0.48" color="#00CCFF" visible="false"
-                        material="wireframe: true; wireframeLineWidth: 4"
-                        animation="property: rotation; to: 0 -360 0; loop: true; dur: 10000; easing: linear">
-                </a-sphere>
+                <!-- 2. UI A TLAČIDLO -->
+                <a-entity position="0 -0.5 0.1">
+                    <a-text id="status-text" value="HROZBA DETEKOVANÁ!" align="center" color="#FF0000" width="2.5" position="0 0.2 0"
+                            animation="property: opacity; from: 1; to: 0.3; dir: alternate; loop: true; dur: 500"></a-text>
 
-                <!-- TEXTY -->
-                <a-text id="defense-text" value="AOS KYBER-PROSTOR" color="#FFF" align="center" width="2.2" position="0 0.6 0.15"></a-text>
-
-                <!-- TLAČIDLO -->
-                <a-entity id="btn-firewall" class="clickable" visible="false" position="0 -0.5 0.15">
-                    <a-plane width="0.6" height="0.15" color="#FF3333" id="btn-firewall-bg"></a-plane>
-                    <a-rect width="0.6" height="0.15" fill="none" stroke="white" stroke-width="3"></a-rect>
-                    <a-text id="btn-firewall-text" value="AKTIVOVAT FIREWALL" align="center" width="2" color="white"></a-text>
+                    <a-entity id="btn-firewall" class="clickable" geometry="primitive: plane; width: 0.5; height: 0.15" 
+                            material="color: #222; shader: flat" position="0 0 0">
+                        <a-rect width="0.5" height="0.15" fill="none" stroke="#00CCFF" stroke-width="3"></a-rect>
+                        <a-text id="btn-text" value="NASADIT FIREWALL" align="center" width="2" color="#00CCFF"></a-text>
+                    </a-entity>
                 </a-entity>
+
             </a-entity>
 
                 
@@ -192,51 +197,30 @@
                     const closeBtn = document.querySelector('#btn-close');
                     const hintText = document.querySelector('#click-hint');
                     const HlavneCpu = document.querySelector('#cpu');
-                    const defLogo = document.querySelector('#defense-logo');
-                    const globeThreat = document.querySelector('#threat-globe');
-                    const globeFirewall = document.querySelector('#firewall-globe');
-                    const attackLines = document.querySelector('#attack-lines');
-                    const defenseText = document.querySelector('#defense-text');
                     const btnFirewall = document.querySelector('#btn-firewall');
-                    const btnFirewallBg = document.querySelector('#btn-firewall-bg');
-                    const btnFirewallText = document.querySelector('#btn-firewall-text');
+                    const shield = document.querySelector('#firewall-shield');
+                    const attacks = document.querySelector('#cyber-attacks');
+                    const statusTxt = document.querySelector('#status-text');
+                    const btnTxt = document.querySelector('#btn-text');
 
-                    setTimeout(() => {
-                        if(globeThreat) {
-                            // Logo NEschovávame, ostáva v strede!
-                            
-                            // Aktivujeme červenú zemeguľu a útoky
-                            globeThreat.setAttribute('visible', 'true');
-                            attackLines.setAttribute('visible', 'true');
-                            btnFirewall.setAttribute('visible', 'true');
-                            
-                            // Zmena textu na varovanie
-                            defenseText.setAttribute('value', 'UPOZORNENIE! UTOK NA INFRASTRUKTURU');
-                            defenseText.setAttribute('color', '#FF3333');
-                            defenseText.setAttribute('animation', 'property: opacity; from: 1; to: 0.3; dir: alternate; loop: true; dur: 500');
-                        }
-                    }, 3000);
-
-                    // FÁZA 3: Aktivácia Firewallu
                     if(btnFirewall) {
                         btnFirewall.addEventListener('click', () => {
-                            // Odstránime hrozbu (červená guľa preč)
-                            globeThreat.setAttribute('visible', 'false');
-                            attackLines.setAttribute('visible', 'false');
+                            // 1. Zapni modrý štít
+                            shield.setAttribute('visible', 'true');
                             
-                            // Zapneme MODRÚ zemeguľu okolo loga
-                            globeFirewall.setAttribute('visible', 'true');
+                            // 2. Vypni červené útoky
+                            attacks.setAttribute('visible', 'false');
                             
-                            // Status: Chránené
-                            defenseText.removeAttribute('animation');
-                            defenseText.setAttribute('opacity', '1');
-                            defenseText.setAttribute('value', 'SYSTEM CHRANENY - FIREWALL AKTIVNY');
-                            defenseText.setAttribute('color', '#00CCFF');
-                            
-                            // Tlačidlo zmodrie
-                            btnFirewallText.setAttribute('value', 'OBRANA BEZI');
-                            btnFirewallBg.setAttribute('color', '#004466');
-                            btnFirewall.classList.remove('clickable');
+                            // 3. Zmeň status na bezpečný
+                            statusTxt.setAttribute('value', 'SYSTEM CHRANENY');
+                            statusTxt.setAttribute('color', '#00CCFF');
+                            // Zastav blikanie nápisu
+                            statusTxt.removeAttribute('animation');
+                            statusTxt.setAttribute('opacity', '1');
+
+                            // 4. Zmeň text tlačidla
+                            btnTxt.setAttribute('value', 'OBRANA AKTIVNA');
+                            btnFirewall.setAttribute('material', 'color', '#004466');
                         });
                     }
                
