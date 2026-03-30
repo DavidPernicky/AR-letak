@@ -107,20 +107,20 @@
 
             <!-- CPU -->
             <a-entity id="p-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.04 0.04 0.04" position="0 0.2 0.1" rotation="-90 0 0"></a-entity>
-            <a-text value="PROCESOR" position="-0.2 0.2 0.12" width="1" align="right"></a-text>
+            <a-text value="PROCESOR" position="0 0.1 0.1" width="1" align="right"></a-text>
 
             <!-- RAM -->
             <a-entity id="p-ram" gltf-model="./old_computer_ram.glb" scale="0.05 0.05 0.05" position="0 0 0.1" rotation="-90 0 0"></a-entity>
-            <a-text value="PAMAT RAM" position="0.2 0 0.12" width="1" align="left"></a-text>
+            <a-text value="PAMAT RAM" position="0.2 -0.1 0.12" width="1" align="left"></a-text>
 
             <!-- GPU -->
             <a-entity id="p-gpu" gltf-model="./gpu.glb" scale="0.04 0.04 0.04" position="0 -0.2 0.1" rotation="-90 0 0"></a-entity>
-            <a-text value="GRAFIKA" position="-0.2 -0.2 0.12" width="1" align="right"></a-text>
+            <a-text value="GRAFIKA" position="0 -0.3 0.1" width="1" align="right"></a-text>
 
             <!-- Tlačidlo na zavretie -->
-            <a-circle id="btn-close" class="clickable" radius="0.05" color="red" position="0 -0.4 0.12">
+            <a-rect id="btn-close" class="clickable" radius="0.05" color="red" position="0 -0.4 0.12">
                 <a-text value="ZAVRIET" align="center" width="1.5"></a-text>
-            </a-circle>
+            </a-rect>
 
         </a-entity>
     </a-entity>
