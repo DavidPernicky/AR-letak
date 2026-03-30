@@ -156,10 +156,20 @@
                             animation="property: rotation; to: 0 360 0; loop: true; dur: 25000; easing: linear">
                     </a-sphere>
 
-                    <!-- Satelity / Uzly -->
+                    <!-- Uzol 1 -->
                     <a-sphere class="node" radius="0.02" color="#FF0000" position="0.4 0.2 0" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 500"></a-sphere>
+                    <!-- Uzol 2 -->
                     <a-sphere class="node" radius="0.02" color="#FF0000" position="-0.3 0.4 0.2" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 700"></a-sphere>
+                    <!-- Uzol 3 -->
                     <a-sphere class="node" radius="0.02" color="#FF0000" position="0.2 -0.4 -0.1" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 600"></a-sphere>
+                    <!-- Uzol 4 (Nový) -->
+                    <a-sphere class="node" radius="0.02" color="#FF0000" position="-0.4 -0.2 0.1" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 800"></a-sphere>
+                    <!-- Uzol 5 (Nový) -->
+                    <a-sphere class="node" radius="0.02" color="#FF0000" position="0.3 0.3 -0.3" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 450"></a-sphere>
+                    <!-- Uzol 6 (Nový) -->
+                    <a-sphere class="node" radius="0.02" color="#FF0000" position="-0.1 -0.5 0" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 550"></a-sphere>
+                    <!-- Uzol 7 (Nový) -->
+                    <a-sphere class="node" radius="0.02" color="#FF0000" position="0.5 -0.1 0.2" animation="property: scale; from: 1 1 1; to: 1.5 1.5 1.5; dir: alternate; loop: true; dur: 650"></a-sphere>
                 </a-entity>
 
                 <!-- MODRÝ ŠTÍT -->
@@ -219,8 +229,7 @@
 
                                 // 2. Uzdravenie uzlov (červená -> modrá)
                                 nodes.forEach(node => {
-                                    node.setAttribute('color', '#00CCFF');
-                                    node.removeAttribute('animation'); 
+                                    node.setAttribute('visible', 'false');
                                 });
 
                                 // 3. Update terminálu (ak existujú)
