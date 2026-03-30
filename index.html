@@ -88,43 +88,45 @@
         <a-gltf-model src="./drone.glb" scale="0.3 0.3 0.3" animation="property: position; from: 0 0 0; to: 0 0.08 0; dir: alternate; dur: 2000; easing: easeInOutSine; loop: true"></a-gltf-model>
     </a-entity>
 
-    <!-- 3. ARCHITEKTÚRY PC SYSTÉMOV (Vpravo hore) -->
-   <a-entity position="0.35 0.5 0.1">
     
-    <!-- Inštrukcia pre používateľa -->
-        <a-text id="click-hint" value="KLIKNI NA DOSKU PRE ROZKLAD" align="center" position="0 0.3 0" width="1.2" color="#92d404"></a-text>
+   <!-- 3. ARCHITEKTÚRY PC SYSTÉMOV (Vpravo hore) -->
+    <a-entity position="0.35 0.5 0">
+        
+        <!-- Inštrukcia pre používateľa -->
+        <a-text id="click-hint" value="KLIKNI NA DOSKU PRE ROZKLAD" align="center" position="0 0.35 0.1" width="1.2" color="#92d404" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
 
-        <!-- 1. ZÁKLADNÁ DOSKA (Hlavný prepínač - Clickable) -->
+        <!-- 1. ZÁKLADNÁ DOSKA (Hlavný prepínač) -->
+        <!-- Position 0 0 0 ju položí priamo na papier. Rotation -90 0 0 ju položí plocho. -->
         <a-entity id="main-board" class="clickable" gltf-model="./motherboard.glb" 
-                scale="0.03 0.03 0.03" rotation="-90 90 0" position="0 0 0.5">
+                scale="0.05 0.05 0.05" rotation="-90 0 0" position="0 0 0">
         </a-entity>
 
-        <!-- 2. CPU -->
-        <a-entity id="comp-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.04 0.04 0.04" position="0 0 0.01"
-                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.1"
-                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.01">
-            <a-text id="label-cpu" value="CPU" visible="false" align="right" position="-0.1 0 0" width="1"></a-text>
+        <!-- 2. CPU (Štartuje tesne nad doskou) -->
+        <a-entity id="comp-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.04 0.04 0.04" position="0 0 0.02" rotation="-90 0 0"
+                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.12"
+                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.02">
+            <a-text id="label-cpu" value="CPU" visible="false" align="right" position="-0.15 0 0" width="1.5"></a-text>
         </a-entity>
 
         <!-- 3. RAM -->
-        <a-entity id="comp-ram" gltf-model="./old_computer_ram.glb" scale="0.05 0.05 0.05" position="0 0 0.015"
-                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.2"
-                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.015">
-            <a-text id="label-ram" value="RAM" visible="false" align="left" position="0.1 0 0" width="1"></a-text>
+        <a-entity id="comp-ram" gltf-model="./old_computer_ram.glb" scale="0.05 0.05 0.05" position="0 0 0.03" rotation="-90 0 0"
+                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.22"
+                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.03">
+            <a-text id="label-ram" value="RAM" visible="false" align="left" position="0.15 0 0" width="1.5"></a-text>
         </a-entity>
 
         <!-- 4. SSD -->
-        <a-entity id="comp-ssd" gltf-model="./ssd.glb" scale="0.05 0.05 0.05" position="0 0 0.02"
-                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.3"
-                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.02">
-            <a-text id="label-ssd" value="SSD" visible="false" align="right" position="-0.1 0 0" width="1"></a-text>
+        <a-entity id="comp-ssd" gltf-model="./ssd.glb" scale="0.05 0.05 0.05" position="0 0 0.04" rotation="-90 0 0"
+                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.32"
+                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.04">
+            <a-text id="label-ssd" value="SSD" visible="false" align="right" position="-0.15 0 0" width="1.5"></a-text>
         </a-entity>
 
         <!-- 5. GPU -->
-        <a-entity id="comp-gpu" gltf-model="./gpu.glb" scale="0.06 0.06 0.06" position="0 0 0.025"
-                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.4"
-                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.025">
-            <a-text id="label-gpu" value="GPU" visible="false" align="left" position="0.1 0 0" width="1"></a-text>
+        <a-entity id="comp-gpu" gltf-model="./gpu.glb" scale="0.06 0.06 0.06" position="0 0 0.05" rotation="-90 0 0"
+                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.42"
+                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.05">
+            <a-text id="label-gpu" value="GPU" visible="false" align="left" position="0.15 0 0" width="1.5"></a-text>
         </a-entity>
 
     </a-entity>
