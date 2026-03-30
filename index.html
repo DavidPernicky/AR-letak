@@ -186,95 +186,18 @@
 </a-entity>
 
                 
-            <script>
-<<<<<<< HEAD
-    window.addEventListener('load', () => {
-        // --- 1. SELEKTORY (Všetky premenné na jednom mieste) ---
-        
-        // Prvky pre Target 1 (Maticná doska)
-        const board = document.querySelector('#main-board');
-        const panel = document.querySelector('#architecture-panel');
-        const closeBtn = document.querySelector('#btn-close');
-        const hintText = document.querySelector('#click-hint');
-        const HlavneCpu = document.querySelector('#cpu');
-
-        // Prvky pre Target 2 (Kyberbezpečnosť)
-        const redShield = document.querySelector('#red-shield');
-        const blueShield = document.querySelector('#blue-shield');
-        const nodes = document.querySelector('#network-nodes');
-        const alertText = document.querySelector('#alert-text');
-        const logs = document.querySelector('#terminal-logs');
-        const btnFirewall = document.querySelector('#btn-firewall');
-        const btnBg = document.querySelector('#btn-bg');
-        const btnLabel = document.querySelector('#btn-label');
-        const logItems = [
-            document.querySelector('#log-1'), 
-            document.querySelector('#log-2'), 
-            document.querySelector('#log-3')
-        ];
-
-        let isFirewallActive = false;
-
-        // --- 2. LOGIKA PRE TARGET 2 (Kyberbezpečnosť - 5s útok) ---
-
-        // Spustenie útoku po 5 sekundách
-        setTimeout(() => {
-            if (!isFirewallActive && redShield) {
-                redShield.setAttribute('visible', 'true');
-                if (nodes) nodes.setAttribute('visible', 'true');
-                if (alertText) alertText.setAttribute('visible', 'true');
-                if (logs) logs.setAttribute('visible', 'true');
-                if (btnFirewall) btnFirewall.setAttribute('visible', 'true');
-                console.log("Útok začal!");
-            }
-        }, 5000);
-
-        // Tlačidlo Firewall (Toggle logic)
-        if (btnFirewall) {
-            btnFirewall.addEventListener('click', (e) => {
-                e.stopPropagation();
-
-                if (!isFirewallActive) {
-                    // AKTIVÁCIA OBRANY
-                    redShield.setAttribute('visible', 'false');
-                    alertText.setAttribute('visible', 'false');
-                    blueShield.setAttribute('visible', 'true');
-                    blueShield.setAttribute('animation', 'property: material.opacity; from: 0; to: 0.4; dur: 1000');
+           <script>
+                window.addEventListener('load', () => {
+                    // --- 1. SELEKTORY (Všetky premenné na jednom mieste) ---
                     
-                    const nodeSpheres = document.querySelectorAll('.node');
-                    nodeSpheres.forEach(n => n.setAttribute('visible', 'false'));
+                    // Prvky pre Target 1 (Maticná doska)
+                    const board = document.querySelector('#main-board');
+                    const panel = document.querySelector('#architecture-panel');
+                    const closeBtn = document.querySelector('#btn-close');
+                    const hintText = document.querySelector('#click-hint');
+                    const HlavneCpu = document.querySelector('#cpu');
 
-                    logItems[0].setAttribute('value', '> SYSTEM SECURE');
-                    logItems[1].setAttribute('value', '> FIREWALL: ACTIVE');
-                    logItems[2].setAttribute('value', '> NO THREATS FOUND');
-                    logItems.forEach(l => { if(l) l.setAttribute('color', '#00CCFF') });
-
-                    btnBg.setAttribute('color', '#004466');
-                    btnLabel.setAttribute('value', 'VYPNUT FIREWALL');
-                    isFirewallActive = true;
-                } else {
-                    // DEAKTIVÁCIA (Návrat hrozby)
-                    blueShield.setAttribute('visible', 'false');
-                    redShield.setAttribute('visible', 'true');
-                    alertText.setAttribute('visible', 'true');
-                    
-                    const nodeSpheres = document.querySelectorAll('.node');
-                    nodeSpheres.forEach(n => n.setAttribute('visible', 'true'));
-
-                    logItems[0].setAttribute('value', '> DETECTING ATTACKS...');
-                    logItems[1].setAttribute('value', '> IP: 192.168.1.104');
-                    logItems[2].setAttribute('value', '> TYPE: DDOS_SPOOF');
-                    logItems.forEach(l => { if(l) l.setAttribute('color', '#FF0000') });
-
-                    btnBg.setAttribute('color', '#FF3333');
-                    btnLabel.setAttribute('value', 'NASADIT FIREWALL');
-                    isFirewallActive = false;
-                }
-            });
-        }
-=======
-               window.addEventListener('load', () => {
-    
+                    // Prvky pre Target 2 (Kyberbezpečnosť)
                     const redShield = document.querySelector('#red-shield');
                     const blueShield = document.querySelector('#blue-shield');
                     const nodes = document.querySelector('#network-nodes');
@@ -283,23 +206,29 @@
                     const btnFirewall = document.querySelector('#btn-firewall');
                     const btnBg = document.querySelector('#btn-bg');
                     const btnLabel = document.querySelector('#btn-label');
-                    const logItems = [document.querySelector('#log-1'), document.querySelector('#log-2'), document.querySelector('#log-3')];
+                    const logItems = [
+                        document.querySelector('#log-1'), 
+                        document.querySelector('#log-2'), 
+                        document.querySelector('#log-3')
+                    ];
 
                     let isFirewallActive = false;
 
-                    // --- FUNKCIA PRE SPUSTENIE ÚTOKU (po 5 sekundách) ---
+                    // --- 2. LOGIKA PRE TARGET 2 (Kyberbezpečnosť - 5s útok) ---
+
+                    // Spustenie útoku po 5 sekundách
                     setTimeout(() => {
-                        if (!isFirewallActive) {
+                        if (!isFirewallActive && redShield) {
                             redShield.setAttribute('visible', 'true');
-                            nodes.setAttribute('visible', 'true');
-                            alertText.setAttribute('visible', 'true');
-                            logs.setAttribute('visible', 'true');
-                            btnFirewall.setAttribute('visible', 'true');
+                            if (nodes) nodes.setAttribute('visible', 'true');
+                            if (alertText) alertText.setAttribute('visible', 'true');
+                            if (logs) logs.setAttribute('visible', 'true');
+                            if (btnFirewall) btnFirewall.setAttribute('visible', 'true');
                             console.log("Útok začal!");
                         }
-                    }, 5000); // 5000 milisekúnd = 5 sekúnd
+                    }, 5000);
 
-                    // --- LOGIKA TLAČIDLA (ZAPNÚŤ/VYPNÚŤ) ---
+                    // Tlačidlo Firewall (Toggle logic)
                     if (btnFirewall) {
                         btnFirewall.addEventListener('click', (e) => {
                             e.stopPropagation();
@@ -311,34 +240,30 @@
                                 blueShield.setAttribute('visible', 'true');
                                 blueShield.setAttribute('animation', 'property: material.opacity; from: 0; to: 0.4; dur: 1000');
                                 
-                                // Skryjeme guličky
                                 const nodeSpheres = document.querySelectorAll('.node');
                                 nodeSpheres.forEach(n => n.setAttribute('visible', 'false'));
 
-                                // Update texty do modra
                                 logItems[0].setAttribute('value', '> SYSTEM SECURE');
                                 logItems[1].setAttribute('value', '> FIREWALL: ACTIVE');
                                 logItems[2].setAttribute('value', '> NO THREATS FOUND');
-                                logItems.forEach(l => l.setAttribute('color', '#00CCFF'));
+                                logItems.forEach(l => { if(l) l.setAttribute('color', '#00CCFF') });
 
                                 btnBg.setAttribute('color', '#004466');
                                 btnLabel.setAttribute('value', 'VYPNUT FIREWALL');
                                 isFirewallActive = true;
                             } else {
-                                // DEAKTIVÁCIA (NÁVRAT K ÚTOKU)
+                                // DEAKTIVÁCIA (Návrat hrozby)
                                 blueShield.setAttribute('visible', 'false');
                                 redShield.setAttribute('visible', 'true');
                                 alertText.setAttribute('visible', 'true');
                                 
-                                // Ukážeme guličky
                                 const nodeSpheres = document.querySelectorAll('.node');
                                 nodeSpheres.forEach(n => n.setAttribute('visible', 'true'));
 
-                                // Reset logy do červena
                                 logItems[0].setAttribute('value', '> DETECTING ATTACKS...');
                                 logItems[1].setAttribute('value', '> IP: 192.168.1.104');
                                 logItems[2].setAttribute('value', '> TYPE: DDOS_SPOOF');
-                                logItems.forEach(l => l.setAttribute('color', '#FF0000'));
+                                logItems.forEach(l => { if(l) l.setAttribute('color', '#FF0000') });
 
                                 btnBg.setAttribute('color', '#FF3333');
                                 btnLabel.setAttribute('value', 'NASADIT FIREWALL');
@@ -346,40 +271,38 @@
                             }
                         });
                     }
-                });
->>>>>>> 8144b5c06856a9c1f05b707bc3728a6e7b5cfa5a
 
-        // --- 3. LOGIKA PRE TARGET 1 (Maticná doska) ---
+                    // --- 3. LOGIKA PRE TARGET 1 (Maticná doska) ---
 
-        if (board && panel && closeBtn) {
-            // OTVORENIE PANELA
-            board.addEventListener('click', () => {
-                if (hintText) hintText.setAttribute('visible', 'false');
-                panel.setAttribute('visible', 'true');
-                board.setAttribute('visible', 'false'); 
-                if (HlavneCpu) HlavneCpu.setAttribute('visible', 'false');
+                    if (board && panel && closeBtn) {
+                        // OTVORENIE PANELA
+                        board.addEventListener('click', () => {
+                            if (hintText) hintText.setAttribute('visible', 'false');
+                            panel.setAttribute('visible', 'true');
+                            board.setAttribute('visible', 'false'); 
+                            if (HlavneCpu) HlavneCpu.setAttribute('visible', 'false');
 
-                panel.setAttribute('animation', 'property: position; from: 0 0 -0.1; to: 0 0 0.1; dur: 500; easing: easeOutExpo'); 
-            });
+                            panel.setAttribute('animation', 'property: position; from: 0 0 -0.1; to: 0 0 0.1; dur: 500; easing: easeOutExpo'); 
+                        });
 
-            // ZAVRETIE PANELA
-            closeBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Aby sme kliknutím na X znova neotvorili dosku
-                if (hintText) hintText.setAttribute('visible', 'true');
-                board.setAttribute('visible', 'true');
-                if (HlavneCpu) HlavneCpu.setAttribute('visible', 'true');
+                        // ZAVRETIE PANELA
+                        closeBtn.addEventListener('click', (e) => {
+                            e.stopPropagation(); // Aby sme kliknutím na X znova neotvorili dosku
+                            if (hintText) hintText.setAttribute('visible', 'true');
+                            board.setAttribute('visible', 'true');
+                            if (HlavneCpu) HlavneCpu.setAttribute('visible', 'true');
 
-                panel.setAttribute('animation', 'property: position; from: 0 0 0.1; to: 0 0 -0.1; dur: 500; easing: easeOutExpo');
-                
-                setTimeout(() => {
-                    panel.setAttribute('visible', 'false');
-                }, 500);
-            });
-        } else {
-            console.error("Nepodarilo sa nájsť prvky pre Target 1 v DOM!");
-        }
-    }); // Koniec load eventu
-</script>  
+                            panel.setAttribute('animation', 'property: position; from: 0 0 0.1; to: 0 0 -0.1; dur: 500; easing: easeOutExpo');
+                            
+                            setTimeout(() => {
+                                panel.setAttribute('visible', 'false');
+                            }, 500);
+                        });
+                    } else {
+                        console.error("Nepodarilo sa nájsť prvky pre Target 1 v DOM!");
+                    }
+                }); // Koniec load eventu
+            </script> 
 
 
 
