@@ -90,43 +90,49 @@
 
     
    <!-- 3. ARCHITEKTÚRY PC SYSTÉMOV (Vpravo hore) -->
-    <a-entity position="0.35 0.5 0">
-        
-        <!-- Inštrukcia pre používateľa -->
-        <a-text id="click-hint" value="KLIKNI NA DOSKU PRE ROZKLAD" align="center" position="0 0.35 0.1" width="1.2" color="#92d404" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
+    <a-entity mindar-image-target="targetIndex: 1">
+    
+        <a-entity position="0.35 0.5 0">
+            
+            <a-entity id="main-board" class="clickable" gltf-model="./motherboard.glb" 
+                    scale="0.05 0.05 0.05" rotation="-90 0 0" position="0 0 0">
+            </a-entity>
 
-        <!-- 1. ZÁKLADNÁ DOSKA (Hlavný prepínač) -->
-        <!-- Position 0 0 0 ju položí priamo na papier. Rotation -90 0 0 ju položí plocho. -->
-        <a-entity id="main-board" class="clickable" gltf-model="./motherboard.glb" 
-                scale="0.06 0.06 0.06" rotation="0 0 0" position="0 0 0">
-        </a-entity>
+            <a-text id="click-hint" value="KLIKNI PRE DETAILY ARCHITEKTÚRY" align="center" position="0 0.3 0.1" width="1.2" color="#92d404" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
 
-        <!-- 2. CPU (Štartuje tesne nad doskou) -->
-        <a-entity id="comp-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.04 0.04 0.04" position="0 0 0.02" rotation="-90 0 0"
-                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.12"
-                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.02">
-            <a-text id="label-cpu" value="CPU" visible="false" align="right" position="-0.15 0 0" width="1.5"></a-text>
-        </a-entity>
+            <a-entity id="architecture-panel" visible="false" position="0 0 0.1">
+                
+                <a-plane width="1.2" height="1.8" color="#050505" opacity="0.95" material="transparent: true" position="0 -0.5 0.1"></a-plane>
+                <a-text value="DETAILY ARCHITEKTÚRY AOS" color="#00CCFF" align="center" width="2" position="0 0.3 0.15" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
+                
+                <a-circle id="btn-close-panel" class="clickable" radius="0.06" color="#FF3333" position="0.5 0.3 0.15">
+                    <a-text value="X" align="center" width="2" color="white"></a-text>
+                </a-circle>
 
-        <!-- 3. RAM -->
-        <a-entity id="comp-ram" gltf-model="./old_computer_ram.glb" scale="0.05 0.05 0.05" position="0 0 0.03" rotation="-90 0 0"
-                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.22"
-                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.03">
-            <a-text id="label-ram" value="RAM" visible="false" align="left" position="0.15 0 0" width="1.5"></a-text>
-        </a-entity>
+                <a-entity id="panel-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.04 0.04 0.04" position="0 0 0.15" rotation="-90 0 0">
+                    <a-text value="CPU" align="right" position="-0.15 0 0" width="1.5"></a-text>
+                </a-entity>
 
-        <!-- 4. SSD -->
-        <a-entity id="comp-ssd" gltf-model="./ssd_solid_state_drive.glb.glb" scale="0.05 0.05 0.05" position="0 0 0.04" rotation="-90 0 0"
-                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.32"
-                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.04">
-            <a-text id="label-ssd" value="SSD" visible="false" align="right" position="-0.15 0 0" width="1.5"></a-text>
-        </a-entity>
+                <a-entity id="panel-ram" gltf-model="./old_computer_ram.glb" scale="0.05 0.05 0.05" position="0 0 0.25" rotation="-90 0 0">
+                    <a-text value="RAM" align="left" position="0.15 0 0" width="1.5"></a-text>
+                </a-entity>
 
-        <!-- 5. GPU -->
-        <a-entity id="comp-gpu" gltf-model="./gpu.glb" scale="0.06 0.06 0.06" position="0 0 0.05" rotation="-90 0 0"
-                animation="property: position; dur: 800; easing: easeOutExpo; startEvents: explode; to: 0 0 0.42"
-                animation__reverse="property: position; dur: 800; easing: easeOutExpo; startEvents: assemble; to: 0 0 0.05">
-            <a-text id="label-gpu" value="GPU" visible="false" align="left" position="0.15 0 0" width="1.5"></a-text>
+                <a-entity id="panel-ssd" gltf-model="./ssd.glb" scale="0.05 0.05 0.05" position="0 0 0.35" rotation="-90 0 0">
+                    <a-text value="SSD" align="right" position="-0.15 0 0" width="1.5"></a-text>
+                </a-entity>
+
+                <a-entity id="panel-gpu" gltf-model="./gpu.glb" scale="0.06 0.06 0.06" position="0 0 0.45" rotation="-90 0 0">
+                    <a-text value="GPU" align="left" position="0.15 0 0" width="1.5"></a-text>
+                </a-entity>
+                <a-plane width="0.8" height="0.15" color="#00CCFF" opacity="0.8" position="0 -1 0.15">
+                    <a-text value="ZLOŽIŤ KONFIGURÁCIU" align="center" width="1.5"></a-text>
+                </a-plane>
+                <a-plane width="0.8" height="0.15" color="#00CCFF" opacity="0.8" position="0 -1.2 0.15">
+                    <a-text value="ZÍSKAŤ INFORMÁCIE" align="center" width="1.5"></a-text>
+                </a-plane>
+
+            </a-entity>
+
         </a-entity>
 
     </a-entity>
@@ -135,29 +141,34 @@
 </a-entity>
 
 <!-- JAVASCRIPT PRE DYNAMICKÚ LOGIKU -->
- <script>
-    let isExploded = false;
-    const components = ['cpu', 'ram', 'ssd', 'gpu'];
+<script>
     const board = document.querySelector('#main-board');
-    const hint = document.querySelector('#click-hint');
+    const panel = document.querySelector('#architecture-panel');
+    const hintText = document.querySelector('#click-hint');
+    const closeBtn = document.querySelector('#btn-close-panel');
 
+    // 1. OTVORIŤ PANEL (Po kliknutí na dosku)
     board.addEventListener('click', () => {
-        isExploded = !isExploded;
+        // Skryjeme nápis 'Klikni pre detaily'
+        hintText.setAttribute('visible', 'false');
         
-        components.forEach(comp => {
-            const el = document.querySelector('#comp-' + comp);
-            const label = document.querySelector('#label-' + comp);
-            
-            if (isExploded) {
-                el.emit('explode');
-                label.setAttribute('visible', 'true');
-                hint.setAttribute('value', 'KLIKNI PRE ZLOZENIE');
-            } else {
-                el.emit('assemble');
-                label.setAttribute('visible', 'false');
-                hint.setAttribute('value', 'KLIKNI PRE ROZKLAD');
-            }
-        });
+        // Zviditeľníme a vysunieme celý panel
+        panel.setAttribute('visible', 'true');
+        panel.setAttribute('animation', 'property: position; from: 0 0 -0.1; to: 0 0 0.1; dur: 500; easing: easeOutExpo');
+    });
+
+    // 2. ZAVRIEŤ PANEL (Po kliknutí na X)
+    closeBtn.addEventListener('click', () => {
+        // Znova ukážeme nápis 'Klikni pre detaily'
+        hintText.setAttribute('visible', 'true');
+        
+        // Skryjeme panel a zasunieme ho späť
+        panel.setAttribute('animation', 'property: position; from: 0 0 0.1; to: 0 0 -0.1; dur: 500; easing: easeOutExpo');
+        
+        // Na konci animácie ho úplne skryjeme (aby neblokoval kurzor)
+        setTimeout(() => {
+            panel.setAttribute('visible', 'false');
+        }, 500);
     });
 </script>
 
