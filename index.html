@@ -198,52 +198,139 @@
                 </a-entity>
 
             </a-entity>
-            <a-entity mindar-image-target="targetIndex: 3">
-    <!-- Hi-tech podklad -->
-    <a-plane width="1.1" height="1.6" color="#000" opacity="0.85" position="0 0 -0.05"></a-plane>
+            <!-- TARGET 3: SOFTWARE A INTELIGENTNE SYSTEMY -->
+<a-entity mindar-image-target="targetIndex: 3">
 
-    <!-- 1. SOFTVÉROVÉ INŽINIERSTVO (Python/C++) -->
-    <a-entity class="clickable module" id="mod-sw" position="0.35 0.5 0.1">
-        <a-plane width="0.45" height="0.3" color="#1e1e1e" material="opacity: 0.9">
-            <a-text value="def deploy_drone():\n  if system.ready:\n    drone.takeoff()\n    print('Mission Start')" 
-                    color="#DCDCAA" align="left" width="1.1" position="-0.2 0 0.01" font="monospace"></a-text>
-        </a-plane>
-        <a-text value="SOFTWARE ENG" position="0 -0.2 0" align="center" width="1.3" color="#569CD6"></a-text>
+    <!-- Pozadie -->
+    <a-plane width="1.1" height="1.6" color="#000000" opacity="0.85" position="0 0 -0.05"></a-plane>
+
+    <!-- Nadpis -->
+    <a-text value="SOFTWARE A INTELIGENTNE SYSTEMY"
+            color="#66FFCC"
+            align="center"
+            width="2.2"
+            position="0 0.75 0.1"
+            font="./Exo2-Medium-msdf.json"
+            negate="false">
+    </a-text>
+
+    <!-- Stredovy AI core -->
+    <a-entity id="ai-core" position="0 0.12 0.12" animation="property: rotation; to: 0 360 0; loop: true; dur: 12000; easing: linear">
+        <a-sphere radius="0.12" color="#00CCAA" opacity="0.18"></a-sphere>
+        <a-circle radius="0.09" color="#00E6C3" opacity="0.9"></a-circle>
+        <a-text value="AI"
+                align="center"
+                color="#FFFFFF"
+                width="1.2"
+                position="0 0 0.01"
+                font="./Exo2-Medium-msdf.json"
+                negate="false">
+        </a-text>
     </a-entity>
 
-    <!-- 2. LINUX / OPERAČNÉ SYSTÉMY (Bash) -->
-    <a-entity class="clickable module" id="mod-os" position="0.2 -0.5 0.1">
-        <a-plane width="0.4" height="0.25" color="#000" material="opacity: 0.9">
-            <a-text value="root@aos:~# chmod +x script\nroot@aos:~# ./shield_up\n[OK] Firewall active" 
-                    color="#00FF00" align="left" width="1" position="-0.18 0 0.01" font="monospace"></a-text>
-        </a-plane>
-        <a-text value="LINUX / OS" position="0 -0.18 0" align="center" width="1.3" color="#00FF00"></a-text>
+    <!-- Spojnice -->
+    <a-entity line="start: 0 0.12 0.1; end: -0.32 0.38 0.1; color: #33DDCC"></a-entity>
+    <a-entity line="start: 0 0.12 0.1; end: 0.32 0.38 0.1; color: #66FF99"></a-entity>
+    <a-entity line="start: 0 0.12 0.1; end: 0 -0.18 0.1; color: #33CCFF"></a-entity>
+
+    <!-- Tlacidlo 1: KOD -->
+    <a-entity id="btn-code" class="clickable" position="-0.32 0.38 0.12">
+        <a-circle radius="0.11" color="#0D1B2A" opacity="0.95" stroke="#33DDCC"></a-circle>
+        <a-ring radius-inner="0.11" radius-outer="0.125" color="#33DDCC"></a-ring>
+        <a-text value="</>"
+                align="center"
+                color="#33DDCC"
+                width="1"
+                position="0 0 0.01"
+                font="./Exo2-Medium-msdf.json"
+                negate="false">
+        </a-text>
+        <a-text value="KOD"
+                align="center"
+                color="#FFFFFF"
+                width="0.9"
+                position="0 -0.18 0.01"
+                font="./Exo2-Medium-msdf.json"
+                negate="false">
+        </a-text>
     </a-entity>
 
-    <!-- 3. DATABÁZY / IS (SQL) -->
-    <a-entity class="clickable module" id="mod-is" position="-0.35 0.5 0.1">
-        <a-plane width="0.45" height="0.25" color="#252526" material="opacity: 0.9">
-            <a-text value="SELECT name, rank\nFROM units\nWHERE status = 'ACTIVE'\nORDER BY rank DESC;" 
-                    color="#CE9178" align="left" width="1.1" position="-0.2 0 0.01" font="monospace"></a-text>
-        </a-plane>
-        <a-text value="DATABASE / SQL" position="0 -0.18 0" align="center" width="1.3" color="#4EC9B0"></a-text>
+    <!-- Tlacidlo 2: TERMINAL -->
+    <a-entity id="btn-terminal" class="clickable" position="0.32 0.38 0.12">
+        <a-circle radius="0.11" color="#0D1B2A" opacity="0.95"></a-circle>
+        <a-ring radius-inner="0.11" radius-outer="0.125" color="#66FF99"></a-ring>
+        <a-text value=">_"
+                align="center"
+                color="#66FF99"
+                width="1"
+                position="0 0 0.01"
+                font="./Exo2-Medium-msdf.json"
+                negate="false">
+        </a-text>
+        <a-text value="TERMINAL"
+                align="center"
+                color="#FFFFFF"
+                width="1.1"
+                position="0 -0.18 0.01"
+                font="./Exo2-Medium-msdf.json"
+                negate="false">
+        </a-text>
     </a-entity>
 
-    <!-- 4. AI / ML (Neural Network pseudocode) -->
-    <a-entity class="clickable module" id="mod-ai" position="0.4 0.05 0.15">
-        <a-plane width="0.5" height="0.25" color="#1e1e1e" material="opacity: 0.9">
-            <a-text value="model.add(Dense(64))\nmodel.compile(optimizer='adam')\nmodel.fit(x_train, y_train)" 
-                    color="#9CDCFE" align="left" width="1.1" position="-0.22 0 0.01" font="monospace"></a-text>
-        </a-plane>
-        <a-text value="AI / ML CORE" position="0 -0.18 0" align="center" width="1.3" color="#C586C0"></a-text>
+    <!-- Tlacidlo 3: AI analyza -->
+    <a-entity id="btn-ai" class="clickable" position="0 -0.18 0.12">
+        <a-circle radius="0.11" color="#0D1B2A" opacity="0.95"></a-circle>
+        <a-ring radius-inner="0.11" radius-outer="0.125" color="#33CCFF"></a-ring>
+        <a-text value="AI"
+                align="center"
+                color="#33CCFF"
+                width="1"
+                position="0 0 0.01"
+                font="./Exo2-Medium-msdf.json"
+                negate="false">
+        </a-text>
+        <a-text value="ANALYZA"
+                align="center"
+                color="#FFFFFF"
+                width="1"
+                position="0 -0.18 0.01"
+                font="./Exo2-Medium-msdf.json"
+                negate="false">
+        </a-text>
     </a-entity>
 
-    <!-- HLAVNÝ PANEL S INFO (Zobrazí sa po kliku na kód) -->
-    <a-entity id="desc-panel" position="0 -0.15 0.3" visible="false">
-        <a-plane width="1" height="0.35" color="#007acc" opacity="0.9">
-            <a-text id="desc-text" value="Analyzujem kod..." align="center" width="2.2" color="white"></a-text>
-        </a-plane>
-    </a-entity>
+    <!-- Panel -->
+    <a-plane id="sw-panel-bg"
+             width="0.92"
+             height="0.34"
+             color="#0B1120"
+             opacity="0.92"
+             position="0 -0.58 0.1">
+    </a-plane>
+
+    <a-ring radius-inner="0.52" radius-outer="0.525" color="#1DE9B6" position="0 -0.58 0.101" scale="1 0.33 1"></a-ring>
+
+    <a-text id="sw-panel-title"
+            value="SOFTWARE PANEL"
+            align="center"
+            color="#66FFCC"
+            width="1.4"
+            position="0 -0.46 0.11"
+            font="./Exo2-Medium-msdf.json"
+            negate="false">
+    </a-text>
+
+    <a-text id="sw-panel-text"
+            value="Klikni na jednu z ikon a zobrazim ukazku kodu, terminalu alebo AI analyzy."
+            align="center"
+            color="#FFFFFF"
+            width="1.15"
+            wrap-count="34"
+            position="0 -0.62 0.11"
+            font="./Exo2-Medium-msdf.json"
+            negate="false">
+    </a-text>
+
 </a-entity>
 
                 
@@ -264,47 +351,64 @@
                     const log1 = document.querySelector('#log-1');
                     const log2 = document.querySelector('#log-2');
                     const log3 = document.querySelector('#log-3');
-                    const descPanel = document.querySelector('#desc-panel');
-    const descText = document.querySelector('#desc-text');
+                    const btnCode = document.querySelector('#btn-code');
+                    const btnTerminal = document.querySelector('#btn-terminal');
+                    const btnAi = document.querySelector('#btn-ai');
 
-    // Popisy pre jednotlivé útržky kódu
-    const codeExplainer = {
-        'mod-sw': 'PROGRAMOVANIE: Vyvijame algoritmy pre riadenie autonomnych systemov a dronov.',
-        'mod-os': 'LINUX: Spravujeme a zabezpecujeme operacne systemy pre vojensku infrastrukturu.',
-        'mod-is': 'DATABAZE: Navrhujeme komplexne informacne systemy pre logistiku a velenie.',
-        'mod-ai': 'AI / ML: Trenujeme neuronove siete na identifikaciu objektov na bojisku.'
-    };
+                    const panelTitle = document.querySelector('#sw-panel-title');
+                    const panelText = document.querySelector('#sw-panel-text');
+                    const aiCore = document.querySelector('#ai-core');
 
-    document.querySelectorAll('.module').forEach(m => {
-        m.addEventListener('click', (e) => {
-            e.stopPropagation();
-            
-            const id = m.getAttribute('id');
-            if (descPanel && descText) {
-                descPanel.setAttribute('visible', 'true');
-                descText.setAttribute('value', codeExplainer[id]);
-
-                // Efekt "prebliknutia" (ako pri kompilácii)
-                let flashes = 0;
-                const interval = setInterval(() => {
-                    descPanel.setAttribute('visible', flashes % 2 === 0);
-                    flashes++;
-                    if (flashes > 4) {
-                        clearInterval(interval);
-                        descPanel.setAttribute('visible', 'true');
-                    }
-                }, 60);
-            }
-        });
-    });
-
-
-
-
-                    
-                    
 
                    let isFirewallActive = false;
+                    if (btnCode) {
+                            btnCode.addEventListener('click', () => {
+                                panelTitle.setAttribute('value', 'SOFTVEROVE INZINIERSTVO');
+                                panelText.setAttribute(
+                                    'value',
+                                    'def evaluate_signal(signal):\\n    if signal > 80:\\n        return \"ALERT\"\\n    return \"OK\"'
+                                );
+
+                                aiCore.removeAttribute('animation__pulse');
+                                aiCore.setAttribute(
+                                    'animation__pulse',
+                                    'property: scale; from: 1 1 1; to: 1.08 1.08 1.08; dir: alternate; loop: 2; dur: 350'
+                                );
+                            });
+                        }
+
+                        if (btnTerminal) {
+                            btnTerminal.addEventListener('click', () => {
+                                panelTitle.setAttribute('value', 'OPERACNE SYSTEMY');
+                                panelText.setAttribute(
+                                    'value',
+                                    '$ boot kernel\\n$ start services\\n$ network online\\n$ system ready'
+                                );
+
+                                aiCore.removeAttribute('animation__pulse');
+                                aiCore.setAttribute(
+                                    'animation__pulse',
+                                    'property: scale; from: 1 1 1; to: 1.08 1.08 1.08; dir: alternate; loop: 2; dur: 350'
+                                );
+                            });
+                        }
+
+                        if (btnAi) {
+                            btnAi.addEventListener('click', () => {
+                                panelTitle.setAttribute('value', 'ANALYTICKE A ROZHODOVACIE SYSTEMY');
+                                panelText.setAttribute(
+                                    'value',
+                                    'INPUT ANALYZED\\nRISK SCORE: 21%\\nDECISION: STABLE\\nMODEL: ACTIVE'
+                                );
+
+                                aiCore.removeAttribute('animation__pulse');
+                                aiCore.setAttribute(
+                                    'animation__pulse',
+                                    'property: scale; from: 1 1 1; to: 1.08 1.08 1.08; dir: alternate; loop: 2; dur: 350'
+                                );
+                            });
+                        }
+
 
                     if (btnFirewall) {
                         btnFirewall.addEventListener('click', (e) => {
