@@ -199,6 +199,57 @@
 
             </a-entity>
 
+            <!-- TARGET 3: TACTICAL DASHBOARD -->
+            <a-entity mindar-image-target="targetIndex: 3">
+                
+                <!-- Tmavé hi-tech pozadie -->
+                <a-plane width="1.1" height="1.6" color="#00050a" opacity="0.9" position="0 0 -0.05"></a-plane>
+
+                <!-- RADAR EFEKT (Vlna šíriaca sa z mozgu) -->
+                <a-ring color="#00FFCC" radius-inner="0.01" radius-outer="0.02" position="0 0.1 0.05"
+                        animation="property: radius-outer; to: 0.8; dur: 3000; loop: true; easing: linear"
+                        animation__opacity="property: opacity; from: 1; to: 0; dur: 3000; loop: true; easing: linear">
+                </a-ring>
+
+                <!-- CENTRÁLNY PROCESOR (AI) -->
+                <a-entity position="0 0.1 0.1">
+                    <a-cylinder radius="0.15" height="0.02" color="#001122" opacity="0.8"></a-cylinder>
+                    <a-torus radius="0.16" radius-tubular="0.01" color="#00FFCC" 
+                            animation="property: rotation; to: 0 0 360; loop: true; dur: 4000; easing: linear"></a-torus>
+                    <a-text value="AI CORE" align="center" width="1.5" position="0 0 0.05" color="#00FFCC"></a-text>
+                </a-entity>
+
+                <!-- MODULY (Klikateľné časti) -->
+                <!-- Simulátory - reprezentované ako 3D pyramída (akože senzor) -->
+                <a-entity class="clickable module" id="mod-sim" position="-0.3 -0.5 0.1">
+                    <a-cone radius-bottom="0.06" height="0.12" color="#00CCFF" 
+                            animation="property: rotation; to: 0 360 0; loop: true; dur: 3000; easing: linear"></a-cone>
+                    <a-text value="SIMUL" position="0 -0.15 0" align="center" width="1.2"></a-text>
+                </a-entity>
+
+                <!-- Operačné systémy - Tučniak/Linux -->
+                <a-entity class="clickable module" id="mod-os" position="0.2 -0.55 0.1">
+                    <a-box width="0.1" height="0.1" depth="0.1" color="#00CCFF"
+                        animation="property: rotation; to: 360 0 360; loop: true; dur: 5000; easing: linear"></a-box>
+                    <a-text value="OS" position="0 -0.15 0" align="center" width="1.2"></a-text>
+                </a-entity>
+
+                <!-- AI / ML -->
+                <a-entity class="clickable module" id="mod-ai" position="0.4 0.1 0.1">
+                    <a-octahedron radius="0.07" color="#00CCFF"
+                                animation="property: position; from: 0.4 0.1 0.1; to: 0.4 0.15 0.1; dir: alternate; loop: true; dur: 1000"></a-octahedron>
+                    <a-text value="AI/ML" position="0 -0.15 0" align="center" width="1.2"></a-text>
+                </a-entity>
+
+                <!-- TEXTOVÉ OKNO PRE DETAIL -->
+                <a-entity id="desc-panel" position="0 -0.1 0.3" visible="false">
+                    <a-plane width="0.9" height="0.3" color="#000" opacity="0.8">
+                        <a-text id="desc-text" value="INICIALIZACIA..." align="center" width="1.8" color="#00FFCC"></a-text>
+                    </a-plane>
+                </a-entity>
+
+            </a-entity>
+
                 
             <script>
                 // Počkáme, kým sa celá scéna načíta
@@ -217,6 +268,35 @@
                     const log1 = document.querySelector('#log-1');
                     const log2 = document.querySelector('#log-2');
                     const log3 = document.querySelector('#log-3');
+                    const descPanel = document.querySelector('#desc-panel');
+                    const descText = document.querySelector('#desc-text');
+
+                    const modDescriptions = {
+                        'mod-sim': '> NACITAVAM: XR SIMULATORY\nVirtualna realita pre vycvik jednotiek.',
+                        'mod-os': '> NACITAVAM: BEZPECNE OS\nVojensky Linux a ochrana jadra.',
+                        'mod-ai': '> NACITAVAM: AI ANALYTIKA\nAlgoritmy pre autonomne systemy.'
+                    };
+
+                    document.querySelectorAll('.module').forEach(m => {
+                        m.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            
+                            const id = m.getAttribute('id');
+                            descPanel.setAttribute('visible', 'true');
+                            descText.setAttribute('value', modDescriptions[id]);
+
+                            // Efekt prebliknutia (ako v starom PC)
+                            let flashes = 0;
+                            const interval = setInterval(() => {
+                                descPanel.setAttribute('visible', flashes % 2 === 0);
+                                flashes++;
+                                if (flashes > 4) {
+                                    clearInterval(interval);
+                                    descPanel.setAttribute('visible', 'true');
+                                }
+                            }, 50);
+                        });
+                    });
 
                    let isFirewallActive = false;
 
