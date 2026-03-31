@@ -200,47 +200,48 @@
             </a-entity>
             <a-entity mindar-image-target="targetIndex: 3">
     <!-- Hi-tech podklad -->
-    <a-plane width="1.1" height="1.6" color="#000" opacity="0.8" position="0 0 -0.05"></a-plane>
+    <a-plane width="1.1" height="1.6" color="#000" opacity="0.85" position="0 0 -0.05"></a-plane>
 
-    <!-- STREDOVÝ TERMINÁL (Nad mozgom) -->
-    <a-entity position="0 0.1 0.1">
-        <a-plane width="0.6" height="0.3" color="#001100" material="opacity: 0.9">
-            <a-text id="main-terminal" value="> SYSTEM BOOTING...\n> AI CORE: ONLINE\n> KERNEL: SECURE" 
-                    color="#00FF00" align="left" width="1.8" position="-0.25 0 0.01" font="monospace"></a-text>
+    <!-- 1. SOFTVÉROVÉ INŽINIERSTVO (Python/C++) -->
+    <a-entity class="clickable module" id="mod-sw" position="0.35 0.5 0.1">
+        <a-plane width="0.45" height="0.3" color="#1e1e1e" material="opacity: 0.9">
+            <a-text value="def deploy_drone():\n  if system.ready:\n    drone.takeoff()\n    print('Mission Start')" 
+                    color="#DCDCAA" align="left" width="1.1" position="-0.2 0 0.01" font="monospace"></a-text>
         </a-plane>
+        <a-text value="SOFTWARE ENG" position="0 -0.2 0" align="center" width="1.3" color="#569CD6"></a-text>
     </a-entity>
 
-    <!-- DATABÁZOVÁ VEŽA (Nad ikonou IS) -->
-    <a-entity class="clickable module" id="mod-is" position="-0.35 0.55 0.1">
-        <a-cylinder radius="0.08" height="0.05" color="#00CCFF" position="0 0.1 0"></a-cylinder>
-        <a-cylinder radius="0.08" height="0.05" color="#0099CC" position="0 0.04 0"></a-cylinder>
-        <a-cylinder radius="0.08" height="0.05" color="#006699" position="0 -0.02 0"></a-cylinder>
-        <a-text value="SQL DB" position="0 -0.15 0" align="center" width="1.5"></a-text>
-    </a-entity>
-    http://googleusercontent.com/image_content/194
-
-
-
-    <!-- KÓDOVACÍ BLOK (Nad ikonou Softvér) -->
-    <a-entity class="clickable module" id="mod-sw" position="0.35 0.55 0.1">
-        <a-text value="{ ; }" color="#00FFCC" align="center" width="5"
-                animation="property: rotation; to: 0 360 0; loop: true; dur: 4000; easing: linear"></a-text>
-        <a-text value="C++ / PY" position="0 -0.15 0" align="center" width="1.5"></a-text>
-    </a-entity>
-
-    <!-- LINUX TERMINÁL (Nad ikonou OS) -->
-    <a-entity class="clickable module" id="mod-os" position="0.2 -0.55 0.1">
-        <a-plane width="0.3" height="0.2" color="#222">
-            <a-text value="root@aos:~\# _" color="#FFF" width="1.2" position="-0.12 0 0.01"></a-text>
+    <!-- 2. LINUX / OPERAČNÉ SYSTÉMY (Bash) -->
+    <a-entity class="clickable module" id="mod-os" position="0.2 -0.5 0.1">
+        <a-plane width="0.4" height="0.25" color="#000" material="opacity: 0.9">
+            <a-text value="root@aos:~# chmod +x script\nroot@aos:~# ./shield_up\n[OK] Firewall active" 
+                    color="#00FF00" align="left" width="1" position="-0.18 0 0.01" font="monospace"></a-text>
         </a-plane>
-        <a-text value="LINUX" position="0 -0.2 0" align="center" width="1.5"></a-text>
+        <a-text value="LINUX / OS" position="0 -0.18 0" align="center" width="1.3" color="#00FF00"></a-text>
     </a-entity>
-    
 
-    <!-- PANEL S DETAILMI (Vyskytne sa po kliknutí) -->
-    <a-entity id="desc-panel" position="0 -0.2 0.3" visible="false">
-        <a-plane width="0.9" height="0.3" color="#000" opacity="0.9" material="transparent: true">
-            <a-text id="desc-text" value="" align="center" width="1.8" color="#00FFCC"></a-text>
+    <!-- 3. DATABÁZY / IS (SQL) -->
+    <a-entity class="clickable module" id="mod-is" position="-0.35 0.5 0.1">
+        <a-plane width="0.45" height="0.25" color="#252526" material="opacity: 0.9">
+            <a-text value="SELECT name, rank\nFROM units\nWHERE status = 'ACTIVE'\nORDER BY rank DESC;" 
+                    color="#CE9178" align="left" width="1.1" position="-0.2 0 0.01" font="monospace"></a-text>
+        </a-plane>
+        <a-text value="DATABASE / SQL" position="0 -0.18 0" align="center" width="1.3" color="#4EC9B0"></a-text>
+    </a-entity>
+
+    <!-- 4. AI / ML (Neural Network pseudocode) -->
+    <a-entity class="clickable module" id="mod-ai" position="0.4 0.05 0.15">
+        <a-plane width="0.5" height="0.25" color="#1e1e1e" material="opacity: 0.9">
+            <a-text value="model.add(Dense(64))\nmodel.compile(optimizer='adam')\nmodel.fit(x_train, y_train)" 
+                    color="#9CDCFE" align="left" width="1.1" position="-0.22 0 0.01" font="monospace"></a-text>
+        </a-plane>
+        <a-text value="AI / ML CORE" position="0 -0.18 0" align="center" width="1.3" color="#C586C0"></a-text>
+    </a-entity>
+
+    <!-- HLAVNÝ PANEL S INFO (Zobrazí sa po kliku na kód) -->
+    <a-entity id="desc-panel" position="0 -0.15 0.3" visible="false">
+        <a-plane width="1" height="0.35" color="#007acc" opacity="0.9">
+            <a-text id="desc-text" value="Analyzujem kod..." align="center" width="2.2" color="white"></a-text>
         </a-plane>
     </a-entity>
 </a-entity>
@@ -263,37 +264,44 @@
                     const log1 = document.querySelector('#log-1');
                     const log2 = document.querySelector('#log-2');
                     const log3 = document.querySelector('#log-3');
+                    const descPanel = document.querySelector('#desc-panel');
+    const descText = document.querySelector('#desc-text');
 
-                    const modDescriptions = {
-                        'mod-is': '> SELECT * FROM AOS_STUDENTS;\nSpravujeme kritické dáta inštitúcie.',
-                        'mod-sw': '> void main() { AOS_Logic(); }\nVývoj algoritmov pre autonómne drony.',
-                        'mod-os': '> sudo apt-get install security\nSpráva bezpečných Linuxových jadier.',
-                        'mod-sim': '> Starting XR_Engine...\nVývoj VR trenažérov v Unity/C#.'
-                    };
+    // Popisy pre jednotlivé útržky kódu
+    const codeExplainer = {
+        'mod-sw': 'PROGRAMOVANIE: Vyvijame algoritmy pre riadenie autonomnych systemov a dronov.',
+        'mod-os': 'LINUX: Spravujeme a zabezpecujeme operacne systemy pre vojensku infrastrukturu.',
+        'mod-is': 'DATABAZE: Navrhujeme komplexne informacne systemy pre logistiku a velenie.',
+        'mod-ai': 'AI / ML: Trenujeme neuronove siete na identifikaciu objektov na bojisku.'
+    };
+
+    document.querySelectorAll('.module').forEach(m => {
+        m.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            const id = m.getAttribute('id');
+            if (descPanel && descText) {
+                descPanel.setAttribute('visible', 'true');
+                descText.setAttribute('value', codeExplainer[id]);
+
+                // Efekt "prebliknutia" (ako pri kompilácii)
+                let flashes = 0;
+                const interval = setInterval(() => {
+                    descPanel.setAttribute('visible', flashes % 2 === 0);
+                    flashes++;
+                    if (flashes > 4) {
+                        clearInterval(interval);
+                        descPanel.setAttribute('visible', 'true');
+                    }
+                }, 60);
+            }
+        });
+    });
 
 
-                    document.querySelectorAll('.module').forEach(m => {
-                        m.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            
-                            const id = m.getAttribute('id');
-                            if (descPanel && descText) {
-                                descPanel.setAttribute('visible', 'true');
-                                descText.setAttribute('value', modDescriptions[id]);
 
-                                // Hacker-style efekt prebliknutia
-                                let flashes = 0;
-                                const interval = setInterval(() => {
-                                    descPanel.setAttribute('visible', flashes % 2 === 0);
-                                    flashes++;
-                                    if (flashes > 6) {
-                                        clearInterval(interval);
-                                        descPanel.setAttribute('visible', 'true');
-                                    }
-                                }, 40);
-                            }
-                        });
-                    });
+
+                    
                     
 
                    let isFirewallActive = false;
