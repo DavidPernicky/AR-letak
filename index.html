@@ -209,18 +209,18 @@
             color="#66FFCC"
             align="center"
             width="1.5"
-            position="0 0.75 0.1"
+            position="0 0.70 0.1"
             font="./Exo2-Medium-msdf.json"
             negate="false">
     </a-text>
-    <a-entity id="ai-core" position="0 0.12 0.12"
+    <a-entity id="ai-core" position="0 0.15 0.12"
           animation="property: rotation; to: 0 360 0; loop: true; dur: 12000; easing: linear"
           animation__pulse="property: scale; from: 1 1 1; to: 1.04 1.04 1.04; dir: alternate; loop: true; dur: 1800">
     <a-gltf-model src="./cyber_brain_ai.glb" scale="0.12 0.12 0.12"></a-gltf-model>
 </a-entity>
 
     <!-- Stredovy AI core -->
-    <a-entity id="ai-core" position="0 0.12 0.12" animation="property: rotation; to: 0 360 0; loop: true; dur: 12000; easing: linear">
+    <a-entity id="ai-core" position="0 0.15 0.12" animation="property: rotation; to: 0 360 0; loop: true; dur: 12000; easing: linear">
         <a-sphere radius="0.12" color="#00CCAA" opacity="0.18"></a-sphere>
         <a-circle radius="0.09" color="#00E6C3" opacity="0.9"></a-circle>
         <a-text value="AI"
@@ -234,14 +234,13 @@
     </a-entity>
 
     <!-- Spojnice -->
-    <a-entity line="start: 0 0.12 0.1; end: -0.32 0.38 0.1; color: #33DDCC"></a-entity>
-    <a-entity line="start: 0 0.12 0.1; end: 0.32 0.38 0.1; color: #66FF99"></a-entity>
-    <a-entity line="start: 0 0.12 0.1; end: 0 -0.18 0.1; color: #33CCFF"></a-entity>
+    <a-entity line="start: 0 0.15 0.1; end: -0.32 0.41 0.1; color: #33DDCC"></a-entity>
+    <a-entity line="start: 0 0.15 0.1; end: 0.32 0.41 0.1; color: #66FF99"></a-entity>
+    <a-entity line="start: 0 0.15 0.1; end: 0 -0.21 0.1; color: #33CCFF"></a-entity>
 
     <!-- Tlacidlo 1: KOD -->
-    <a-entity id="btn-code" class="clickable" position="-0.32 0.38 0.12">
+    <a-entity id="btn-code" class="clickable" position="-0.32 0.41 0.12">
         <a-circle radius="0.11" class="clickable" color="#0D1B2A" opacity="0.95" stroke="#33DDCC"></a-circle>
-        <a-ring radius-inner="0.11" radius-outer="0.125" color="#33DDCC"></a-ring>
         <a-text value="</>"
                 align="center"
                 color="#33DDCC"
@@ -254,16 +253,15 @@
                 align="center"
                 color="#FFFFFF"
                 width="0.9"
-                position="0 -0.18 0.01"
+                position="0 -0.21 0.01"
                 font="./Exo2-Medium-msdf.json"
                 negate="false">
         </a-text>
     </a-entity>
 
     <!-- Tlacidlo 2: TERMINAL -->
-    <a-entity id="btn-terminal" class="clickable" position="0.32 0.38 0.12">
+    <a-entity id="btn-terminal" class="clickable" position="0.32 0.41 0.12">
         <a-circle radius="0.11" class="clickable" color="#0D1B2A" opacity="0.95"></a-circle>
-        <a-ring radius-inner="0.11" radius-outer="0.125" color="#66FF99"></a-ring>
         <a-text value=">_"
                 align="center"
                 color="#66FF99"
@@ -276,16 +274,15 @@
                 align="center"
                 color="#FFFFFF"
                 width="0.9"
-                position="0 -0.18 0.01"
+                position="0 -0.15 0.01"
                 font="./Exo2-Medium-msdf.json"
                 negate="false">
         </a-text>
     </a-entity>
 
     <!-- Tlacidlo 3: AI analyza -->
-    <a-entity id="btn-ai" class="clickable" position="0 -0.18 0.12">
+    <a-entity id="btn-ai" class="clickable" position="0 -0.15 0.12">
         <a-circle radius="0.11" class="clickable" color="#0D1B2A" opacity="0.95"></a-circle>
-        <a-ring radius-inner="0.11" radius-outer="0.125" color="#33CCFF"></a-ring>
         <a-text value="ANALÝZA"
                 align="center"
                 color="#33CCFF"
@@ -298,7 +295,7 @@
                 align="center"
                 color="#FFFFFF"
                 width="1"
-                position="0 -0.18 0.01"
+                position="0 -0.15 0.01"
                 font="./Exo2-Medium-msdf.json"
                 negate="false">
         </a-text>
