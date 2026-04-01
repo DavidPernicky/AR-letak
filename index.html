@@ -148,35 +148,28 @@
 
                 <!-- GLOBÁLNA SIEŤ (Uzly okolo Zeme) -->
                 <a-entity id="cyber-globe" position="0 -0.1 0.1">
-        
                     <a-sphere radius="0.3" src="https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_2048.jpg"
-                                    animation="property: rotation; to: 0 360 0; loop: true; dur: 25000; easing: linear">
+                            animation="property: rotation; to: 0 360 0; loop: true; dur: 25000; easing: linear">
                     </a-sphere>
 
-                            <a-curve id="attack-1">
-                                <a-curve-point position="0.3 0.2 0"></a-curve-point>  <a-curve-point position="0 0.4 0.1"></a-curve-point>  <a-curve-point position="-0.2 0.1 0.2"></a-curve-point> </a-curve>
+                    <a-entity class="attack-line" line="start: 0.3 0.2 0; end: 0 0 0.25; color: #00CCFF; opacity: 0.6"></a-entity>
+                    <a-sphere class="attack-pulse" radius="0.015" color="#00CCFF" 
+                            animation="property: position; from: 0.3 0.2 0; to: 0 0 0.25; dur: 2000; loop: true; easing: linear">
+                    </a-sphere>
 
-                            <a-curve id="attack-2">
-                                <a-curve-point position="-0.3 0.1 -0.1"></a-curve-point> <a-curve-point position="-0.1 0.35 0"></a-curve-point>   <a-curve-point position="0.1 0 0.25"></a-curve-point>    </a-curve>
-                            
-                            <a-curve id="attack-3">
-                                <a-curve-point position="0.1 -0.4 0"></a-curve-point>  <a-curve-point position="0.3 -0.2 0.1"></a-curve-point>  <a-curve-point position="-0.1 0 0.25"></a-curve-point>    </a-curve>
+                    <a-entity class="attack-line" line="start: -0.3 0.1 -0.1; end: 0 0 0.25; color: #FF00CC; opacity: 0.6"></a-entity>
+                    <a-sphere class="attack-pulse" radius="0.015" color="#FF00CC" 
+                            animation="property: position; from: -0.3 0.1 -0.1; to: 0 0 0.25; dur: 3000; loop: true; easing: linear">
+                    </a-sphere>
 
-                            <a-draw-curve curveref="#attack-1" material="color: #00CCFF; opacity: 0.3; wireframe: true" visible="true" class="attack-line"></a-draw-curve>
-                            <a-draw-curve curveref="#attack-2" material="color: #FF00CC; opacity: 0.3; wireframe: true" visible="true" class="attack-line"></a-draw-curve>
-                            <a-draw-curve curveref="#attack-3" material="color: #66FFCC; opacity: 0.3; wireframe: true" visible="true" class="attack-line"></a-draw-curve>
+                    <a-entity class="attack-line" line="start: 0.1 -0.4 0; end: 0 0 0.25; color: #66FFCC; opacity: 0.6"></a-entity>
+                    <a-sphere class="attack-pulse" radius="0.015" color="#66FFCC" 
+                            animation="property: position; from: 0.1 -0.4 0; to: 0 0 0.25; dur: 2500; loop: true; easing: linear">
+                    </a-sphere>
 
-                            <a-sphere radius="0.015" color="#00CCFF" material="emissive: #00CCFF; emissiveIntensity: 2" class="attack-pulse"
-                                    curve-follow="curve: #attack-1; dur: 3000; loop: true"></a-sphere>
-                            <a-sphere radius="0.015" color="#FF00CC" material="emissive: #FF00CC; emissiveIntensity: 2" class="attack-pulse"
-                                    curve-follow="curve: #attack-2; dur: 4500; loop: true; delay: 1000"></a-sphere>
-                            <a-sphere radius="0.015" color="#66FFCC" material="emissive: #66FFCC; emissiveIntensity: 2" class="attack-pulse"
-                                    curve-follow="curve: #attack-3; dur: 2500; loop: true; delay: 500"></a-sphere>
-
-                            <a-sphere class="node" radius="0.02" color="#FF0000" position="0.3 0.2 0"></a-sphere>
-                            <a-sphere class="node" radius="0.02" color="#FF0000" position="-0.3 0.1 -0.1"></a-sphere>
-                            <a-sphere class="node" radius="0.02" color="#FF0000" position="0.1 -0.4 0"></a-sphere>
-
+                    <a-sphere class="node" radius="0.02" color="#FF0000" position="0.3 0.2 0"></a-sphere>
+                    <a-sphere class="node" radius="0.02" color="#FF0000" position="-0.3 0.1 -0.1"></a-sphere>
+                    <a-sphere class="node" radius="0.02" color="#FF0000" position="0.1 -0.4 0"></a-sphere>
                 </a-entity>
 
                 <!-- ČERVENY ŠTÍT -->
@@ -344,152 +337,151 @@
 
                 
             <script>
-    // Počkáme, kým sa celá scéna načíta
     window.addEventListener('load', () => {
-        // --- 1. SELEKTORY (Všetky premenné) ---
+        // --- 1. SELEKTORY (Všetky premenné na jednom mieste) ---
+        
+        // Target 1: Maticová doska
         const board = document.querySelector('#main-board');
         const panel = document.querySelector('#architecture-panel');
         const closeBtn = document.querySelector('#btn-close');
         const hintText = document.querySelector('#click-hint');
         const HlavneCpu = document.querySelector('#cpu');
-        
+
+        // Target 2: Kybernetická obrana
         const btnFirewall = document.querySelector('#btn-firewall');
         const btnBg = document.querySelector('#btn-bg');
         const btnLabel = document.querySelector('#btn-label');
         const blueShield = document.querySelector('#blue-shield');
         const redShield = document.querySelector('#red-shield');
         const nodes = document.querySelectorAll('.node');
-        
         const log1 = document.querySelector('#log-1');
         const log2 = document.querySelector('#log-2');
         const log3 = document.querySelector('#log-3');
-        
-        const btnCode = document.querySelector('#btn-code');
-        const btnTerminal = document.querySelector('#btn-terminal');
-        const btnAi = document.querySelector('#btn-ai');
-
-        const panelTitle = document.querySelector('#sw-panel-title');
-        const panelText = document.querySelector('#sw-panel-text');
-        const aiCore = document.querySelector('#ai-core');
         const attackLines = document.querySelectorAll('.attack-line');
         const attackPulses = document.querySelectorAll('.attack-pulse');
 
+        // Target 3: Softvér a AI
+        const btnCode = document.querySelector('#btn-code');
+        const btnTerminal = document.querySelector('#btn-terminal');
+        const btnAi = document.querySelector('#btn-ai');
+        const panelTitle = document.querySelector('#sw-panel-title');
+        const panelText = document.querySelector('#sw-panel-text');
+        const aiCore = document.querySelector('#ai-core');
+
         let isFirewallActive = false;
 
-        // --- 2. LOGIKA PRE TARGET 3 (Softvérový panel) ---
-        if (btnCode) {
-            btnCode.addEventListener('click', () => {
-                panelTitle.setAttribute('value', 'SOFTVÉROVÉ INŽINIERSTVO');
-                panelText.setAttribute('value', 'def evaluate_signal(signal):\n    if signal > 80:\n        return "ALERT"\n    else:\n        return "OK"');
-                
-                aiCore.removeAttribute('animation__pulse');
-                aiCore.setAttribute('animation__pulse', 'property: scale; from: 1 1 1; to: 1.08 1.08 1.08; dir: alternate; loop: 2; dur: 350');
+        // --- 2. LOGIKA: TARGET 1 (Architektúra / Doska) ---
+        if (board && panel && closeBtn) {
+            board.addEventListener('click', () => {
+                panel.setAttribute('visible', 'true');
+                board.setAttribute('visible', 'false');
+                if (hintText) hintText.setAttribute('visible', 'false');
+                if (HlavneCpu) HlavneCpu.setAttribute('visible', 'false');
+                panel.setAttribute('animation', 'property: position; from: 0 0 -0.1; to: 0 0 0.1; dur: 500; easing: easeOutExpo');
+            });
+
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                panel.setAttribute('animation', 'property: position; from: 0 0 0.1; to: 0 0 -0.1; dur: 500; easing: easeOutExpo');
+                setTimeout(() => {
+                    panel.setAttribute('visible', 'false');
+                    board.setAttribute('visible', 'true');
+                    if (hintText) hintText.setAttribute('visible', 'true');
+                    if (HlavneCpu) HlavneCpu.setAttribute('visible', 'true');
+                }, 500);
             });
         }
 
-        if (btnTerminal) {
-            btnTerminal.addEventListener('click', () => {
-                panelTitle.setAttribute('value', 'OPERAČNÉ SYSTÉMY');
-                panelText.setAttribute('value', '$ boot kernel\n$ start services\n$ network online\n$ system ready');
-                
-                aiCore.removeAttribute('animation__pulse');
-                aiCore.setAttribute('animation__pulse', 'property: scale; from: 1 1 1; to: 1.08 1.08 1.08; dir: alternate; loop: 2; dur: 350');
-            });
-        }
-
-        if (btnAi) {
-            btnAi.addEventListener('click', () => {
-                panelTitle.setAttribute('value', 'ANALYTICKÉ SYSTÉMY (AI/ML)');
-                panelText.setAttribute('value', 'ANALÝZA DÁT...\nHROZBA: 18%\nRIZIKO: NÍZKE\nODPORÚČANIE: POKRAČOVAŤ');
-                
-                aiCore.removeAttribute('animation__pulse');
-                aiCore.setAttribute('animation__pulse', 'property: scale; from: 1 1 1; to: 1.08 1.08 1.08; dir: alternate; loop: 2; dur: 350');
-            });
-        }
-
-        // --- 3. LOGIKA PRE TARGET 2 (Kybernetická obrana) ---
+        // --- 3. LOGIKA: TARGET 2 (Kybernetická obrana + Útoky) ---
         if (btnFirewall) {
             btnFirewall.addEventListener('click', (e) => {
                 e.stopPropagation();
 
                 if (!isFirewallActive) {
-                    // Aktivácia obrany
-                    redShield.setAttribute('visible', 'false');
-                    blueShield.setAttribute('visible', 'true');
-                    blueShield.setAttribute('animation', 'property: material.opacity; from: 0; to: 0.4; dur: 1000');
+                    // === AKTIVÁCIA FIREWALLU ===
+                    if (redShield) redShield.setAttribute('visible', 'false');
+                    if (blueShield) {
+                        blueShield.setAttribute('visible', 'true');
+                        blueShield.setAttribute('animation', 'property: material.opacity; from: 0; to: 0.4; dur: 1000');
+                    }
 
-                    nodes.forEach(node => node.setAttribute('visible', 'false'));
-
-                    attackPulses.forEach(pulse => {
-                        pulse.setAttribute('visible', 'false');
-                        pulse.removeAttribute('curve-follow');
+                    // Skryť útočníkov a zastaviť impulzy
+                    nodes.forEach(n => n.setAttribute('visible', 'false'));
+                    attackPulses.forEach(p => p.setAttribute('visible', 'false'));
+                    
+                    // Stmaviť čiary útokov
+                    attackLines.forEach(l => {
+                        l.setAttribute('line', 'opacity: 0.1; color: #004466');
                     });
 
-                    attackLines.forEach(line => {
-                        line.setAttribute('material', 'color: #004466; opacity: 0.1');
-                    });
+                    // Update logov
+                    if (log1) { log1.setAttribute('value', '> SYSTEM SECURE'); log1.setAttribute('color', '#00CCFF'); }
+                    if (log2) { log2.setAttribute('value', '> FIREWALL: ACTIVE'); log2.setAttribute('color', '#00CCFF'); }
+                    if (log3) { log3.setAttribute('value', '> NO THREATS FOUND'); log3.setAttribute('color', '#00CCFF'); }
 
-                    if (log1) { log1.setAttribute('value', '> ATTACKS BLOCKED'); log1.setAttribute('color', '#00CCFF'); }
-                    if (log2) { log2.setAttribute('value', '> IP: HONEYPOT_ACTIVE'); log2.setAttribute('color', '#00CCFF'); }
-                    if (log3) { log3.setAttribute('value', '> SOURCE: TRACED'); log3.setAttribute('color', '#00CCFF'); }
-
-                    btnBg.setAttribute('color', '#004466');
-                    btnLabel.setAttribute('value', 'VYPNÚŤ FIREWALL');
+                    if (btnBg) btnBg.setAttribute('color', '#004466');
+                    if (btnLabel) btnLabel.setAttribute('value', 'VYPNÚŤ FIREWALL');
                     isFirewallActive = true;
                 } else {
-                    // Deaktivácia (Reset útoku)
-                    blueShield.setAttribute('visible', 'false');
-                    redShield.setAttribute('visible', 'true');
-                    nodes.forEach(node => node.setAttribute('visible', 'true'));
+                    // === DEAKTIVÁCIA FIREWALLU (Reset útoku) ===
+                    if (blueShield) blueShield.setAttribute('visible', 'false');
+                    if (redShield) redShield.setAttribute('visible', 'true');
 
-                    attackLines.forEach((line, index) => {
-                        const colors = ['#00CCFF', '#FF00CC', '#66FFCC'];
-                        line.setAttribute('material', `color: ${colors[index]}; opacity: 0.3; wireframe: true`);
+                    // Zobraziť útočníkov a spustiť impulzy
+                    nodes.forEach(n => n.setAttribute('visible', 'true'));
+                    attackPulses.forEach(p => p.setAttribute('visible', 'true'));
+
+                    // Vrátiť farbu čiaram
+                    const lineColors = ['#00CCFF', '#FF00CC', '#66FFCC'];
+                    attackLines.forEach((l, i) => {
+                        l.setAttribute('line', `opacity: 0.6; color: ${lineColors[i] || '#00CCFF'}`);
                     });
 
-                    attackPulses.forEach((pulse, index) => {
-                        const curves = ['#attack-1', '#attack-2', '#attack-3'];
-                        const durs = [3000, 4500, 2500];
-                        const delays = [0, 1000, 500];
-                        pulse.setAttribute('visible', 'true');
-                        pulse.setAttribute('curve-follow', `curve: ${curves[index]}; dur: ${durs[index]}; loop: true; delay: ${delays[index]}`);
-                    });
-
+                    // Reset logov
                     if (log1) { log1.setAttribute('value', '> DETECTING ATTACKS...'); log1.setAttribute('color', '#FF0000'); }
                     if (log2) { log2.setAttribute('value', '> IP: 192.168.1.104'); log2.setAttribute('color', '#FF0000'); }
                     if (log3) { log3.setAttribute('value', '> TYPE: DDOS_SPOOF'); log3.setAttribute('color', '#FF3333'); }
 
-                    btnBg.setAttribute('color', '#FF3333');
-                    btnLabel.setAttribute('value', 'NASADIŤ FIREWALL');
+                    if (btnBg) btnBg.setAttribute('color', '#FF3333');
+                    if (btnLabel) btnLabel.setAttribute('value', 'NASADIŤ FIREWALL');
                     isFirewallActive = false;
                 }
             });
-        } // <--- TU CHÝBALA TÁTO ZÁTORKA!
+        }
 
-        // --- 4. LOGIKA PRE TARGET 1 (Maticná doska) ---
-        if (board && panel && closeBtn) {
-            board.addEventListener('click', () => {
-                if (hintText) hintText.setAttribute('visible', 'false');
-                panel.setAttribute('visible', 'true');
-                board.setAttribute('visible', 'false'); 
-                if (HlavneCpu) HlavneCpu.setAttribute('visible', 'false');
-                panel.setAttribute('animation', 'property: position; from: 0 0 -0.1; to: 0 0 0.1; dur: 500; easing: easeOutExpo'); 
-            });
+        // --- 4. LOGIKA: TARGET 3 (Softvér a AI) ---
+        const pulseAiCore = () => {
+            if (aiCore) {
+                aiCore.removeAttribute('animation__pulse');
+                aiCore.setAttribute('animation__pulse', 'property: scale; from: 1 1 1; to: 1.08 1.08 1.08; dir: alternate; loop: 2; dur: 350');
+            }
+        };
 
-            closeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (hintText) hintText.setAttribute('visible', 'true');
-                board.setAttribute('visible', 'true');
-                if (HlavneCpu) HlavneCpu.setAttribute('visible', 'true');
-                panel.setAttribute('animation', 'property: position; from: 0 0 0.1; to: 0 0 -0.1; dur: 500; easing: easeOutExpo');
-                
-                setTimeout(() => {
-                    panel.setAttribute('visible', 'false');
-                }, 500);
+        if (btnCode) {
+            btnCode.addEventListener('click', () => {
+                if (panelTitle) panelTitle.setAttribute('value', 'SOFTVÉROVÉ INŽINIERSTVO');
+                if (panelText) panelText.setAttribute('value', 'def evaluate_signal(signal):\n    if signal > 80:\n        return "ALERT"\n    else:\n        return "OK"');
+                pulseAiCore();
             });
         }
-    }); // Koniec load eventu
-</script> 
+
+        if (btnTerminal) {
+            btnTerminal.addEventListener('click', () => {
+                if (panelTitle) panelTitle.setAttribute('value', 'OPERAČNÉ SYSTÉMY');
+                if (panelText) panelText.setAttribute('value', '$ boot kernel\n$ start services\n$ network online\n$ system ready');
+                pulseAiCore();
+            });
+        }
+
+        if (btnAi) {
+            btnAi.addEventListener('click', () => {
+                if (panelTitle) panelTitle.setAttribute('value', 'ANALYTICKÉ SYSTÉMY (AI)');
+                if (panelText) panelText.setAttribute('value', 'ANALÝZA DÁT...\nHROZBA: 18%\nRIZIKO: NÍZKE\nODPORÚČANIE: POKRAČOVAŤ');
+                pulseAiCore();
+            });
+        }
+    });
+</script>
 
 
 
