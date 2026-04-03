@@ -93,7 +93,7 @@
             <!-- 3. ARCHITEKTÚRY PC SYSTÉMOV (Vpravo hore) -->
                 <a-entity position="0.30 0.5 0.1">
 
-                    <a-text id="click-hint" value="KLIKNI NA DOSKU" align="center" position="-0.05 0.18 0" width="1" color="#0cdff2"></a-text>
+                    <a-text id="click-hint" value="KLIKNI NA DOSKU" align="center" position="-0.05 0.18 0" width="1" color="#0cdff2" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
 
                     <!-- Hlavná doska - jediná má triedu 'clickable' na začiatku -->
                     <a-entity id="main-board" class="clickable" gltf-model="./motherboard.glb" 
@@ -107,19 +107,19 @@
                         
                         <!-- Čierne pozadie panelu, aby komponenty nesplývali s letákom -->
                         <a-plane width="0.6" height="1.2" color="#111" position="0 0 0.05" opacity="1"></a-plane>
-                        <a-text id="textP" value="HLAVNE KOMPONENTY \nDOSKY:" align="center" position="0 0.5 0.1" width="1" color="#0cdff2"></a-text>
+                        <a-text id="textP" value="HLAVNE KOMPONENTY \nDOSKY:" align="center" position="0 0.5 0.1" width="1" color="#0cdff2" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
 
                         <!-- CPU -->
                         <a-entity id="p-cpu" gltf-model="./pc_cpu_processor.glb" scale="0.06 0.06 0.06" position="0 0.3 0.1" rotation="-90 0 0"></a-entity>
-                        <a-text value="PROCESOR" position="0 0.15 0.1" width="1" align="center"></a-text>
+                        <a-text value="PROCESOR" position="0 0.15 0.1" width="1" align="center" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
 
                         <!-- RAM -->
                         <a-entity id="p-ram" gltf-model="./old_computer_ram.glb" scale="0.07 0.07 0.07" position="0 0 0.1" rotation="-150 0 0"></a-entity>
-                        <a-text value="PAMAT RAM" position="0 -0.1 0.12" width="1" align="center"></a-text>
+                        <a-text value="PAMAT RAM" position="0 -0.1 0.12" width="1" align="center" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
 
                         <!-- GPU -->
                         <a-entity id="p-gpu" gltf-model="./gpu.glb" scale="0.04 0.04 0.04" position="0.05 -0.3 0.1" rotation="90 0 0"></a-entity>
-                        <a-text value="GRAFIKA" position="0 -0.4 0.1" width="1" align="center"></a-text>
+                        <a-text value="GRAFIKA" position="0 -0.4 0.1" width="1" align="center" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
 
                         <!-- Tlačidlo na zavretie -->
                         <a-entity id="btn-close" class="clickable" 
@@ -180,9 +180,9 @@
 
                 <!-- TERMINÁLNY LOG (Vľavo hore) -->
                 <a-entity position="-0.4 0.55 0.1">
-                    <a-text id="log-1" value="> DETEKCIA ÚTOKOV..." color="#FF0000" width="1.5" position="0 0.1 0"></a-text>
-                    <a-text id="log-2" value="> IP: 192.168.1.104" color="#FF0000" width="1.2" position="0 0.02 0"></a-text>
-                    <a-text id="log-3" value="> TYP: DDOS_SPOOF" color="#FF3333" width="1.2" position="0 -0.06 0"></a-text>
+                    <a-text id="log-1" value="> DETEKCIA ÚTOKOV..." color="#FF0000" width="1.5" position="0 0.1 0" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
+                    <a-text id="log-2" value="> IP: 192.168.1.104" color="#FF0000" width="1.2" position="0 0.02 0" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
+                    <a-text id="log-3" value="> TYP: DDOS_SPOOF" color="#FF3333" width="1.2" position="0 -0.06 0" font="./Exo2-Medium-msdf.json" negate="false"></a-text>
                 </a-entity>
 
                 <!-- TLAČIDLO -->
@@ -315,7 +315,7 @@
     </a-text>
 
     <a-text id="sw-panel-text"
-            value="Klikni na jednu z ikon a zobrazim ukažku kodu, terminalu alebo AI analyzy."
+            value="Klikni na jednu z ikon pre yobrayenie ukážky kodu, terminalu alebo AI analyzy."
             align="center"
             color="#FFFFFF"
             width="0.9"
@@ -418,7 +418,7 @@
                                 if (log3) { log3.setAttribute('value', '> NENÁJDENE ŽIADNE HROZBY'); log3.setAttribute('color', '#00CCFF'); }
 
                                 btnBg.setAttribute('color', '#004466'); // Tmavomodrá
-                                btnLabel.setAttribute('value', 'VYPNÚŤ FIREWALL');
+                                btnLabel.setAttribute('value', 'VYPNÚŤ FIREWALL') ;
                                 
                                 isFirewallActive = true;
                                 console.log("Firewall aktivovaný.");
