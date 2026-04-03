@@ -28,7 +28,7 @@
             <!-- TARGET 0: ÚVODNÁ STRANA -->
             <a-entity mindar-image-target="targetIndex: 0">
                 <a-plane width="1.1" height="1.6" color="#000000" opacity="0.8" position="0 0 -0.09" material="transparent: true; side: double;"></a-plane>
-                <a-entity position="0 0 0.1">
+                <a-entity position="0 0.1 0.1">
                     <a-image src="./logo-hud.png" width="0.7" height="0.7" position="0 0 0.1"></a-image>
                     <a-entity animation="property: rotation; to: 0 360 0; dir: alternate; loop: true; dur: 8000; easing: easeInOutSine">
                         <a-gltf-model src="./logokti.glb" scale="0.9 0.9 0.9" position="0 0 0"></a-gltf-model>
@@ -180,9 +180,9 @@
 
                 <!-- TERMINÁLNY LOG (Vľavo hore) -->
                 <a-entity position="-0.4 0.55 0.1">
-                    <a-text id="log-1" value="> DETECTING ATTACKS..." color="#FF0000" width="1.5" position="0 0.1 0"></a-text>
+                    <a-text id="log-1" value="> DETEKCIA ÚTOKOV..." color="#FF0000" width="1.5" position="0 0.1 0"></a-text>
                     <a-text id="log-2" value="> IP: 192.168.1.104" color="#FF0000" width="1.2" position="0 0.02 0"></a-text>
-                    <a-text id="log-3" value="> TYPE: DDOS_SPOOF" color="#FF3333" width="1.2" position="0 -0.06 0"></a-text>
+                    <a-text id="log-3" value="> TYP: DDOS_SPOOF" color="#FF3333" width="1.2" position="0 -0.06 0"></a-text>
                 </a-entity>
 
                 <!-- TLAČIDLO -->
@@ -244,7 +244,7 @@
         <a-image src="./coding.png"
              width="0.10"
              height="0.10"
-             color="white"
+             color="#FFFFFF"
              position="0 0 0.01">
              
         </a-image>
@@ -260,11 +260,11 @@
 
     <!-- Tlacidlo 2: TERMINAL -->
     <a-entity id="btn-terminal" class="clickable" position="0.32 0.41 0.12">
-        <a-circle radius="0.11" class="clickable" color="#0D1B2A" opacity="0.95"></a-circle>
+        <a-circle radius="0.11" class="clickable" color="#c0c2c2" opacity="0.95"></a-circle>
         <a-image src="./linux.png"
              width="0.10"
              height="0.10"
-             color="white"
+             color="#FFFFFF"
              position="0 0 0.01">
              
         </a-image>
@@ -280,7 +280,7 @@
 
     <!-- Tlacidlo 3: AI analyza -->
     <a-entity id="btn-ai" class="clickable" position="0 -0.15 0.12">
-        <a-circle radius="0.11" class="clickable" color="#0D1B2A" opacity="0.95"></a-circle>
+        <a-circle radius="0.11" class="clickable" color="#c0c2c2" opacity="0.95"></a-circle>
         <a-image src="./dashboard.png"
              width="0.10"
              height="0.10"
@@ -288,7 +288,7 @@
              position="0 0 0.01">
              
         </a-image>
-        <a-text value="ANALYZA"
+        <a-text value="ANALÝZA"
                 align="center"
                 color="#FFFFFF"
                 width="1"
@@ -319,7 +319,7 @@
     </a-text>
 
     <a-text id="sw-panel-text"
-            value="Klikni na jednu z ikon a zobrazim ukazku kodu, terminalu alebo AI analyzy."
+            value="Klikni na jednu z ikon a zobrazim ukažku kodu, terminalu alebo AI analyzy."
             align="center"
             color="#FFFFFF"
             width="0.9"
@@ -417,9 +417,9 @@
 
                                 nodes.forEach(node => node.setAttribute('visible', 'false'));
 
-                                if (log1) { log1.setAttribute('value', '> SYSTEM SECURE'); log1.setAttribute('color', '#00CCFF'); }
-                                if (log2) { log2.setAttribute('value', '> FIREWALL: ACTIVE'); log2.setAttribute('color', '#00CCFF'); }
-                                if (log3) { log3.setAttribute('value', '> NO THREATS FOUND'); log3.setAttribute('color', '#00CCFF'); }
+                                if (log1) { log1.setAttribute('value', '> SYSTEM ZABEZBEČENÝ'); log1.setAttribute('color', '#00CCFF'); }
+                                if (log2) { log2.setAttribute('value', '> FIREWALL: AKTÍVNY'); log2.setAttribute('color', '#00CCFF'); }
+                                if (log3) { log3.setAttribute('value', '> NENÁJDENE ŽIADNE HROZBY'); log3.setAttribute('color', '#00CCFF'); }
 
                                 btnBg.setAttribute('color', '#004466'); // Tmavomodrá
                                 btnLabel.setAttribute('value', 'VYPNÚŤ FIREWALL');
@@ -434,9 +434,9 @@
                                 
                                 nodes.forEach(node => node.setAttribute('visible', 'true'));
 
-                                if (log1) { log1.setAttribute('value', '> DETECTING ATTACKS...'); log1.setAttribute('color', '#FF0000'); }
+                                if (log1) { log1.setAttribute('value', '> DETEKCIA ÚTOKOV...'); log1.setAttribute('color', '#FF0000'); }
                                 if (log2) { log2.setAttribute('value', '> IP: 192.168.1.104'); log2.setAttribute('color', '#FF0000'); }
-                                if (log3) { log3.setAttribute('value', '> TYPE: DDOS_SPOOF'); log3.setAttribute('color', '#FF3333'); }
+                                if (log3) { log3.setAttribute('value', '> TYP: DDOS_SPOOF'); log3.setAttribute('color', '#FF3333'); }
 
                                 btnBg.setAttribute('color', '#FF3333'); // Červená
                                 btnLabel.setAttribute('value', 'NASADIŤ FIREWALL');
@@ -540,7 +540,7 @@
 
                     document.querySelector('#btnA').setAttribute('color', a ? '#00FF00' : '#FF0000');
                     document.querySelector('#btnB').setAttribute('color', b ? '#00FF00' : '#FF0000');
-                    document.querySelector('#outQ').setAttribute('color', result ? '#00FF00' : '#222222');
+                    document.querySelector('#outQ').setAttribute('color', result ? '#00FF00' : '#c0c2c2');
                     document.querySelector('#txtQ').setAttribute('value', result ? '1' : '0');
                 }
 
