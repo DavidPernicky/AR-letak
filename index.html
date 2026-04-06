@@ -336,7 +336,8 @@
                 // ---- TARGET 3: SOFTWARE TLAČIDLÁ ----
                 if (btnCode) {
                     btnCode.addEventListener('click', () => {
-                        panelText.setAttribute('value', 'void track_target(Entity t) {\n  if (t.is_enemy()) {\n    aim.lock(t.coords);\n    status = "LOCKED";\n    transmit(t.id);\n  }\n}'
+                        panelText.setAttribute('value',
+                            'def evaluate_signal(signal):\n    if signal > 80:\n        return "ALERT"\n    else:\n        return "OK"'
                         );
                         pulseAiCore();
                     });
