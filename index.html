@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charset="UTF-8">
-        <title>AR Vizitka - Katedra Informatiky</title>
+        <title>AR Leták - Katedra Informatiky</title>
 
         <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
@@ -60,6 +60,7 @@
 
                 <!-- INTERAKTÍVNA LOGIKA HRADIEL -->
                 <a-entity position="-0.3 0.4 0.1">
+                    <a-circle radius="0.1" color="#FFFFFF" opacity="0.5" position="0 0 -0.01"></a-circle>
                     <a-image id="gateDisplay" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/AND_ANSI.svg/200px-AND_ANSI.svg.png" 
                         color="#ffffff" width="0.2" height="0.12" position="0 0 0"
                         material="emissive: #FFFFFF; emissiveIntensity: 2">
@@ -223,7 +224,7 @@
 
         </a-scene>
 
-        <!-- ========== JEDEN HLAVNÝ SKRIPT ========== -->
+        <!-- ========== HLAVNÝ SKRIPT ========== -->
         <script>
             // --- Premenné pre hradlá (mimo load, lebo sú globálne) ---
             let gateA = false;
