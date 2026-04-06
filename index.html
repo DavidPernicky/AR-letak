@@ -310,11 +310,11 @@
                             blueShield.setAttribute('animation', 'property: material.opacity; from: 0; to: 0.4; dur: 1000');
                             nodes.forEach(n => n.setAttribute('visible', 'false'));
                             log1 && log1.setAttribute('value', '> SYSTEM ZABEZPEČENÝ')  && log1.setAttribute('color', '#00CCFF');
-                            log2 && log2.setAttribute('value', '> FIREWALL: AKTÍVNY')   && log2.setAttribute('color', '#00CCFF');
+                            log2 && log2.setAttribute('value', '> FIREWALL AKTÍVNY')   && log2.setAttribute('color', '#00CCFF');
                             log3 && log3.setAttribute('value', '> NENÁJDENÉ ŽIADNE HROZBY') && log3.setAttribute('color', '#00CCFF');
                             // Oprava: setAttribute vracia element, nie null - použijeme priamo
                             if (log1) { log1.setAttribute('value', '> SYSTEM ZABEZPEČENÝ'); log1.setAttribute('color', '#00CCFF'); }
-                            if (log2) { log2.setAttribute('value', '> FIREWALL: AKTÍVNY'); log2.setAttribute('color', '#00CCFF'); }
+                            if (log2) { log2.setAttribute('value', '> FIREWALL AKTÍVNY'); log2.setAttribute('color', '#00CCFF'); }
                             if (log3) { log3.setAttribute('value', '> NENÁJDENÉ ŽIADNE HROZBY'); log3.setAttribute('color', '#00CCFF'); }
                             btnBg.setAttribute('color', '#004466');
                             btnLabel.setAttribute('value', 'VYPNÚŤ FIREWALL');
@@ -324,10 +324,10 @@
                             redShield.setAttribute('visible', 'true');
                             nodes.forEach(n => n.setAttribute('visible', 'true'));
                             if (log1) { log1.setAttribute('value', '> DETEKCIA ÚTOKOV...'); log1.setAttribute('color', '#FF0000'); }
-                            if (log2) { log2.setAttribute('value', '> IP: 192.168.1.104'); log2.setAttribute('color', '#FF0000'); }
-                            if (log3) { log3.setAttribute('value', '> TYP: DDOS_SPOOF'); log3.setAttribute('color', '#FF3333'); }
+                            if (log2) { log2.setAttribute('value', '> IP...192.168.1.104'); log2.setAttribute('color', '#FF0000'); }
+                            if (log3) { log3.setAttribute('value', '> TYP...DDOS_SPOOF'); log3.setAttribute('color', '#FF3333'); }
                             btnBg.setAttribute('color', '#FF3333');
-                            btnLabel.setAttribute('value', 'NASADIŤ FIREWALL');
+                            btnLabel.setAttribute('value', 'ZAPNUŤ FIREWALL');
                             isFirewallActive = false;
                         }
                     });
@@ -336,8 +336,7 @@
                 // ---- TARGET 3: SOFTWARE TLAČIDLÁ ----
                 if (btnCode) {
                     btnCode.addEventListener('click', () => {
-                        panelText.setAttribute('value',
-                            'def evaluate_signal(signal):\n    if signal > 80:\n        return "ALERT"\n    else:\n        return "OK"'
+                        panelText.setAttribute('value', 'void track_target(Entity t) {\n  if (t.is_enemy()) {\n    aim.lock(t.coords);\n    status = "LOCKED";\n    transmit(t.id);\n  }\n}'
                         );
                         pulseAiCore();
                     });
@@ -355,7 +354,7 @@
                 if (btnAi) {
                     btnAi.addEventListener('click', () => {
                         panelText.setAttribute('value',
-                            'ANALÝZA DÁT...\nHROZBA: 18%\nRIZIKO: NÍZKE\nODPORÚČANIE: POKRAČOVAŤ'
+                            'ANALÝZA DÁT...\nHROZBA... 18%\nRIZIKO... NÍZKE\nODPORÚČANIE... POKRAČOVAŤ'
                         );
                         pulseAiCore();
                     });
